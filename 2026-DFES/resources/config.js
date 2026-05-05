@@ -526,7 +526,7 @@ function saveDOMImage(el,opt){
 		el.style.setProperty('height',(opt.height)+'px');
 	}
 	el.classList.add('capture');
-	domtoimage.toPng(el,opt).then(function(dataUrl){
+	htmlToImage.toPng(el,opt).then(function(dataUrl){
 		var link = document.createElement('a');
 		link.download = opt.src;
 		link.href = dataUrl;
