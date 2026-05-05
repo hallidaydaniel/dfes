@@ -1,0 +1,267 @@
+/* DFES 2026 redesign — chrome, buttons, footer.
+   This file is loaded AFTER style.css in index.html so its rules win.
+   Subsequent redesign steps will append more sections (hero, stats strip,
+   workspace, scenario cards, callout, etc.). When the migration is
+   complete style.css can be removed. */
+
+
+/* === Resets & globals === */
+*, *::before, *::after { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+	font-family: var(--font-body);
+	color: var(--text-color-1);
+	background: var(--background-color);
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+button { font-family: inherit; cursor: pointer; border: 0; background: none; }
+a { color: inherit; }
+
+/* Override the existing 1080px holder to the redesign's 1280px max */
+.holder {
+	width: 100%;
+	max-width: var(--max-content-width);
+	margin: 0 auto;
+	padding: 0 var(--sp-5);
+}
+
+
+/* === Utility bar (top, black, 36px) === */
+.utility-bar {
+	background: var(--black-100);
+	color: var(--white);
+	font-size: 13px;
+}
+.utility-bar .holder {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	height: 36px;
+}
+.utility-bar a {
+	color: rgba(255,255,255,0.85);
+	text-decoration: none;
+	margin-left: var(--sp-5);
+	font-weight: 500;
+	letter-spacing: 0.02em;
+	transition: color var(--dur-normal) var(--ease-std);
+}
+.utility-bar a:first-of-type { margin-left: 0; }
+.utility-bar a:hover { color: var(--white); }
+.utility-bar .powercut {
+	display: inline-flex;
+	align-items: center;
+	gap: 8px;
+	background: var(--red-100);
+	color: var(--white);
+	padding: 6px 14px 6px 12px;
+	border-radius: var(--r-pill);
+	font-weight: 700;
+	font-size: 12px;
+	letter-spacing: 0.04em;
+	text-transform: uppercase;
+	transition: background var(--dur-normal) var(--ease-std);
+	margin-left: 0; /* override .utility-bar a */
+}
+.utility-bar .powercut:hover { background: var(--black-100); color: var(--white); }
+.utility-bar .powercut svg { width: 14px; height: 14px; }
+
+
+/* === Site header (white, sticky, 76px) === */
+.site-header {
+	background: var(--white);
+	border-bottom: 1px solid var(--navy-10);
+	position: sticky;
+	top: 0;
+	z-index: 50;
+}
+.site-header .holder {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	height: 76px;
+}
+.brand {
+	display: inline-flex;
+	align-items: center;
+	gap: 14px;
+	text-decoration: none;
+}
+/* The shipped NPG SVG is white-fill (designed for the old dark header).
+   Until we have a dark-fill version, render it black via a filter. */
+.brand img {
+	height: 38px;
+	width: auto;
+	filter: brightness(0); /* renders the white SVG as solid black */
+}
+.brand .breadcrumb {
+	color: var(--black-70);
+	font-size: 14px;
+	border-left: 1px solid var(--navy-10);
+	padding-left: 14px;
+	font-weight: 500;
+}
+.brand .breadcrumb strong { color: var(--black-100); font-weight: 600; }
+.site-nav {
+	display: flex;
+	align-items: center;
+	gap: 28px;
+}
+.site-nav a {
+	color: var(--black-100);
+	text-decoration: none;
+	font-weight: 500;
+	font-size: 15px;
+}
+.site-nav a:hover { color: var(--red-100); }
+
+
+/* === Buttons (pill) ===
+   Note: this restyles existing <button> elements globally as well. The
+   existing controls' buttons (Play/Pause/Download CSV) get the new pill
+   look automatically. Step 5 (controls) will refine these further. */
+.btn {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: 10px;
+	padding: 14px 24px;
+	border-radius: var(--r-pill);
+	font-family: var(--font-body);
+	font-weight: 600;
+	font-size: 15px;
+	text-decoration: none;
+	letter-spacing: 0.01em;
+	transition: background var(--dur-normal) var(--ease-std),
+		color var(--dur-normal) var(--ease-std),
+		border-color var(--dur-normal) var(--ease-std),
+		transform var(--dur-fast);
+	border: 1.5px solid transparent;
+	white-space: nowrap;
+}
+.btn:active { transform: translateY(1px); }
+.btn--primary { background: var(--white); color: var(--black-100); }
+.btn--primary:hover { background: var(--black-100); color: var(--white); }
+.btn--ghost-on-red { background: transparent; color: var(--white); border-color: rgba(255,255,255,0.55); }
+.btn--ghost-on-red:hover { background: var(--white); color: var(--red-100); border-color: var(--white); }
+.btn--dark { background: var(--black-100); color: var(--white); }
+.btn--dark:hover { background: var(--red-100); color: var(--white); }
+.btn--outline { background: transparent; color: var(--black-100); border-color: var(--black-100); }
+.btn--outline:hover { background: var(--black-100); color: var(--white); }
+.btn--sm { padding: 9px 16px; font-size: 13px; gap: 6px; }
+
+
+/* === Site footer (black, theme-b) === */
+.site-footer {
+	background: var(--black-100);
+	color: var(--white);
+	padding-top: var(--sp-9);
+	padding-bottom: var(--sp-6);
+}
+.site-footer h4 {
+	font-family: var(--font-display);
+	font-size: 32px;
+	line-height: 1;
+	margin: 0 0 var(--sp-3) 0;
+	color: var(--white);
+	text-transform: uppercase;
+}
+.site-footer p {
+	color: rgba(255,255,255,0.78);
+	font-size: 15px;
+	line-height: 1.55;
+	max-width: 380px;
+	margin: 0 0 var(--sp-4) 0;
+}
+.site-footer a {
+	color: rgba(255,255,255,0.85);
+	text-decoration: none;
+	font-weight: 500;
+}
+.site-footer a:hover { color: var(--white); text-decoration: underline; }
+
+.footer-top {
+	display: grid;
+	grid-template-columns: 1.4fr 1fr 1fr 1fr;
+	gap: var(--sp-6);
+	margin-bottom: var(--sp-7);
+	padding-bottom: var(--sp-7);
+	border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+.footer-col .col-eye {
+	font-size: 11px;
+	letter-spacing: 0.14em;
+	text-transform: uppercase;
+	color: var(--pink-30);
+	font-weight: 700;
+	margin-bottom: var(--sp-3);
+}
+.footer-col ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+.footer-col a { font-size: 14px; }
+
+.partners {
+	display: flex;
+	align-items: center;
+	gap: var(--sp-5);
+	margin-bottom: var(--sp-5);
+	flex-wrap: wrap;
+}
+.partners .partner-eye {
+	font-size: 11px;
+	letter-spacing: 0.14em;
+	text-transform: uppercase;
+	color: var(--pink-30);
+	font-weight: 700;
+}
+.partners .partner-row {
+	display: flex;
+	gap: var(--sp-5);
+	align-items: center;
+	flex-wrap: wrap;
+}
+.partners img {
+	height: 28px;
+	width: auto;
+	opacity: 0.85;
+}
+/* Recolour the white-fill OI/ERM SVGs so they sit on the dark footer.
+   They were already white, so leave them as-is. */
+
+.footer-bottom {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	font-size: 12px;
+	color: rgba(255,255,255,0.6);
+	flex-wrap: wrap;
+	gap: var(--sp-3);
+}
+.footer-bottom a { color: rgba(255,255,255,0.85); text-decoration: none; }
+.footer-bottom a:hover { color: var(--white); }
+
+
+/* === Responsive — chrome only === */
+@media (max-width: 840px) {
+	/* Site header — declutter for small screens */
+	.site-header .holder { padding-top: 12px; padding-bottom: 12px; gap: 14px; }
+	.brand .breadcrumb { display: none; }
+	.site-nav { gap: 16px; }
+	.site-nav a { font-size: 14px; }
+	.site-nav .btn { padding: 6px 12px; font-size: 13px; }
+	/* Footer collapses to single column */
+	.footer-top { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 560px) {
+	.site-nav a:not(.btn) { display: none; }
+	.site-nav .btn { padding: 6px 10px; }
+	.utility-bar a:not(.powercut) { display: none; }
+	.footer-top { grid-template-columns: 1fr; }
+}
