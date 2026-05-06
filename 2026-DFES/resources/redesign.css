@@ -434,23 +434,29 @@ a { color: inherit; }
    still works, but apply the redesigned grid. */
 #scenario .columns {
 	display: grid;
-	grid-template-columns: 360px 1fr;
-	gap: var(--sp-6);
+	grid-template-columns: 320px 1fr;
+	gap: var(--sp-5);
 	padding: var(--sp-7) 0;
 	max-width: 100%;
 	margin: 0 auto;
+	align-items: stretch; /* let the right column match the left's height */
 }
 #scenario .columns > .left {
 	background: var(--black-5);
 	border: 1px solid var(--navy-10);
 	border-radius: var(--r-md);
-	padding: var(--sp-5);
+	padding: var(--sp-4);
 	display: flex;
 	flex-direction: column;
-	gap: var(--sp-5);
+	gap: var(--sp-4);
 	align-self: start;
 	position: sticky;
-	top: 124px;  /* below site-header (76px) + utility-bar (36px) + 12px breathing */
+	top: 124px;
+}
+#scenario .columns > .right {
+	display: flex;
+	flex-direction: column;
+	min-height: 0;
 }
 /* Kill the old <h2><label>...</label></h2> control headers — replaced by .control-group h3 */
 #scenario .columns > .left > h2 { display: none; }
@@ -458,14 +464,14 @@ a { color: inherit; }
 .control-group h3 {
 	font-family: var(--font-body);
 	font-weight: 700;
-	font-size: 11px;
+	font-size: 10px;
 	letter-spacing: 0.14em;
 	text-transform: uppercase;
 	color: var(--black-70);
-	margin: 0 0 var(--sp-3) 0;
+	margin: 0 0 6px 0;
 	display: flex;
 	align-items: center;
-	gap: 8px;
+	gap: 6px;
 }
 .control-group h3 .num {
 	display: inline-flex;
@@ -488,7 +494,7 @@ a { color: inherit; }
 }
 .scenario-card {
 	position: relative;
-	padding: 12px;
+	padding: 8px 10px;
 	border-radius: var(--r-sm);
 	border: 1.5px solid var(--navy-10);
 	background: var(--white);
@@ -504,28 +510,28 @@ a { color: inherit; }
 }
 .scenario-card .swatch {
 	display: block;
-	width: 18px;
-	height: 18px;
+	width: 14px;
+	height: 14px;
 	border-radius: 999px;
-	margin-bottom: 8px;
+	margin-bottom: 4px;
 	border: 2px solid var(--white);
 	box-shadow: 0 0 0 1px var(--navy-20);
 }
 .scenario-card .name {
 	font-weight: 700;
-	font-size: 13px;
+	font-size: 12px;
 	line-height: 1.2;
 	color: var(--black-100);
-	margin-bottom: 4px;
+	margin-bottom: 3px;
 }
 .scenario-card .nz {
-	font-size: 10px;
+	font-size: 9px;
 	font-weight: 600;
-	letter-spacing: 0.06em;
+	letter-spacing: 0.04em;
 	text-transform: uppercase;
 	display: inline-flex;
 	align-items: center;
-	gap: 4px;
+	gap: 3px;
 }
 .scenario-card .nz.yes { color: var(--teal-90); }
 .scenario-card .nz.no  { color: var(--black-70); }
@@ -537,18 +543,35 @@ a { color: inherit; }
 	-webkit-appearance: none;
 	-moz-appearance: none;
 	width: 100%;
-	height: 44px;
+	height: 36px;
 	border-radius: var(--r-sm);
 	border: 1.5px solid var(--navy-20);
 	background: var(--white);
-	padding: 0 36px 0 14px;
+	padding: 0 32px 0 12px;
 	font-family: var(--font-body);
-	font-size: 14px;
+	font-size: 13px;
 	color: var(--black-100);
 	font-weight: 500;
 	cursor: pointer;
 	line-height: normal;
 }
+/* Live-updated parameter description — restyled from the legacy
+   coloured-banner '.about' div to a subtle help-text caption that
+   mirrors the scale-mode help. dfes.js writes the description via
+   document.querySelector('#parameter-holder .about').innerHTML. */
+#parameter-holder .about {
+	display: block;
+	margin-top: 6px;
+	padding: 0;
+	background: transparent !important;
+	color: var(--black-70);
+	font-size: 11px;
+	line-height: 1.4;
+	font-weight: 400;
+}
+#parameter-holder .about:empty { display: none; }
+/* The scenario-holder is hidden, but its .about child sometimes leaks. */
+#scenario-holder .about { display: none !important; }
 #scenario .select-wrap select:focus {
 	outline: 2px solid var(--purple-20);
 	outline-offset: 2px;
@@ -573,14 +596,14 @@ a { color: inherit; }
 	background: var(--white);
 	border: 1.5px solid var(--navy-20);
 	border-radius: var(--r-pill);
-	padding: 3px;
+	padding: 2px;
 	gap: 2px;
 	width: 100%;
 }
 .segmented button {
-	padding: 7px 14px;
+	padding: 4px 10px;
 	border-radius: var(--r-pill);
-	font-size: 13px;
+	font-size: 12px;
 	font-weight: 600;
 	color: var(--black-70);
 	background: none;
@@ -589,6 +612,8 @@ a { color: inherit; }
 	transition: background var(--dur-fast), color var(--dur-fast);
 	flex: 1;
 	font-family: var(--font-body);
+	line-height: 1.4;
+	min-height: 26px;
 }
 .segmented button.active {
 	background: var(--black-100);
@@ -599,7 +624,7 @@ a { color: inherit; }
 .timeline {
 	display: flex;
 	flex-direction: column;
-	gap: 12px;
+	gap: 8px;
 }
 .timeline-head {
 	display: flex;
@@ -608,7 +633,7 @@ a { color: inherit; }
 }
 .timeline-year {
 	font-family: var(--font-display);
-	font-size: 56px;
+	font-size: 40px;
 	line-height: 0.9;
 	color: var(--black-100);
 }
@@ -627,8 +652,8 @@ a { color: inherit; }
 	gap: 8px;
 }
 .icon-btn {
-	width: 36px;
-	height: 36px;
+	width: 30px;
+	height: 30px;
 	border-radius: 999px;
 	background: var(--black-100);
 	color: var(--white);
@@ -654,14 +679,14 @@ a { color: inherit; }
 /* Scrubber — custom track/fill/thumb on top of the existing <input range> */
 .scrubber {
 	position: relative;
-	height: 44px;
+	height: 36px;
 	user-select: none;
 }
 .scrubber-track {
 	position: absolute;
 	left: 0;
 	right: 0;
-	top: 18px;
+	top: 14px;
 	height: 6px;
 	background: var(--navy-10);
 	border-radius: 3px;
@@ -676,7 +701,7 @@ a { color: inherit; }
 }
 .scrubber-thumb {
 	position: absolute;
-	top: 12px;
+	top: 8px;
 	left: 0;
 	width: 18px;
 	height: 18px;
@@ -709,7 +734,7 @@ a { color: inherit; }
 	position: absolute;
 	left: 0;
 	right: 0;
-	top: 30px;
+	top: 24px;
 	display: flex;
 	justify-content: space-between;
 	pointer-events: none;
@@ -724,16 +749,16 @@ a { color: inherit; }
 
 /* Scale-mode help text + hide legacy info-bubbles inside #scenario */
 .scale-help {
-	font-size: 12px;
+	font-size: 11px;
 	color: var(--black-70);
-	margin: 8px 0 0 0;
+	margin: 6px 0 0 0;
 	line-height: 1.4;
 }
 #scenario .info-bubble.warning { display: none; }
 
 /* Download button restyle (existing #download-csv inside #download) */
 #scenario #download {
-	margin-top: var(--sp-2);
+	margin-top: 0;
 	text-align: center;
 }
 #scenario #download button {
@@ -743,8 +768,8 @@ a { color: inherit; }
 	color: var(--white);
 	border: 0;
 	border-radius: var(--r-pill);
-	padding: 12px 18px;
-	font-size: 14px;
+	padding: 9px 14px;
+	font-size: 13px;
 	font-weight: 600;
 	display: inline-flex;
 	align-items: center;
@@ -770,24 +795,33 @@ a { color: inherit; }
 
 
 /* === Map presentation — theme-a === */
-/* Decorate #screenshot/#map without changing their sizing model — Leaflet
-   relies on the existing fixed height from style.css (#map { height: 650px }).
-   Adding flex/auto-height here breaks Leaflet's tile bounds and triggers
-   ERR_ABORTED on every tile request. */
+/* Stretch the right column to match the left controls' height (set by
+   align-items: stretch on .columns above), then make #screenshot a flex
+   column whose <map> takes the remaining space. Leaflet needs a concrete
+   height; min-height keeps it usable when the left column is short. */
 #scenario #screenshot {
 	position: relative;
 	border: 1px solid var(--navy-10);
 	border-radius: var(--r-md);
 	overflow: hidden;
 	background: var(--navy-25);
+	display: flex;
+	flex-direction: column;
+	flex: 1; /* fill the .right column height */
+	min-height: 480px;
 }
 #scenario #map {
+	flex: 1;
+	height: auto !important; /* override style.css 650px so flex can size it */
+	min-height: 360px;
 	background: linear-gradient(180deg, #f4f4f7, #ededed);
 }
 
-/* (Old right-column #scale-holder removed in HTML; the only remaining
-    #scale-holder is the hidden one in the left controls that wraps
-    #scale-mode for dfes.js compatibility.) */
+/* The #scale-holder is a hidden state-wrapper around the #scale-mode
+   checkbox that dfes.js reads. style.css ships an unconditional
+   `#scale-holder { display: inline-block; }` rule (specificity 1,0,0)
+   that overrides the `hidden` HTML attribute. Force it back. */
+[hidden]#scale-holder, #scale-holder[hidden] { display: none !important; }
 
 /* Map legend — the existing #scale gets a card-like wrapper feel
    and a pill-button "Save PNG" button via #issues. */
@@ -1139,4 +1173,68 @@ a { color: inherit; }
 }
 @media (max-width: 560px) {
 	.scenario-grid { grid-template-columns: 1fr; }
+}
+
+
+/* === Callout band — theme-e (pink-tinted) === */
+.callout-band {
+	background: var(--pink-5);
+	padding: var(--sp-9) 0;
+}
+.callout-grid {
+	display: grid;
+	grid-template-columns: 1.1fr 1fr;
+	gap: var(--sp-7);
+	align-items: center;
+}
+.callout-grid h2 {
+	font-size: clamp(36px, 4.5vw, 56px);
+	line-height: 1;
+	margin: 0 0 var(--sp-4) 0;
+	color: var(--black-100);
+	font-family: var(--font-display);
+	font-weight: var(--fw-display);
+	text-transform: uppercase;
+	letter-spacing: var(--tr-display);
+}
+.callout-grid .eyebrow {
+	color: var(--red-100);
+	margin-bottom: var(--sp-3);
+}
+.callout-grid .quote {
+	font-family: var(--font-display);
+	font-size: 28px;
+	line-height: 1.1;
+	color: var(--black-100);
+	border-left: 4px solid var(--red-100);
+	padding-left: var(--sp-4);
+	margin: 0;
+	letter-spacing: 0.01em;
+}
+.callout-numbers {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: var(--sp-4);
+}
+.callout-num {
+	background: var(--white);
+	border-radius: var(--r-md);
+	padding: var(--sp-5);
+	border: 1px solid var(--purple-10);
+}
+.callout-num .v {
+	font-family: var(--font-display);
+	font-size: 56px;
+	line-height: 1;
+	color: var(--red-100);
+	margin-bottom: 6px;
+}
+.callout-num .l {
+	font-size: 13px;
+	font-weight: 600;
+	color: var(--black-80);
+	line-height: 1.35;
+}
+@media (max-width: 1100px) {
+	.callout-grid { grid-template-columns: 1fr; }
 }
