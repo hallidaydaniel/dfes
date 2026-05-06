@@ -378,3 +378,50 @@ a { color: inherit; }
 	.hero .holder { grid-template-columns: 1fr; gap: var(--sp-5); }
 	.hero-network { display: none; }
 }
+
+
+/* === Stats strip — theme-b (black), region overview === */
+.stats-strip {
+	background: var(--black-100);
+	color: var(--white);
+	border-top: 1px solid rgba(255,255,255,0.06);
+	border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.stats-strip .holder {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	gap: var(--sp-6);
+	padding-top: var(--sp-6);
+	padding-bottom: var(--sp-6);
+}
+.stats-strip .stat .label {
+	font-size: 11px;
+	letter-spacing: 0.16em;
+	text-transform: uppercase;
+	color: var(--pink-30);
+	font-weight: 700;
+	margin-bottom: 8px;
+}
+.stats-strip .stat .value {
+	font-family: var(--font-display);
+	font-size: 44px;
+	line-height: 1;
+	margin-bottom: 6px;
+	color: var(--white);
+}
+.stats-strip .stat .value .unit {
+	font-size: 0.5em;
+	opacity: 0.7;
+	margin-left: 6px;
+}
+.stats-strip .stat .desc {
+	font-size: 13px;
+	color: rgba(255,255,255,0.7);
+	line-height: 1.4;
+}
+@media (max-width: 1100px) {
+	.stats-strip .holder { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 560px) {
+	.stats-strip .holder { grid-template-columns: 1fr; }
+}

@@ -22,6 +22,7 @@
 	<script src="resources/Leaflet.PlaceNameLayer.js"></script>
 	<script src="resources/html-to-image.min.js?v=1.11.13"></script>
 	<script src="resources/hero-network.js?v=1" defer></script>
+	<script src="resources/stats-strip.js?v=1" defer></script>
 	<meta name="twitter:card" content="summary_large_image" />
 	<meta name="twitter:site" content="@Northpowergrid" />
 	<meta name="twitter:url" property="og:url" content="https://northernpowergrid.github.io/dfes/2026-DFES/" />
@@ -103,6 +104,32 @@
 		</div>
 	</section>
 
+
+	<!-- Stats strip — region overview, live-bound to current scenario/param/year. -->
+	<section class="stats-strip" aria-label="Region overview">
+		<div class="holder">
+			<div class="stat stat-scenario">
+				<div class="label">Scenario</div>
+				<div class="value">&mdash;</div>
+				<div class="desc">Choose one of five future pathways below.</div>
+			</div>
+			<div class="stat stat-year">
+				<div class="label">Year</div>
+				<div class="value">&mdash;</div>
+				<div class="desc">Drag the timeline to forecast each year through 2050.</div>
+			</div>
+			<div class="stat stat-total">
+				<div class="label">Region total</div>
+				<div class="value"><span class="number">&mdash;</span><span class="unit"></span></div>
+				<div class="desc">Loading region totals&hellip;</div>
+			</div>
+			<div class="stat stat-netzero">
+				<div class="label">Net zero by 2050</div>
+				<div class="value">&mdash;</div>
+				<div class="desc">&nbsp;</div>
+			</div>
+		</div>
+	</section>
 
 	<a id="workspace" aria-hidden="true"></a>
 	<div class="b6-bg" id="scenario">
