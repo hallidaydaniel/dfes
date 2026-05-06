@@ -577,16 +577,21 @@ a { color: inherit; }
 	outline-offset: 2px;
 	border-color: var(--black-100);
 }
+/* Dropdown chevron — anchored to the top of the wrapper (where the
+   <select> lives) rather than 50% of the wrapper, because the <select>
+   is followed by the live ".about" description and 50% of the combined
+   wrapper height puts the chevron below the select. The select height
+   is 36px so the chevron centres at 18px. */
 #scenario .select-wrap::after {
 	content: "";
 	position: absolute;
 	right: 14px;
-	top: 50%;
+	top: 18px;
 	width: 8px;
 	height: 8px;
 	border-right: 2px solid var(--black-70);
 	border-bottom: 2px solid var(--black-70);
-	transform: translateY(-70%) rotate(45deg);
+	transform: translate(0, -50%) rotate(45deg);
 	pointer-events: none;
 }
 
@@ -868,28 +873,42 @@ a { color: inherit; }
 	white-space: nowrap;
 }
 
-/* Issues bar (Save PNG / Graphs / Data / Issues) — sits below the map,
-   styled like a compact action row. */
-#scenario #issues {
-	margin-top: var(--sp-4);
-	padding: 12px 0;
-	font-size: 13px;
-	color: var(--black-70);
+/* Action row (Save PNG / Graphs / Data / Issues) — pill buttons under
+   the whole workspace, hoisted out of .right so the map can fill the
+   column. */
+#scenario > .holder > #issues {
+	margin-top: var(--sp-3);
+	padding: var(--sp-3) 0 var(--sp-5) 0;
 	display: flex;
-	gap: 14px;
+	gap: 10px;
 	flex-wrap: wrap;
 	align-items: center;
+	justify-content: flex-end;
 }
-#scenario #issues a {
+.issue-pill {
+	display: inline-flex;
+	align-items: center;
+	gap: 8px;
+	padding: 8px 16px;
+	border-radius: var(--r-pill);
+	border: 1.5px solid var(--navy-20);
+	background: var(--white);
 	color: var(--black-100);
-	text-decoration: none;
+	font-size: 13px;
 	font-weight: 600;
-	border-bottom: 1px solid transparent;
-	transition: border-color var(--dur-fast), color var(--dur-fast);
+	text-decoration: none;
+	transition: background var(--dur-fast), color var(--dur-fast), border-color var(--dur-fast);
+	font-family: var(--font-body);
 }
-#scenario #issues a:hover {
-	color: var(--red-100);
-	border-color: var(--red-100);
+.issue-pill svg { width: 14px; height: 14px; flex-shrink: 0; }
+.issue-pill:hover {
+	background: var(--black-100);
+	color: var(--white);
+	border-color: var(--black-100);
+}
+@media (max-width: 560px) {
+	#scenario > .holder > #issues { justify-content: stretch; }
+	.issue-pill { flex: 1 1 auto; justify-content: center; }
 }
 
 /* Leaflet zoom + attribution restyled */
@@ -923,18 +942,30 @@ a { color: inherit; }
 	text-decoration: none;
 }
 
-/* Year tag (top-right of map, set by dfes.js info control) */
+/* Year tag (top-right of map, set by dfes.js info control)
+   The wrapping <div class="scenario"> picks up the JS-injected
+   scenario background colour (red-ish), which leaks around the white
+   pill. Force the wrapper transparent and let the inner .year carry
+   the entire pill styling. */
+.leaflet-control-container .scenario {
+	background: transparent !important;
+	color: var(--black-100) !important;
+	padding: 0 !important;
+	border: 0 !important;
+	box-shadow: none !important;
+}
 .leaflet-control-container .scenario .year {
 	font-family: var(--font-display);
 	font-size: 22px;
 	letter-spacing: 0.02em;
-	background: var(--white);
-	color: var(--black-100);
-	padding: 8px 14px;
+	background: var(--white) !important;
+	color: var(--black-100) !important;
+	padding: 6px 14px !important;
 	border-radius: var(--r-pill);
 	border: 1px solid var(--navy-10);
 	box-shadow: 0 1px 3px rgba(0,0,0,0.06);
 	display: inline-block;
+	line-height: 1;
 }
 
 /* Leaflet popups — match the redesign card aesthetic */

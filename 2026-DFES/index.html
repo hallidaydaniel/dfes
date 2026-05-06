@@ -12,7 +12,7 @@
 	<link rel="StyleSheet" href="resources/leaflet.css?v=1.9.4" type="text/css" />
 	<link rel="stylesheet" href="resources/stuquery.barchart.css" type="text/css" />
 	<link rel="StyleSheet" href="resources/style.css" type="text/css" />
-	<link rel="StyleSheet" href="resources/redesign.css?v=1" type="text/css" />
+	<link rel="StyleSheet" href="resources/redesign.css?v=3" type="text/css" />
 	<script src="resources/tooltips.js"></script>
 	<script src="resources/typeahead.js"></script>
 	<script src="resources/dfes.js?v=2"></script>
@@ -252,16 +252,31 @@
 				<!-- Scale-mode toggle now lives in the left controls (step 5).
 				     Old #scale-holder block removed; the original duplicate
 				     id="scale-mode" was a problem — only one input can drive
-				     dfes.js's scale state. -->
-				<div id="issues">
-					<a href="#" id="save-png-link">Save map as PNG</a>
-					<span aria-hidden="true">&middot;</span>
-					<a href="graphs.html">Graphs</a>
-					<span aria-hidden="true">&middot;</span>
-					<a href="https://northernpowergrid.opendatasoft.com/explore/dataset/northern-powergrid-dfes/">Get the data</a>
-					<span aria-hidden="true">&middot;</span>
-					<a href="https://github.com/northernpowergrid/dfes/issues/">Report an issue</a>
-				</div>
+				     dfes.js's scale state. The #issues action row is hoisted
+				     out of .right (below) so the map can fill the column. -->
+			</div>
+		</div>
+		<!-- Action row — pill buttons under the whole workspace so the map
+		     and sidebar can match heights without competing for vertical
+		     space inside the right column. -->
+		<div class="holder">
+			<div id="issues">
+				<a href="#" id="save-png-link" class="issue-pill">
+					<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+					Save map as PNG
+				</a>
+				<a href="graphs.html" class="issue-pill">
+					<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+					Graphs
+				</a>
+				<a href="https://northernpowergrid.opendatasoft.com/explore/dataset/northern-powergrid-dfes/" class="issue-pill">
+					<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+					Get the data
+				</a>
+				<a href="https://github.com/northernpowergrid/dfes/issues/" class="issue-pill">
+					<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+					Report an issue
+				</a>
 			</div>
 		</div>
 	</div>
