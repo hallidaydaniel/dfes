@@ -23,6 +23,7 @@
 	<script src="resources/html-to-image.min.js?v=1.11.13"></script>
 	<script src="resources/hero-network.js?v=1" defer></script>
 	<script src="resources/stats-strip.js?v=1" defer></script>
+	<script src="resources/controls.js?v=1" defer></script>
 	<meta name="twitter:card" content="summary_large_image" />
 	<meta name="twitter:site" content="@Northpowergrid" />
 	<meta name="twitter:url" property="og:url" content="https://northernpowergrid.github.io/dfes/2026-DFES/" />
@@ -143,27 +144,85 @@
 		<div class="scenario thickline leading-the-way"></div>
 		<div class="columns">
 			<div class="left">
-				<h2><label for="scenarios">Choose a scenario</label>:</h2>
-				<div id="scenario-holder">
-					<select id="scenarios"></select>
+				<!-- 1. Scenario — cards mirror the (hidden) #scenarios select.
+				     The select stays in the DOM as the canonical state holder
+				     so dfes.js / config.js continue to function unchanged. -->
+				<div class="control-group">
+					<h3><span class="num">1</span> Scenario</h3>
+					<div id="scenario-holder" hidden>
+						<select id="scenarios"></select>
+					</div>
+					<div class="scenario-cards" role="group" aria-label="Scenario picker"></div>
 				</div>
-				<h2><label for="parameters">Choose a parameter</label>:</h2>
-				<div id="parameter-holder">
-					<select id="parameters"></select>
-				</div>
-				<h2><label for="views">View by</label>:</h2>
-				<div id="view-holder">
-					<select id="views"></select>
-				</div>
-				<div class="info-bubble warning" data-scale="absolute" style="display:none;"><p>To improve the contrast between areas within your chosen year you may wish to change the colour scale.</p></div>
 
-				<h2><label for="slider">Select year (<span class="year"></span>):</label></h2>
-				<input type="range" id="slider" min="2024" max="2051" step="1" class="scenario" />
-				<div><button id="play" class="scenario" title="Play">&#9658;</button> <button id="pause" class="scenario" title="Pause" disabled>&#10074;&#10074;</button></div>
-				<div class="info-bubble warning" data-scale="relative"><p>To better show changes in values over time you may wish to change the colour scale.</p></div>
+				<!-- 2. Parameter — keep the existing select, just restyle. -->
+				<div class="control-group">
+					<h3><span class="num">2</span> Parameter</h3>
+					<div class="select-wrap" id="parameter-holder">
+						<select id="parameters" aria-label="Parameter"></select>
+					</div>
+				</div>
+
+				<!-- 3. View — segmented control mirrors the (hidden) #views select. -->
+				<div class="control-group">
+					<h3><span class="num">3</span> View by</h3>
+					<div id="view-holder" hidden>
+						<select id="views"></select>
+					</div>
+					<div class="segmented view-segmented" role="group" aria-label="View"></div>
+				</div>
+
+				<!-- 4. Year — big display + play/pause + custom scrubber over real <input range>. -->
+				<div class="control-group">
+					<h3><span class="num">4</span> Year</h3>
+					<div class="timeline">
+						<div class="timeline-head">
+							<div class="timeline-year">
+								<span class="small">Forecast</span>
+								<span class="year">&mdash;</span>
+							</div>
+							<div class="timeline-controls">
+								<button id="play" class="icon-btn" title="Play" aria-label="Play animation through years">
+									<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="6 4 20 12 6 20 6 4"/></svg>
+								</button>
+								<button id="pause" class="icon-btn ghost" title="Pause" disabled aria-label="Pause animation">
+									<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+								</button>
+							</div>
+						</div>
+						<div class="scrubber">
+							<div class="scrubber-track"><div class="scrubber-fill"></div></div>
+							<input type="range" id="slider" min="2024" max="2051" step="1" class="scrubber-input" aria-label="Year selector" />
+							<div class="scrubber-thumb"></div>
+							<div class="scrubber-ticks">
+								<span class="scrubber-tick major">2024</span>
+								<span class="scrubber-tick">2030</span>
+								<span class="scrubber-tick">2035</span>
+								<span class="scrubber-tick">2040</span>
+								<span class="scrubber-tick">2045</span>
+								<span class="scrubber-tick major">2050</span>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- 5. Colour scale — segmented mirrors the (hidden) #scale-mode checkbox. -->
+				<div class="control-group">
+					<h3><span class="num">5</span> Colour scale</h3>
+					<input type="checkbox" id="scale-mode" name="scale-mode" hidden />
+					<div class="segmented scale-segmented" role="group" aria-label="Colour scale mode">
+						<button class="active" data-mode="relative">This year</button>
+						<button data-mode="absolute">2024&ndash;2050 range</button>
+					</div>
+					<p class="scale-help">Colours adjust to the selected year for higher contrast within that year.</p>
+				</div>
+
+				<!-- Legacy info-bubbles — kept (hidden) so config.js setScale() can still toggle them by [data-scale]. -->
+				<div class="info-bubble warning" data-scale="absolute" hidden></div>
+				<div class="info-bubble warning" data-scale="relative" hidden></div>
 
 				<div id="download">
-					<button class="page-header__branding scenario" id="download-csv"><svg width="1em" height="1em" viewBox="0 0 32 32" fill="currentColor" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M 0 32 l 32 0 l 0 -10 l -4 0 l 0 6 l -24 0 l 0 -6 l -4 0 l 0 10 M 12 5 l 8 0 l 0 10 l 8 0 l -12 12 l -12 -12 l 8 0"></path></svg> Download CSV for this view</button>
+					<button class="page-header__branding scenario" id="download-csv"><svg width="1em" height="1em" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M 0 32 l 32 0 l 0 -10 l -4 0 l 0 6 l -24 0 l 0 -6 l -4 0 l 0 10 M 12 5 l 8 0 l 0 10 l 8 0 l -12 12 l -12 -12 l 8 0"></path></svg> Download CSV for this view</button>
 				</div>
 			</div>
 			<div class="right">
