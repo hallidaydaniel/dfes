@@ -206,10 +206,15 @@
 					</div>
 				</div>
 
-				<!-- 5. Colour scale — segmented mirrors the (hidden) #scale-mode checkbox. -->
+				<!-- 5. Colour scale — segmented mirrors the (hidden) #scale-mode checkbox.
+				     #scale-holder is required by dfes.js (lines 137, 228, 593-594)
+				     which queries it for state syncing. Kept as a hidden wrapper
+				     around the input the segmented mirrors. -->
 				<div class="control-group">
 					<h3><span class="num">5</span> Colour scale</h3>
-					<input type="checkbox" id="scale-mode" name="scale-mode" hidden />
+					<div id="scale-holder" hidden>
+						<input type="checkbox" id="scale-mode" name="scale-mode" />
+					</div>
 					<div class="segmented scale-segmented" role="group" aria-label="Colour scale mode">
 						<button class="active" data-mode="relative">This year</button>
 						<button data-mode="absolute">2024&ndash;2050 range</button>
@@ -244,22 +249,19 @@
 					</div>
 					<div id="scale"></div>
 				</div>
-				<div id="scale-holder" class="toggleinput toggler">
-					<label for="scale-mode">Adjust colour scale to current year?</label>:
-					<div id="scale-holder" class="toggleinput toggler">
-						<span class="toggle-label1" title="To compare the values of different areas for the current year">Yes</span>
-						<div class="toggle-bg">
-							<input type="checkbox" id="scale-mode" name="scale-mode" title="Select for an absolute scale" />
-							<span class="switch"></span>
-						</div>
-						<span class="toggle-label2" title="To compare the values of different areas across the the full range of years">No</span>
-					</div>
-						
-					<div class="info-bubble warning">
-						<p>Select <strong>Yes</strong> and the colour scale will change depending on the year you have selected. This will help improve contrast for each area within your chosen year. Select <strong>No</strong> and the colour scale will stay the same as you move through the years.</p>
-					</div>
+				<!-- Scale-mode toggle now lives in the left controls (step 5).
+				     Old #scale-holder block removed; the original duplicate
+				     id="scale-mode" was a problem — only one input can drive
+				     dfes.js's scale state. -->
+				<div id="issues">
+					<a href="#" id="save-png-link">Save map as PNG</a>
+					<span aria-hidden="true">&middot;</span>
+					<a href="graphs.html">Graphs</a>
+					<span aria-hidden="true">&middot;</span>
+					<a href="https://northernpowergrid.opendatasoft.com/explore/dataset/northern-powergrid-dfes/">Get the data</a>
+					<span aria-hidden="true">&middot;</span>
+					<a href="https://github.com/northernpowergrid/dfes/issues/">Report an issue</a>
 				</div>
-				<div id="issues"><a href="#" id="save-png-link">Save map as PNG</a> | <a href="graphs.html">Graphs to accompany this tool</a> | <a href="https://northernpowergrid.opendatasoft.com/explore/dataset/northern-powergrid-dfes/">Get the data</a> | <a href="https://github.com/odileeds/northern-powergrid/issues/">Report any issues you find</a> with our tool</div>
 			</div>
 		</div>
 	</div>

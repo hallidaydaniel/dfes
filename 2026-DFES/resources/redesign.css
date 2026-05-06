@@ -767,3 +767,183 @@ a { color: inherit; }
 		position: static;
 	}
 }
+
+
+/* === Map presentation — theme-a === */
+/* Decorate #screenshot/#map without changing their sizing model — Leaflet
+   relies on the existing fixed height from style.css (#map { height: 650px }).
+   Adding flex/auto-height here breaks Leaflet's tile bounds and triggers
+   ERR_ABORTED on every tile request. */
+#scenario #screenshot {
+	position: relative;
+	border: 1px solid var(--navy-10);
+	border-radius: var(--r-md);
+	overflow: hidden;
+	background: var(--navy-25);
+}
+#scenario #map {
+	background: linear-gradient(180deg, #f4f4f7, #ededed);
+}
+
+/* (Old right-column #scale-holder removed in HTML; the only remaining
+    #scale-holder is the hidden one in the left controls that wraps
+    #scale-mode for dfes.js compatibility.) */
+
+/* Map legend — the existing #scale gets a card-like wrapper feel
+   and a pill-button "Save PNG" button via #issues. */
+#scenario #scale {
+	border-top: 1px solid var(--navy-10);
+	background: var(--white);
+	padding: 14px 18px 6px 18px;
+}
+#scenario #scale .bar {
+	height: 12px;
+	border-radius: 6px;
+	overflow: hidden;
+	margin-top: 4px;
+}
+#scenario #scale .bar-inner {
+	height: 100%;
+	border-width: 0 !important;
+}
+#scenario #scale .range {
+	display: block;
+	position: relative;
+	height: 1.5em;
+	margin-top: 4px;
+}
+#scenario #scale .lvl {
+	font-size: 11px;
+	color: var(--black-70);
+	font-weight: 600;
+	position: absolute;
+	transform: translateX(-50%);
+}
+#scenario #scale .min {
+	left: 0 !important;
+	transform: none !important;
+	white-space: nowrap;
+	border-left: 0 !important;
+	padding-left: 0 !important;
+}
+#scenario #scale .max {
+	right: 0;
+	transform: translateX(0) !important;
+	border-right: 0 !important;
+	padding-right: 0 !important;
+	white-space: nowrap;
+}
+
+/* Issues bar (Save PNG / Graphs / Data / Issues) — sits below the map,
+   styled like a compact action row. */
+#scenario #issues {
+	margin-top: var(--sp-4);
+	padding: 12px 0;
+	font-size: 13px;
+	color: var(--black-70);
+	display: flex;
+	gap: 14px;
+	flex-wrap: wrap;
+	align-items: center;
+}
+#scenario #issues a {
+	color: var(--black-100);
+	text-decoration: none;
+	font-weight: 600;
+	border-bottom: 1px solid transparent;
+	transition: border-color var(--dur-fast), color var(--dur-fast);
+}
+#scenario #issues a:hover {
+	color: var(--red-100);
+	border-color: var(--red-100);
+}
+
+/* Leaflet zoom + attribution restyled */
+.leaflet-control-zoom {
+	border-radius: var(--r-sm) !important;
+	overflow: hidden;
+	border: 1px solid var(--navy-10) !important;
+	box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+}
+.leaflet-control-zoom a {
+	background: var(--white) !important;
+	color: var(--black-100) !important;
+	border-color: var(--navy-10) !important;
+	font-family: var(--font-body) !important;
+	font-weight: 600 !important;
+	transition: background var(--dur-fast);
+}
+.leaflet-control-zoom a:hover {
+	background: var(--black-5) !important;
+	color: var(--red-100) !important;
+}
+.leaflet-control-attribution {
+	background: rgba(255,255,255,0.85) !important;
+	font-size: 11px !important;
+	padding: 3px 8px !important;
+	color: var(--black-70) !important;
+	border-radius: var(--r-sm) 0 0 0;
+}
+.leaflet-control-attribution a {
+	color: var(--black-100) !important;
+	text-decoration: none;
+}
+
+/* Year tag (top-right of map, set by dfes.js info control) */
+.leaflet-control-container .scenario .year {
+	font-family: var(--font-display);
+	font-size: 22px;
+	letter-spacing: 0.02em;
+	background: var(--white);
+	color: var(--black-100);
+	padding: 8px 14px;
+	border-radius: var(--r-pill);
+	border: 1px solid var(--navy-10);
+	box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+	display: inline-block;
+}
+
+/* Leaflet popups — match the redesign card aesthetic */
+.leaflet-popup-content-wrapper {
+	border-radius: var(--r-md) !important;
+	border: 1px solid var(--navy-10);
+	box-shadow: 0 8px 24px rgba(0,0,0,0.12) !important;
+	background: var(--white) !important;
+}
+.leaflet-popup-tip {
+	background: var(--white) !important;
+	box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+}
+.leaflet-popup-content {
+	margin: 14px !important;
+	font-family: var(--font-body) !important;
+	font-size: 13px;
+	line-height: 1.45;
+	color: var(--black-100);
+}
+.leaflet-popup-content h3 {
+	font-family: var(--font-body);
+	font-weight: 700;
+	font-size: 15px;
+	color: var(--black-100);
+	margin: 0 0 6px 0;
+	letter-spacing: 0;
+	text-transform: none;
+}
+.leaflet-popup-content h4 {
+	font-family: var(--font-body);
+	font-weight: 700;
+	font-size: 13px;
+	margin: 8px 0 2px 0;
+	color: var(--black-100);
+}
+.leaflet-popup-content p { margin: 0 0 6px 0; }
+.leaflet-popup-content strong { font-weight: 700; }
+.leaflet-popup-close-button {
+	color: var(--black-70) !important;
+	font-size: 18px !important;
+	padding: 6px 8px !important;
+}
+
+/* Map spinner restyle — keep it visible against the new bg */
+.spinner .sk-cube { background: var(--red-100) !important; }
