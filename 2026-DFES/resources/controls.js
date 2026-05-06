@@ -118,7 +118,10 @@
 			var html = '';
 			opts.forEach(function (opt) {
 				var label = SHORT[opt.text] || opt.text;
+				// Use the FULL option text as the native title tooltip so
+				// hovering "LA" shows "Local Authorities" etc.
 				html += '<button type="button"' + (opt.selected ? ' class="active"' : '') +
+					' title="' + escapeAttr(opt.text) + '"' +
 					' data-value="' + escapeAttr(opt.value) + '">' +
 					escapeHtml(label) + '</button>';
 			});

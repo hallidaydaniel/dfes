@@ -735,6 +735,14 @@ a { color: inherit; }
 .scrubber-input:active + .scrubber-thumb {
 	transform: translateX(-50%) scale(1.15);
 }
+/* Hide the legacy .pip-labels element dfes.js auto-creates next to
+   the slider — its tick-mark hashes were rendering on top of (and
+   competing with) the new .scrubber-ticks row. */
+.pip-labels { display: none !important; }
+/* And kill any native browser slider tickmarks that might leak through
+   (Firefox renders ticks for inputs with step). */
+.scrubber-input::-webkit-slider-runnable-track { background: transparent !important; }
+.scrubber-input::-moz-range-track { background: transparent !important; }
 .scrubber-ticks {
 	position: absolute;
 	left: 0;
@@ -865,20 +873,26 @@ a { color: inherit; }
 	border-left: 0 !important;
 	padding-left: 0 !important;
 }
+/* dfes.js writes inline `style="left: 100%"` on .max. Original style.css
+   used `transform: translate3d(-100%, 0, 0)` to pull the element back so
+   its right edge aligns with the legend bar's right edge. The redesign
+   needs the same. (My earlier `translateX(0)` left it sitting off-canvas
+   to the right and the number got clipped.) */
 #scenario #scale .max {
-	right: 0;
-	transform: translateX(0) !important;
+	transform: translateX(-100%) !important;
 	border-right: 0 !important;
 	padding-right: 0 !important;
+	padding-left: 0 !important;
 	white-space: nowrap;
+	text-align: right;
 }
 
 /* Action row (Save PNG / Graphs / Data / Issues) — pill buttons under
    the whole workspace, hoisted out of .right so the map can fill the
-   column. */
+   column. Snug to the workspace above. */
 #scenario > .holder > #issues {
-	margin-top: var(--sp-3);
-	padding: var(--sp-3) 0 var(--sp-5) 0;
+	margin-top: 0;
+	padding: 6px 0 var(--sp-3) 0;
 	display: flex;
 	gap: 10px;
 	flex-wrap: wrap;
@@ -1012,6 +1026,39 @@ a { color: inherit; }
 
 /* Map spinner restyle — keep it visible against the new bg */
 .spinner .sk-cube { background: var(--red-100) !important; }
+
+/* Bar-chart hover tooltip — the legacy .balloon and OI.Tooltips inner
+   either showed black-on-grey or inherited the scenario red. Force a
+   readable white card with dark text matching the rest of the redesign. */
+#scenario .barchart .balloon,
+#scenario .barchart .balloon *,
+.tooltip-tip,
+.tooltip-tip .inner,
+.oi-tooltip,
+.oi-tooltip .inner {
+	background: var(--white) !important;
+	color: var(--black-100) !important;
+	font-family: var(--font-body) !important;
+}
+.tooltip-tip .inner,
+.oi-tooltip .inner,
+#scenario .barchart .balloon {
+	border: 1px solid var(--navy-10) !important;
+	border-radius: var(--r-sm) !important;
+	box-shadow: 0 4px 12px rgba(0,0,0,0.15) !important;
+	padding: 8px 12px !important;
+	font-size: 12px !important;
+	line-height: 1.4 !important;
+}
+.tooltip-tip .arrow,
+.oi-tooltip .arrow {
+	border-top-color: var(--white) !important;
+}
+#scenario .barchart .balloon::after,
+#scenario .barchart .bar-right .balloon::after {
+	border-left-color: var(--white) !important;
+	border-right-color: var(--white) !important;
+}
 
 
 /* === About — scenario cards (theme-d, off-white) === */
