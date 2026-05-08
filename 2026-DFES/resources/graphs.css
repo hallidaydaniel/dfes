@@ -1,0 +1,372 @@
+/* DFES 2026 — Graphs page-specific styles
+   Builds on tokens.css + app.css. Reuses utility-bar, site-header,
+   site-footer, and the brand chrome from app.css verbatim.
+*/
+
+/* ===================================================================
+   Page intro band
+   =================================================================== */
+.g-pageintro {
+  background: var(--white);
+  border-bottom: 1px solid var(--navy-10);
+  padding: var(--sp-7) 0 var(--sp-6);
+}
+.g-pageintro-eyebrow {
+  font-family: var(--font-display);
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--red-100);
+  font-weight: 700;
+  margin-bottom: var(--sp-3);
+}
+.g-pageintro-title {
+  font-family: var(--font-display);
+  font-size: clamp(40px, 5vw, 64px);
+  line-height: 1;
+  color: var(--black-100);
+  margin: 0 0 var(--sp-4);
+  letter-spacing: -0.01em;
+}
+.g-pageintro-lede {
+  font-size: 18px;
+  line-height: 1.55;
+  color: var(--black-80);
+  max-width: 62ch;
+}
+.g-pageintro-lede a { color: var(--red-100); text-decoration: underline; text-underline-offset: 3px; }
+
+/* ===================================================================
+   Tabs nav (sticky under site-header)
+   =================================================================== */
+.g-tabs {
+  background: var(--black-100);
+  position: sticky;
+  top: 64px;
+  z-index: 40;
+  border-bottom: 1px solid var(--navy-25);
+}
+.g-tabs .holder {
+  display: flex;
+  gap: 0;
+  overflow-x: auto;
+  scrollbar-width: thin;
+}
+.g-tab {
+  background: transparent;
+  border: 0;
+  color: rgba(255,255,255,0.7);
+  padding: 18px 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  font-family: var(--font-body);
+  border-bottom: 3px solid transparent;
+  white-space: nowrap;
+  transition: color 120ms ease, border-color 120ms ease, background 120ms ease;
+}
+.g-tab:hover { color: var(--white); background: rgba(255,255,255,0.04); }
+.g-tab.active {
+  color: var(--white);
+  border-bottom-color: var(--red-100);
+  background: rgba(204,9,53,0.08);
+}
+.g-tab-num {
+  font-family: var(--font-display);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  color: var(--pink-30);
+  font-weight: 700;
+}
+.g-tab.active .g-tab-num { color: var(--red-100); }
+.g-tab-label {
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+.g-tab-count {
+  font-size: 12px;
+  background: rgba(255,255,255,0.12);
+  color: rgba(255,255,255,0.85);
+  padding: 2px 8px;
+  border-radius: 10px;
+  font-weight: 600;
+}
+.g-tab.active .g-tab-count { background: var(--red-100); color: var(--white); }
+
+/* ===================================================================
+   Section panels — only the active one is shown
+   =================================================================== */
+.g-main { background: var(--black-5); }
+.g-panel { display: none; padding: var(--sp-7) 0 var(--sp-9); }
+.g-panel.active { display: block; }
+
+.g-section-head {
+  margin-bottom: var(--sp-6);
+  max-width: 70ch;
+}
+.g-section-eyebrow {
+  font-family: var(--font-display);
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--red-100);
+  font-weight: 700;
+  margin-bottom: var(--sp-3);
+}
+.g-section-title {
+  font-family: var(--font-display);
+  font-size: clamp(32px, 4vw, 48px);
+  line-height: 1.05;
+  color: var(--black-100);
+  margin: 0 0 var(--sp-3);
+}
+.g-section-lede {
+  font-size: 16px;
+  color: var(--black-70);
+}
+
+/* Mini TOC — chip row */
+.g-mini-toc {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: var(--sp-7);
+  padding: var(--sp-3);
+  background: var(--white);
+  border: 1px solid var(--navy-10);
+  border-radius: var(--r-md);
+}
+.g-mini-toc-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  background: var(--black-5);
+  color: var(--black-100);
+  text-decoration: none;
+  border-radius: var(--r-pill);
+  font-size: 13px;
+  font-weight: 500;
+  border: 1px solid transparent;
+  transition: background 120ms ease, border-color 120ms ease, color 120ms ease;
+}
+.g-mini-toc-item:hover {
+  background: var(--white);
+  border-color: var(--red-100);
+  color: var(--red-100);
+}
+.g-mini-toc-item span {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 11px;
+  color: var(--red-100);
+  background: var(--white);
+  padding: 2px 7px;
+  border-radius: 10px;
+  border: 1px solid var(--navy-10);
+}
+
+/* ===================================================================
+   Figure cards
+   =================================================================== */
+.g-figures {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--sp-6);
+}
+@media (min-width: 1100px) {
+  .g-figures { grid-template-columns: 1fr 1fr; }
+}
+
+.g-figure {
+  background: var(--white);
+  border: 1px solid var(--navy-10);
+  border-radius: var(--r-md);
+  overflow: hidden;
+  transition: border-color 160ms ease, box-shadow 160ms ease;
+}
+.g-figure:hover { border-color: var(--navy-25); box-shadow: 0 6px 20px rgba(7,14,64,0.06); }
+.g-figure-head {
+  padding: var(--sp-4) var(--sp-5) var(--sp-3);
+  border-bottom: 3px solid var(--red-100);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.g-figure-num {
+  font-family: var(--font-display);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--red-100);
+  font-weight: 700;
+}
+.g-figure-title {
+  font-family: var(--font-display);
+  font-size: 18px;
+  line-height: 1.25;
+  color: var(--black-100);
+  margin: 0;
+  font-weight: 600;
+}
+.g-figure-body { padding: var(--sp-4) var(--sp-5) var(--sp-5); }
+
+/* Hide the original <figcaption> since we render our own header */
+.g-figure-body figure { border: 0; padding: 0; margin: 0; width: 100%; max-width: 100%; }
+.g-figure-body figcaption { display: none; }
+
+/* Re-style the original data table */
+.g-figure-body figure table {
+  width: 100%;
+  border-spacing: 0;
+  border-collapse: collapse;
+  margin: 0 0 var(--sp-3);
+  font-family: var(--font-body);
+  font-size: 13px;
+}
+.g-figure-body figure table th,
+.g-figure-body figure table td {
+  padding: 8px 10px;
+  text-align: right;
+  border-bottom: 1px solid var(--navy-10);
+}
+.g-figure-body figure table th {
+  background: var(--black-100);
+  color: var(--white);
+  font-family: var(--font-display);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+.g-figure-body figure table th:first-child,
+.g-figure-body figure table td:first-child {
+  text-align: left;
+  font-weight: 600;
+}
+/* Scenario row colour blocks (kept from source) but tightened */
+.g-figure-body figure table td:first-child span {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-weight: 600;
+}
+.g-figure-body figure table td {
+  background: var(--white);
+  color: var(--black-100);
+  font-variant-numeric: tabular-nums;
+  width: auto;
+}
+.g-figure-body figure table tr.active td,
+.g-figure-body figure table tr:hover td {
+  background: var(--red-5);
+  cursor: pointer;
+  font-weight: 600;
+}
+
+/* Chart svg container */
+.g-figure-body .oi-viz {
+  margin: var(--sp-3) 0 0;
+  background: var(--white);
+}
+.g-figure-body .oi-viz svg { width: 100%; height: auto; }
+
+/* Download links — restyle as pill */
+.g-figure-body figure .download {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  text-align: left;
+  margin-top: var(--sp-3);
+  padding-top: var(--sp-3);
+  border-top: 1px solid var(--navy-10);
+}
+.g-figure-body figure .download a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  background: var(--black-5);
+  color: var(--black-100);
+  text-decoration: none;
+  border-radius: var(--r-pill);
+  font-size: 12px;
+  font-weight: 600;
+  border: 1px solid transparent;
+  transition: background 120ms ease, color 120ms ease, border-color 120ms ease;
+}
+.g-figure-body figure .download a:hover,
+.g-figure-body figure .download a:focus {
+  background: var(--red-100);
+  color: var(--white);
+  border-color: var(--red-100);
+}
+.g-figure-body figure .download a:hover img,
+.g-figure-body figure .download a:focus img { filter: invert(1); }
+.g-figure-body figure .download img {
+  width: 14px;
+  height: 14px;
+  float: none;
+  margin: 0;
+}
+
+/* ===================================================================
+   Footer hooks (active link state for graphs nav)
+   =================================================================== */
+.site-nav a.active { color: var(--red-100); font-weight: 600; }
+
+/* Preserved licensing block — sits between footer-top and footer-bottom.
+   Carries the original CC-BY copy from the source graphs page. */
+.site-footer .footer-credits {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--sp-5);
+  padding: var(--sp-4) 0;
+  margin-top: var(--sp-4);
+  border-top: 1px solid rgba(255,255,255,0.1);
+}
+.site-footer .footer-credits h4 {
+  font-family: var(--font-display);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--pink-30);
+  font-weight: 700;
+  margin: 0 0 8px;
+}
+.site-footer .footer-credits p {
+  font-size: 13px;
+  line-height: 1.55;
+  color: rgba(255,255,255,0.78);
+  margin: 0;
+}
+.site-footer .footer-credits a {
+  color: var(--white);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.site-footer .footer-credits a:hover { color: var(--pink-30); }
+
+/* ===================================================================
+   Responsive
+   =================================================================== */
+@media (max-width: 840px) {
+  .g-tabs { top: 56px; }
+  .g-tab { padding: 14px 14px; gap: 8px; }
+  .g-tab-label { font-size: 13px; }
+  .g-tab-count { display: none; }
+  .g-pageintro { padding: var(--sp-5) 0 var(--sp-4); }
+}
+@media (max-width: 840px) {
+  .site-footer .footer-credits { grid-template-columns: 1fr; gap: var(--sp-4); }
+}
+@media (max-width: 560px) {
+  .g-mini-toc { padding: 10px; gap: 6px; }
+  .g-mini-toc-item { font-size: 12px; padding: 6px 10px; }
+  .g-figure-head { padding: 14px 16px 10px; }
+  .g-figure-body { padding: 14px 16px 16px; }
+  .g-figure-body figure .table-holder { overflow-x: auto; }
+}
