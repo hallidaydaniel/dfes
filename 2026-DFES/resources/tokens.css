@@ -1,0 +1,475 @@
+/* =====================================================================
+   Northern Powergrid — Design Tokens + Typography
+   Source: Northern Powergrid Brand Guidelines v1 / 2025
+   ---------------------------------------------------------------------
+   Raw palette aligns with the 2025 brand guide (NPG Red #CE0037, Warm
+   Maroon #651D32, Procced Black #1A1A1A). Do NOT consume raw tokens
+   inside components — consume semantic tokens (--text-color-1,
+   --input-color-5 etc.) so the six-theme system works.
+
+   Note: the live site themes.css still ships the pre-2025 hexes
+   (#ab1236 etc). This system leads that update — in new design work,
+   these are the correct values to use.
+   ===================================================================== */
+
+/* ------------------------------
+   Fonts — confirmed by brand team
+   Display: Bebas Neue — the heavy condensed UPPERCASE face
+   ("POWERING AHEAD WHATEVER THE WEATHER", "DON'T BE A STRANGER").
+   Body: DM Sans — the humanist sans-serif for UI, body, navigation.
+   ------------------------------ */
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap');
+
+:root {
+  /* || PRIMARY — NPG Red #CE0037 (Brand Guide 4.3) */
+  --red-100: #ce0037;
+  --red-90:  #d31a4b;
+  --red-80:  #d8335f;
+  --red-70:  #dd4d73;
+  --red-60:  #e36b8b;
+  --red-50:  #e98ca5;
+  --red-40:  #efadbf;
+  --red-30:  #f5ccd7;
+  --red-20:  #f9e0e7;
+  --red-10:  #fcf0f3;
+  --red-5:   #fef7f9;
+
+  /* || PRIMARY — Procced Black #1A1A1A (Brand Guide 4.3) */
+  --black-100: #1a1a1a;
+  --black-95:  #252525;
+  --black-90:  #313131;
+  --black-80:  #4c4c4c;
+  --black-70:  #6a6a6a;
+  --black-60:  #888888;
+  --black-50:  #989898;
+  --black-40:  #afafaf;
+  --black-30:  #c6c6c6;
+  --black-20:  #dddddd;
+  --black-10:  #ededed;
+  --black-5:   #f6f6f6;
+
+  /* || SECONDARY — Warm Maroon #651D32 (Brand Guide 4.4)
+     Token kept under `--purple-*` for back-compat with live themes.css. */
+  --white: #ffffff;
+  --purple-100: #651d32;
+  --purple-90:  #77384b;
+  --purple-80:  #8a5363;
+  --purple-70:  #9c6e7c;
+  --purple-60:  #af8994;
+  --purple-50:  #c1a5ad;
+  --purple-40:  #d4c0c6;
+  --purple-30:  #e3d6da;
+  --purple-20:  #f0e8eb;
+  --purple-10:  #f7f4f5;
+  --purple-5:   #fbf9fa;
+
+  /* || SECONDARY — Steel Grey #B4B4B4 (Brand Guide 4.4) */
+  --steel-grey: #b4b4b4;
+
+  /* || ACCENT — Vivid Red / Warm Red family (Brand Guide 4.5, row 4)
+     Exact 7-step ramp from the guide. Legacy `--pink-*` names retained. */
+  --pink-100: #651d32;  /* Warm Maroon (darkest) */
+  --pink-90:  #921938;  /* Warm Red */
+  --pink-80:  #b70539;  /* Deep Red */
+  --pink-70:  #e40046;  /* Vivid Red */
+  --pink-60:  #ff4783;
+  --pink-50:  #ff74a1;
+  --pink-40:  #ffa3c0;
+  --pink-30:  #fac4d2;  /* computed — guide stops at 7 */
+  --pink-20:  #fcd7e1;  /* computed */
+  --pink-10:  #fdebf0;  /* computed */
+  --pink-5:   #fef4f6;  /* computed */
+
+  /* Named aliases for the secondary reds — preferred for new work */
+  --vivid-red:    #e40046;
+  --deep-red:     #b70539;
+  --warm-red:     #921938;
+  --warm-maroon:  #651d32;
+
+  /* || ACCENT — Data-viz palette (Brand Guide 4.5)
+     Five families × 7 steps, for charts, highlights, complex content.
+     Use sparingly and intentionally. */
+
+  /* Golden Amber #FF8E01 — warnings, highlights */
+  --amber-100: #ff6f00;
+  --amber-90:  #ff8e01;
+  --amber-80:  #ffb200;
+  --amber-70:  #fec107;
+  --amber-60:  #ffd200;
+  --amber-40:  #ffe981;
+  --amber-20:  #fff4c2;
+
+  /* Teal Green #38C598 — success, positive, eco */
+  --teal-100: #00594d;
+  --teal-90:  #017766;
+  --teal-80:  #028b77;
+  --teal-70:  #31b39f;
+  --teal-60:  #5dc1b4;
+  --teal-40:  #8fdcce;
+  --teal-20:  #d4fff6;
+
+  /* Vivid Blue #0780FD — info, links in accent contexts */
+  --blue-100: #002b56;
+  --blue-90:  #0351a1;
+  --blue-80:  #296dc4;
+  --blue-70:  #0099ff;
+  --blue-60:  #73b8fd;
+  --blue-40:  #a4d0ff;
+  --blue-20:  #d1e7ff;
+
+  /* Soft Steel #5840FB — tech/innovation accent (brand guide swatch) */
+  --soft-steel-100: #5840fb;
+
+  /* Neutral Grey ramp (Brand Guide 4.5, row 5) */
+  --neutral-100: #494949;
+  --neutral-90:  #676767;
+  --neutral-80:  #727272;
+  --neutral-70:  #868686;
+  --neutral-60:  #c5c5c5;
+  --neutral-40:  #dedede;
+  --neutral-20:  #eeeeee;
+
+  /* Legacy Navy tokens — retained for live themes.css compatibility */
+  --navy-100: #1e1e51;
+  --navy-90:  #353562;
+  --navy-80:  #4b4b74;
+  --navy-70:  #626285;
+  --navy-60:  #787897;
+  --navy-50:  #8f8fa8;
+  --navy-40:  #a5a5b9;
+  --navy-30:  #bcbccb;
+  --navy-25:  #f8f8fa;
+  --navy-20:  #d2d2dc;
+  --navy-10:  #e9e9ee;
+  --navy-5:   #f4f4f7;
+
+  /* || UTILITY (legacy) — superseded by --teal-* for new work */
+  --green-100: #3b7f81;
+  --green-60:  #8fdcce;
+  --green-40:  #c2ede5;
+  --green-10:  #e8f8f6;
+
+  --theme-d-background: #f6f6f6;
+
+  /* || GRADIENT (Brand Guide 4.6)
+     Maroon → Deep Red. Use sparingly as backdrop, not main content area. */
+  --gradient-maroon-start: #480818;
+  --gradient-deepred-end:  #a21033;
+  --gradient-brand:    linear-gradient(135deg, #480818 0%, #a21033 100%);
+  --gradient-brand-v:  linear-gradient(180deg, #480818 0%, #a21033 100%);
+  --gradient-brand-h:  linear-gradient(90deg,  #480818 0%, #a21033 100%);
+
+  /* || TYPOGRAPHY */
+  --font-display: 'Bebas Neue', 'Barlow Condensed', 'Oswald', system-ui, sans-serif;
+  --font-body:    'DM Sans', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+
+  /* Type scale */
+  --fs-display: 64px;  --lh-display: 0.95;  --tr-display: -0.01em;
+  --fs-h1:      44px;  --lh-h1:      1.02;  --tr-h1:      -0.01em;
+  --fs-h2:      32px;  --lh-h2:      1.15;
+  --fs-h3:      24px;  --lh-h3:      1.25;
+  --fs-h4:      18px;  --lh-h4:      1.35;
+  --fs-body-lg: 18px;  --lh-body-lg: 1.55;
+  --fs-body:    16px;  --lh-body:    1.5;
+  --fs-small:   14px;  --lh-small:   1.45;
+  --fs-caption: 12px;  --lh-caption: 1.35;
+  --fs-eyebrow: 12px;  --tr-eyebrow: 0.12em;
+
+  /* Weights — Bebas Neue only ships 400 */
+  --fw-display: 400;
+  --fw-heavy: 700;
+  --fw-bold: 700;
+  --fw-semibold: 600;
+  --fw-medium: 500;
+  --fw-regular: 400;
+
+  /* Spacing (4px base) */
+  --sp-0:  0;
+  --sp-1:  4px;
+  --sp-2:  8px;
+  --sp-3:  12px;
+  --sp-4:  16px;
+  --sp-5:  24px;
+  --sp-6:  32px;
+  --sp-7:  48px;
+  --sp-8:  64px;
+  --sp-9:  96px;
+  --sp-10: 128px;
+
+  /* Radius */
+  --r-sm:   6px;   /* inputs, chips */
+  --r-md:   10px;  /* cards */
+  --r-lg:   16px;  /* large surfaces */
+  --r-pill: 999px; /* primary CTAs */
+
+  /* Elevation — almost always 'none' on NP; cards use 1px border */
+  --shadow-none: none;
+  --shadow-sm:   0 1px 2px rgba(19,19,19,0.06);
+  --shadow-md:   0 4px 12px rgba(19,19,19,0.08);
+  --shadow-lg:   0 12px 32px rgba(19,19,19,0.12);
+
+  /* Motion */
+  --dur-fast:   150ms;
+  --dur-normal: 200ms;
+  --dur-slow:   300ms;
+  --ease-std:   cubic-bezier(0.2, 0, 0, 1);
+  --ease-enter: cubic-bezier(0, 0, 0, 1);
+  --ease-exit:  cubic-bezier(0.4, 0, 1, 1);
+
+  /* Layout */
+  --max-content-width: 1280px;
+  --gutter-desktop: 24px;
+  --gutter-mobile:  16px;
+  --min-tap-target: 44px;
+}
+
+/* =====================================================================
+   THEMES — verbatim from production themes.css
+   Every component consumes these semantic tokens, never raw palette.
+   ===================================================================== */
+
+.theme-a,
+:root {
+  --text-color-1:           var(--black-100);
+  --text-color-2:           var(--black-80);
+  --text-color-3:           var(--black-70);
+  --text-color-disabled:    var(--black-50);
+  --text-color-featured:    var(--red-100);
+  --background-color:       var(--white);
+  --background-color-breadcrumb: var(--purple-5);
+  --bullet-color:           var(--purple-10);
+  --download-link-border:   var(--black-100);
+  --download-link-focus:    var(--purple-20);
+  --featured-news-hover-background: var(--red-100);
+  --timeline-color-1:       var(--purple-100);
+  --timeline-color-2:       var(--white);
+  --timeline-color-3:       var(--black-100);
+  --bg-image-hover-background: var(--red-100);
+  --carousel-navigation-color: var(--navy-10);
+  --card-border-color:      var(--navy-10);
+  --input-color-1:          var(--white);
+  --input-color-2:          var(--black-100);
+  --input-color-3:          var(--navy-20);
+  --input-color-4:          var(--purple-20);
+  --input-color-5:          var(--red-100);
+  --input-color-6:          var(--black-60);
+  --input-color-7:          var(--navy-5);
+}
+.theme-a { background-color: var(--background-color); }
+
+.theme-b {
+  --text-color-1:           var(--white);
+  --text-color-2:           var(--black-10);
+  --text-color-3:           var(--black-10);
+  --text-color-disabled:    var(--black-40);
+  --background-color:       var(--black-100);
+  --background-color-breadcrumb: var(--black-90);
+  --bullet-color:           var(--black-80);
+  --download-link-border:   var(--white);
+  --download-link-focus:    var(--purple-20);
+  --timeline-color-1:       var(--red-20);
+  --timeline-color-2:       var(--black-100);
+  --timeline-color-3:       var(--black-50);
+  --carousel-navigation-color: var(--black-80);
+  --card-border-color:      var(--black-80);
+  background-color: var(--background-color);
+}
+
+.theme-c {
+  --text-color-1:           var(--white);
+  --text-color-2:           var(--white);
+  --text-color-3:           var(--white);
+  --text-color-disabled:    var(--red-30);
+  --background-color:       var(--red-100);
+  --background-color-breadcrumb: var(--red-90);
+  --bullet-color:           var(--red-80);
+  --download-link-border:   var(--white);
+  --download-link-focus:    var(--purple-20);
+  --timeline-color-1:       var(--white);
+  --timeline-color-2:       var(--black-100);
+  --timeline-color-3:       var(--red-50);
+  --featured-news-hover-background: var(--black-100);
+  --carousel-navigation-color: var(--red-50);
+  --card-border-color:      var(--red-70);
+  --bg-image-hover-background: var(--black-100);
+  background-color: var(--background-color);
+}
+
+.theme-d {
+  --text-color-1:           var(--black-100);
+  --text-color-2:           var(--black-80);
+  --text-color-3:           var(--black-70);
+  --text-color-disabled:    var(--black-50);
+  --background-color:       var(--theme-d-background);
+  --background-color-breadcrumb: var(--navy-5);
+  --bullet-color:           var(--purple-10);
+  --download-link-border:   var(--black-100);
+  --download-link-focus:    var(--purple-20);
+  --timeline-color-1:       var(--purple-100);
+  --timeline-color-2:       var(--white);
+  --timeline-color-3:       var(--black-100);
+  --carousel-navigation-color: var(--navy-30);
+  --card-border-color:      var(--navy-10);
+  --input-color-1:          var(--white);
+  --input-color-2:          var(--black-100);
+  --input-color-3:          var(--navy-20);
+  --input-color-4:          var(--purple-20);
+  --input-color-5:          var(--red-100);
+  --input-color-6:          var(--black-60);
+  --input-color-7:          var(--navy-10);
+  background-color: var(--background-color);
+}
+
+.theme-e {
+  --text-color-1:           var(--black-100);
+  --text-color-2:           var(--black-80);
+  --text-color-3:           var(--black-70);
+  --text-color-disabled:    var(--black-50);
+  --background-color:       var(--pink-5);
+  --background-color-breadcrumb: var(--pink-10);
+  --bullet-color:           var(--pink-10);
+  --download-link-border:   var(--black-100);
+  --download-link-focus:    var(--purple-20);
+  --timeline-color-1:       var(--purple-100);
+  --timeline-color-2:       var(--white);
+  --timeline-color-3:       var(--black-100);
+  --carousel-navigation-color: var(--navy-30);
+  --card-border-color:      var(--purple-10);
+  --input-color-1:          var(--white);
+  --input-color-2:          var(--black-100);
+  --input-color-3:          var(--purple-20);
+  --input-color-4:          var(--purple-20);
+  --input-color-5:          var(--red-100);
+  --input-color-6:          var(--black-60);
+  --input-color-7:          var(--purple-10);
+  background-color: var(--background-color);
+}
+
+.theme-background-image {
+  --text-color-1:           var(--white);
+  --text-color-2:           var(--white);
+  --text-color-3:           var(--white);
+  --text-color-disabled:    var(--black-50);
+  --text-color-featured:    var(--red-20);
+  --background-color:       transparent;
+  --background-color-breadcrumb: var(--purple-5);
+  --bullet-color:           var(--purple-10);
+  --download-link-border:   var(--black-100);
+  --download-link-focus:    var(--purple-20);
+}
+
+/* Collapse adjacent same-theme sections' vertical rhythm */
+.main-page-content > :not(#breadcrumbs-container).theme-a + .theme-a,
+.main-page-content > :not(#breadcrumbs-container).theme-b + .theme-b,
+.main-page-content > :not(#breadcrumbs-container).theme-c + .theme-c,
+.main-page-content > :not(#breadcrumbs-container).theme-d + .theme-d,
+.main-page-content > :not(#breadcrumbs-container).theme-e + .theme-e {
+  padding-top: 0;
+  margin-top: 0;
+}
+
+/* =====================================================================
+   Semantic type classes — use these instead of ad-hoc font rules
+   ===================================================================== */
+body {
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  color: var(--text-color-1);
+  background: var(--background-color);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.display,
+.display-text {
+  font-family: var(--font-display);
+  font-weight: var(--fw-display);
+  font-size: var(--fs-display);
+  line-height: var(--lh-display);
+  letter-spacing: var(--tr-display);
+  text-transform: uppercase;
+  color: var(--text-color-1);
+  margin: 0;
+}
+
+h1, .h1, .heading-text {
+  font-family: var(--font-display);
+  font-weight: var(--fw-display);
+  font-size: var(--fs-h1);
+  line-height: var(--lh-h1);
+  letter-spacing: var(--tr-h1);
+  text-transform: uppercase;
+  color: var(--text-color-1);
+  margin: 0;
+}
+
+h2, .h2 {
+  font-family: var(--font-display);
+  font-weight: var(--fw-heavy);
+  font-size: var(--fs-h2);
+  line-height: var(--lh-h2);
+  color: var(--text-color-1);
+  margin: 0;
+}
+
+h3, .h3 {
+  font-family: var(--font-body);
+  font-weight: var(--fw-bold);
+  font-size: var(--fs-h3);
+  line-height: var(--lh-h3);
+  color: var(--text-color-1);
+  margin: 0;
+}
+
+h4, .h4, .subheading-text {
+  font-family: var(--font-body);
+  font-weight: var(--fw-semibold);
+  font-size: var(--fs-h4);
+  line-height: var(--lh-h4);
+  color: var(--text-color-2);
+  margin: 0;
+}
+
+p, .body-text, .list-item {
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  color: var(--text-color-2);
+  margin: 0;
+}
+
+.body-lg {
+  font-size: var(--fs-body-lg);
+  line-height: var(--lh-body-lg);
+}
+
+.small {
+  font-size: var(--fs-small);
+  line-height: var(--lh-small);
+}
+
+.caption {
+  font-size: var(--fs-caption);
+  line-height: var(--lh-caption);
+  color: var(--text-color-3);
+}
+
+.eyebrow {
+  font-family: var(--font-body);
+  font-weight: var(--fw-bold);
+  font-size: var(--fs-eyebrow);
+  letter-spacing: var(--tr-eyebrow);
+  text-transform: uppercase;
+  color: var(--text-color-featured, var(--text-color-2));
+  margin: 0 0 var(--sp-3) 0;
+}
+
+.text-featured {
+  --text-color-1: var(--text-color-featured);
+  --text-color-2: var(--text-color-featured);
+  color: var(--text-color-featured);
+}
+
+/* Bullet (used inside text blocks per source CSS) */
+.bullet { background-color: var(--bullet-color); }
