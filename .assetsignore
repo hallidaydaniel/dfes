@@ -1,0 +1,9 @@
+.git
+.github
+.gitignore
+.assetsignore
+README.md
+LICENSE
+wrangler.jsonc
+node_modules
+*.pl
