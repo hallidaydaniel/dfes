@@ -125,16 +125,19 @@
 		return node;
 	}
 
-	// Easter egg: lazy-loaded "full network" view that renders the real
-	// 3-tier NPg licence-area network from the public open data:
+	// Easter egg: lazy-loaded "full network" data — 3-tier NPg
+	// licence-area network from the public open data:
 	//   - 6 GSPs  (transmission boundary, biggest anchor dots)
 	//   - 82 BSPs + 5 Secondaries (132/33 kV, medium dots)
 	//   - 574 Primaries (33/11 kV, small dots)
-	// = 667 nodes total. Triggered by press-and-hold on the hero
-	// network (see init() below). Pulses radiate outward from the
-	// actual GSPs.
-	function loadFullNetAndRender() {
-		Promise.all([
+	// = 667 nodes total. Fetched at most once per page load; cached
+	// thereafter so toggling between cities and fullnet is instant.
+	var fullNetCache = null;
+	var fullNetPromise = null;
+	function ensureFullNetData() {
+		if (fullNetCache) return Promise.resolve(fullNetCache);
+		if (fullNetPromise) return fullNetPromise;
+		fullNetPromise = Promise.all([
 			fetch('data/npg-sites.json').then(function (r) { return r.json(); }),
 			fetch('data/maps/npg-primaries-polygons-unique-2023_BGC.geojson').then(function (r) { return r.json(); })
 		]).then(function (results) {
@@ -160,14 +163,25 @@
 					k: 'p'
 				});
 			});
-			renderNetwork(data, /* dense */ true);
-		}).catch(function (e) { console.warn('hero-network fullnet load failed', e); });
+			fullNetCache = data;
+			return data;
+		});
+		return fullNetPromise;
 	}
+
+	// Render-generation counter — every renderNetwork() call bumps
+	// this; the rAF tick loop bails the moment its captured generation
+	// is no longer current. Prevents stacked animation loops when the
+	// user toggles between cities and fullnet rapidly.
+	var renderGen = 0;
 
 	function renderNetwork(cities, dense) {
 		var svg = document.querySelector('.hero-network svg');
 		if (!svg) return;
-		// Clear any prior render (in case both code paths fire).
+		// Bump generation so any in-flight rAF callback from the
+		// previous render stops on its next tick.
+		var thisGen = ++renderGen;
+		// Clear any prior render (cities ↔ fullnet swaps reuse the same SVG).
 		while (svg.firstChild) svg.removeChild(svg.firstChild);
 
 		// Square viewBox matching the container aspect-ratio. With
@@ -325,6 +339,7 @@
 
 		var start = performance.now();
 		function tick(now) {
+			if (thisGen !== renderGen) return; // superseded by a newer renderNetwork()
 			var t = (now - start) / 1000;
 			haloEls.forEach(function (h, i) {
 				var phase = Math.sin(t * 1.2 + i * 0.7) * 0.5 + 0.5;
@@ -348,24 +363,42 @@
 		// Default page load: cheap 33-node cities network.
 		renderNetwork(CITIES, false);
 
-		// Easter egg: press-and-hold the network for ~500ms to lazy-load
-		// and swap in the full 667-node multi-voltage network. Only fires
-		// once per page load; reloading reverts to the default.
+		// Easter egg: while pressing on the network, after a short
+		// hold-delay the full 667-node multi-voltage network is shown.
+		// Releasing the press snaps back to the cities default. Data
+		// is fetched at most once per page load and cached.
 		var container = document.querySelector('.hero-network');
 		if (!container) return;
 		var holdMs = 500;
+		var pressed = false;
 		var holdTimer = null;
-		var swapped = false;
+		var showingFull = false;
+
+		function showFullNet() {
+			if (!fullNetCache) return; // data not ready yet
+			if (showingFull) return;
+			showingFull = true;
+			renderNetwork(fullNetCache, /* dense */ true);
+		}
+		function showCities() {
+			if (!showingFull) return;
+			showingFull = false;
+			renderNetwork(CITIES, false);
+		}
 		function startHold() {
-			if (swapped) return;
+			pressed = true;
 			holdTimer = setTimeout(function () {
-				if (swapped) return;
-				swapped = true;
-				loadFullNetAndRender();
+				if (!pressed) return;
+				ensureFullNetData().then(function () {
+					if (!pressed) return; // released while data was loading
+					showFullNet();
+				}).catch(function (e) { console.warn('hero-network fullnet load failed', e); });
 			}, holdMs);
 		}
 		function cancelHold() {
+			pressed = false;
 			if (holdTimer) { clearTimeout(holdTimer); holdTimer = null; }
+			showCities();
 		}
 		container.addEventListener('mousedown', startHold);
 		container.addEventListener('mouseup', cancelHold);
