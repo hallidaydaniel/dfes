@@ -56,8 +56,12 @@
 	];
 
 	function project(cities, vbW, vbH, margin) {
-		// Equirectangular: x = lon*cos(lat), y = -lat. Then fit into the
-		// viewBox with a margin and centre.
+		// Equirectangular start: x = lon*cos(lat), y = -lat. Then fill the
+		// SVG box with INDEPENDENT x/y scales (no preservation of aspect).
+		// The handover marks the hero network as decorative — stretching
+		// to fill the container reads better than a thin geographic strip
+		// inside a wide red box. Cities spread further apart east-west,
+		// which is fine for a flavour graphic.
 		var lats = cities.map(function (c) { return c.lat; });
 		var latMid = (Math.min.apply(null, lats) + Math.max.apply(null, lats)) / 2;
 		var cosLat = Math.cos(latMid * Math.PI / 180);
@@ -72,13 +76,12 @@
 		var pyMax = Math.max.apply(null, pys);
 		var sw = vbW - margin * 2, sh = vbH - margin * 2;
 		var dx = pxMax - pxMin, dy = pyMax - pyMin;
-		var scale = Math.min(sw / dx, sh / dy);
-		var offX = margin + (sw - dx * scale) / 2;
-		var offY = margin + (sh - dy * scale) / 2;
+		var scaleX = sw / dx;
+		var scaleY = sh / dy;
 		return proj.map(function (p) {
 			return {
-				x: offX + (p.px - pxMin) * scale,
-				y: offY + (p.py - pyMin) * scale,
+				x: margin + (p.px - pxMin) * scaleX,
+				y: margin + (p.py - pyMin) * scaleY,
 				k: p.k
 			};
 		});
@@ -124,7 +127,7 @@
 		var svg = document.querySelector('.hero-network svg');
 		if (!svg) return;
 
-		var VB_W = 800, VB_H = 600, MARGIN = 50;
+		var VB_W = 800, VB_H = 600, MARGIN = 25;
 		var nodes = project(CITIES, VB_W, VB_H, MARGIN);
 		var edges = buildEdges(nodes);
 
