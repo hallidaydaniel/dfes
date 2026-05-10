@@ -137,15 +137,54 @@
 		var nodes = project(CITIES, VB_W, VB_H, MARGIN);
 		var edges = buildEdges(nodes);
 
-		// Pulses: one per edge so every region of the network has motion.
-		// (The earlier 24-pulse cap was sorting pulses to the start of
-		// the edge list which left the south and east static — Hull,
-		// Grimsby, Sheffield etc. were dead.) Deterministic per-edge
-		// offset/speed so the animation reads as variety, not chaos.
+		// Pulse direction: pulses originate at the largest dots (GSP
+		// nodes) and travel OUT into the network — never into a GSP.
+		// For each edge:
+		//   - one end GSP, one not  → pulse goes GSP → non-GSP
+		//   - both ends GSP         → pulse goes lower-index → higher
+		//                            (arbitrary but deterministic)
+		//   - neither end GSP       → BFS from all GSPs; pulse goes
+		//                            from end CLOSER to a GSP (i.e. it
+		//                            continues outward through the tree)
+		// One pulse per edge; deterministic offset/speed so the field
+		// reads as variety not chaos.
+
+		// Adjacency for BFS
+		var adj = nodes.map(function () { return []; });
+		edges.forEach(function (e) {
+			adj[e.a].push(e.b);
+			adj[e.b].push(e.a);
+		});
+		// BFS dist from any GSP
+		var dist = new Array(nodes.length);
+		for (var di = 0; di < dist.length; di++) dist[di] = Infinity;
+		var queue = [];
+		nodes.forEach(function (n, i) {
+			if (n.k === 'gsp') { dist[i] = 0; queue.push(i); }
+		});
+		while (queue.length) {
+			var v = queue.shift();
+			for (var k = 0; k < adj[v].length; k++) {
+				var w = adj[v][k];
+				if (dist[w] > dist[v] + 1) {
+					dist[w] = dist[v] + 1;
+					queue.push(w);
+				}
+			}
+		}
+
 		var pulses = edges.map(function (e, i) {
+			var aIsGsp = nodes[e.a].k === 'gsp';
+			var bIsGsp = nodes[e.b].k === 'gsp';
+			var from, to;
+			if (aIsGsp && !bIsGsp)      { from = e.a; to = e.b; }
+			else if (bIsGsp && !aIsGsp) { from = e.b; to = e.a; }
+			else if (aIsGsp && bIsGsp)  { from = e.a; to = e.b; }
+			else if (dist[e.a] <= dist[e.b]) { from = e.a; to = e.b; }
+			else                             { from = e.b; to = e.a; }
 			return {
-				a: e.a,
-				b: e.b,
+				a: from,
+				b: to,
 				offset: (i * 0.31) % 1,
 				speed: 0.18 + ((i * 7) % 5) * 0.04
 			};
