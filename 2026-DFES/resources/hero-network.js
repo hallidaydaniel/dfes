@@ -125,17 +125,80 @@
 		return node;
 	}
 
-	function init() {
+	// Easter egg: lazy-loaded "full network" view that renders the real
+	// 3-tier NPg licence-area network from the public open data:
+	//   - 6 GSPs  (transmission boundary, biggest anchor dots)
+	//   - 82 BSPs + 5 Secondaries (132/33 kV, medium dots)
+	//   - 574 Primaries (33/11 kV, small dots)
+	// = 667 nodes total. Triggered by press-and-hold on the hero
+	// network (see init() below). Pulses radiate outward from the
+	// actual GSPs.
+	function loadFullNetAndRender() {
+		Promise.all([
+			fetch('data/npg-sites.json').then(function (r) { return r.json(); }),
+			fetch('data/maps/npg-primaries-polygons-unique-2023_BGC.geojson').then(function (r) { return r.json(); })
+		]).then(function (results) {
+			var sites = results[0];
+			var gj = results[1];
+			var data = sites.map(function (s) {
+				return { n: s.n, lat: s.lat, lon: s.lon, k: s.k };
+			});
+			gj.features.forEach(function (f, idx) {
+				var coords = [];
+				(function flatten(c) {
+					if (typeof c[0] === 'number') coords.push(c);
+					else c.forEach(flatten);
+				})(f.geometry.coordinates);
+				var sumX = 0, sumY = 0;
+				for (var ci = 0; ci < coords.length; ci++) {
+					sumX += coords[ci][0]; sumY += coords[ci][1];
+				}
+				data.push({
+					n: f.properties.PRIMARYNM || ('PRIMARY-' + idx),
+					lat: sumY / coords.length,
+					lon: sumX / coords.length,
+					k: 'p'
+				});
+			});
+			renderNetwork(data, /* dense */ true);
+		}).catch(function (e) { console.warn('hero-network fullnet load failed', e); });
+	}
+
+	function renderNetwork(cities, dense) {
 		var svg = document.querySelector('.hero-network svg');
 		if (!svg) return;
+		// Clear any prior render (in case both code paths fire).
+		while (svg.firstChild) svg.removeChild(svg.firstChild);
 
 		// Square viewBox matching the container aspect-ratio. With
 		// geographic-accurate projection (uniform x/y scale) the
 		// portrait NPg silhouette fills the height and is centred
 		// horizontally — readable as the licence-area shape.
 		var VB_W = 500, VB_H = 500, MARGIN = 15;
-		var nodes = project(CITIES, VB_W, VB_H, MARGIN);
+		var nodes = project(cities, VB_W, VB_H, MARGIN);
 		var edges = buildEdges(nodes);
+
+		// Dense (primaries / fullnet) mode: way more nodes, so reduce
+		// visual weight per node. Three node tiers in fullnet mode:
+		//   gsp        → anchorR (biggest)
+		//   bsp / sec  → midR    (medium — only present in fullnet)
+		//   p          → nodeR   (smallest)
+		var nodeR = dense ? 1.5 : 4;
+		var midR = dense ? 2.4 : 5;
+		var anchorR = dense ? 3.5 : 6;
+		var nodeStrokeW = dense ? 0.5 : 1.2;
+		var edgeStrokeW = dense ? 0.6 : 1;
+		var edgeAlpha = dense ? 0.26 : 0.22;
+		var pulseR = dense ? 1.4 : 2.5;
+		var pulseAlpha = dense ? 0.7 : 0.85;
+		var haloMaxRBoost = dense ? 2 : 4; // halo r-pulse extra
+		var midMaxRBoost = dense ? 3 : 5;
+		var anchorMaxRBoost = dense ? 5 : 7;
+		// One pulse per edge in both modes — primaries-mode hero looked
+		// quiet at the earlier 50-pulse cap. Direction rules below
+		// still apply (GSP → outward; primary → primary follows BFS
+		// distance from nearest GSP).
+		var pulseStride = 1;
 
 		// Pulse direction: pulses originate at the largest dots (GSP
 		// nodes) and travel OUT into the network — never into a GSP.
@@ -173,7 +236,9 @@
 			}
 		}
 
-		var pulses = edges.map(function (e, i) {
+		var pulses = edges.filter(function (_, i) {
+			return i % pulseStride === 0;
+		}).map(function (e, i) {
 			var aIsGsp = nodes[e.a].k === 'gsp';
 			var bIsGsp = nodes[e.b].k === 'gsp';
 			var from, to;
@@ -200,7 +265,10 @@
 		svg.appendChild(defs);
 
 		// Edges (static)
-		var edgesG = el('g', { stroke: 'rgba(255,255,255,0.22)', 'stroke-width': '1' });
+		var edgesG = el('g', {
+			stroke: 'rgba(255,255,255,' + edgeAlpha + ')',
+			'stroke-width': String(edgeStrokeW)
+		});
 		edges.forEach(function (e) {
 			edgesG.appendChild(el('line', {
 				x1: nodes[e.a].x,
@@ -214,24 +282,30 @@
 		// Pulses (positions updated per frame)
 		var pulsesG = el('g');
 		var pulseEls = pulses.map(function () {
-			var c = el('circle', { r: '2.5', fill: '#fff', opacity: '0.85' });
+			var c = el('circle', { r: String(pulseR), fill: '#fff', opacity: String(pulseAlpha) });
 			pulsesG.appendChild(c);
 			return c;
 		});
 		svg.appendChild(pulsesG);
 
-		// Nodes — halo (animated radius/opacity) + dot (static)
+		// Nodes — halo (animated radius/opacity) + dot (static).
+		// Three tiers: GSP (anchor), BSP/sec (mid), primary/other (leaf).
 		var nodesG = el('g');
 		var haloEls = [];
 		nodes.forEach(function (n) {
-			var baseR = (n.k === 'gsp') ? 6 : 4;
+			var tier;  // 'anchor' | 'mid' | 'leaf'
+			if (n.k === 'gsp') tier = 'anchor';
+			else if (n.k === 'bsp' || n.k === 'sec') tier = 'mid';
+			else tier = 'leaf';
+			var baseR = tier === 'anchor' ? anchorR : tier === 'mid' ? midR : nodeR;
 			var halo = el('circle', { cx: n.x, cy: n.y, fill: 'url(#hero-halo)' });
 			nodesG.appendChild(halo);
-			haloEls.push({ el: halo, baseR: baseR, isAnchor: n.k === 'gsp' });
+			haloEls.push({ el: halo, baseR: baseR, tier: tier });
+			var dotFill = tier === 'anchor' ? '#fff' : tier === 'mid' ? '#ffd2dc' : '#fdebf0';
 			var dot = el('circle', {
 				cx: n.x, cy: n.y, r: baseR,
-				fill: n.k === 'gsp' ? '#fff' : '#fdebf0',
-				stroke: '#fff', 'stroke-opacity': '0.6', 'stroke-width': '1.2'
+				fill: dotFill,
+				stroke: '#fff', 'stroke-opacity': '0.6', 'stroke-width': String(nodeStrokeW)
 			});
 			nodesG.appendChild(dot);
 		});
@@ -242,7 +316,8 @@
 		if (prefersReduce) {
 			// Set a static "midway" frame so it doesn't look broken.
 			haloEls.forEach(function (h) {
-				h.el.setAttribute('r', h.baseR + (h.isAnchor ? 4 : 2));
+				var staticBoost = h.tier === 'anchor' ? 4 : h.tier === 'mid' ? 2.5 : 2;
+				h.el.setAttribute('r', h.baseR + staticBoost);
 				h.el.setAttribute('opacity', '0.45');
 			});
 			return;
@@ -253,7 +328,7 @@
 			var t = (now - start) / 1000;
 			haloEls.forEach(function (h, i) {
 				var phase = Math.sin(t * 1.2 + i * 0.7) * 0.5 + 0.5;
-				var extra = h.isAnchor ? 7 : 4;
+				var extra = h.tier === 'anchor' ? anchorMaxRBoost : h.tier === 'mid' ? midMaxRBoost : haloMaxRBoost;
 				h.el.setAttribute('r', h.baseR + phase * extra);
 				h.el.setAttribute('opacity', 0.3 + phase * 0.4);
 			});
@@ -267,6 +342,37 @@
 			requestAnimationFrame(tick);
 		}
 		requestAnimationFrame(tick);
+	}
+
+	function init() {
+		// Default page load: cheap 33-node cities network.
+		renderNetwork(CITIES, false);
+
+		// Easter egg: press-and-hold the network for ~500ms to lazy-load
+		// and swap in the full 667-node multi-voltage network. Only fires
+		// once per page load; reloading reverts to the default.
+		var container = document.querySelector('.hero-network');
+		if (!container) return;
+		var holdMs = 500;
+		var holdTimer = null;
+		var swapped = false;
+		function startHold() {
+			if (swapped) return;
+			holdTimer = setTimeout(function () {
+				if (swapped) return;
+				swapped = true;
+				loadFullNetAndRender();
+			}, holdMs);
+		}
+		function cancelHold() {
+			if (holdTimer) { clearTimeout(holdTimer); holdTimer = null; }
+		}
+		container.addEventListener('mousedown', startHold);
+		container.addEventListener('mouseup', cancelHold);
+		container.addEventListener('mouseleave', cancelHold);
+		container.addEventListener('touchstart', startHold, { passive: true });
+		container.addEventListener('touchend', cancelHold);
+		container.addEventListener('touchcancel', cancelHold);
 	}
 
 	if (document.readyState === 'loading') {
