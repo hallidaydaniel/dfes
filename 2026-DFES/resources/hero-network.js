@@ -56,12 +56,13 @@
 	];
 
 	function project(cities, vbW, vbH, margin) {
-		// Equirectangular start: x = lon*cos(lat), y = -lat. Then fill the
-		// SVG box with INDEPENDENT x/y scales (no preservation of aspect).
-		// The handover marks the hero network as decorative — stretching
-		// to fill the container reads better than a thin geographic strip
-		// inside a wide red box. Cities spread further apart east-west,
-		// which is fine for a flavour graphic.
+		// Equirectangular: x = lon*cos(lat), y = -lat. Geographic-accurate
+		// uniform scale so the silhouette reads as the actual NPg licence
+		// area — Northumberland down to Lincolnshire, Pennines to the
+		// coast. The container CSS (height: 100% inside .hero .holder
+		// align-items: stretch) lets the SVG grow to match the hero
+		// height, which gives the portrait data plenty of room without
+		// any horizontal stretching.
 		var lats = cities.map(function (c) { return c.lat; });
 		var latMid = (Math.min.apply(null, lats) + Math.max.apply(null, lats)) / 2;
 		var cosLat = Math.cos(latMid * Math.PI / 180);
@@ -76,12 +77,13 @@
 		var pyMax = Math.max.apply(null, pys);
 		var sw = vbW - margin * 2, sh = vbH - margin * 2;
 		var dx = pxMax - pxMin, dy = pyMax - pyMin;
-		var scaleX = sw / dx;
-		var scaleY = sh / dy;
+		var scale = Math.min(sw / dx, sh / dy);
+		var offX = margin + (sw - dx * scale) / 2;
+		var offY = margin + (sh - dy * scale) / 2;
 		return proj.map(function (p) {
 			return {
-				x: margin + (p.px - pxMin) * scaleX,
-				y: margin + (p.py - pyMin) * scaleY,
+				x: offX + (p.px - pxMin) * scale,
+				y: offY + (p.py - pyMin) * scale,
 				k: p.k
 			};
 		});
@@ -127,7 +129,11 @@
 		var svg = document.querySelector('.hero-network svg');
 		if (!svg) return;
 
-		var VB_W = 800, VB_H = 600, MARGIN = 25;
+		// Square viewBox matching the container aspect-ratio. With
+		// geographic-accurate projection (uniform x/y scale) the
+		// portrait NPg silhouette fills the height and is centred
+		// horizontally — readable as the licence-area shape.
+		var VB_W = 500, VB_H = 500, MARGIN = 15;
 		var nodes = project(CITIES, VB_W, VB_H, MARGIN);
 		var edges = buildEdges(nodes);
 
