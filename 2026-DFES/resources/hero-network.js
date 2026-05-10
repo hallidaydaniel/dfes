@@ -137,9 +137,12 @@
 		var nodes = project(CITIES, VB_W, VB_H, MARGIN);
 		var edges = buildEdges(nodes);
 
-		// Pulses: cap at 24 to keep the field uncluttered; deterministic
-		// offset/speed per edge so animation reads as variety not chaos.
-		var pulses = edges.slice(0, 24).map(function (e, i) {
+		// Pulses: one per edge so every region of the network has motion.
+		// (The earlier 24-pulse cap was sorting pulses to the start of
+		// the edge list which left the south and east static — Hull,
+		// Grimsby, Sheffield etc. were dead.) Deterministic per-edge
+		// offset/speed so the animation reads as variety, not chaos.
+		var pulses = edges.map(function (e, i) {
 			return {
 				a: e.a,
 				b: e.b,
