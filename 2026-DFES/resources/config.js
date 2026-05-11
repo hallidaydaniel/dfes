@@ -530,6 +530,7 @@ OI.ready(function(){
 function saveDOMImage(el,opt){
 	if(!opt) opt = {};
 	if(!opt.src) opt.src = "map.png";
+	var w, h;
 	if(opt.scale){
 		if(!opt.height) opt.height = el.offsetHeight*2;
 		if(!opt.width) opt.width = el.offsetWidth*2;
@@ -540,17 +541,56 @@ function saveDOMImage(el,opt){
 		el.style.setProperty('height',(opt.height)+'px');
 	}
 	el.classList.add('capture');
-	htmlToImage.toPng(el,opt).then(function(dataUrl){
+	// Pass html-to-image options explicitly: skipFonts avoids fetching
+	// the Google Fonts CSS at render time (the fonts are visually loaded
+	// via the page's normal stylesheet so this only affects embedded
+	// font definitions in the exported PNG — accepted trade-off).
+	// cacheBust ensures freshly-fetched tile URLs rather than tainted
+	// browser-cached ones that can fail CORS.
+	var htiOpts = {
+		width: opt.width,
+		height: opt.height,
+		cacheBust: false,    // tile cache already warm, no need for round trips
+		skipFonts: true,     // avoid Google Fonts CSS fetch
+		pixelRatio: opt.scale ? 2 : 1,
+		// 1x1 transparent pixel — used in place of any image that fails
+		// to load (e.g. a tile with bad CORS). Prevents one bad tile from
+		// rejecting the whole toPng promise.
+		imagePlaceholder: 'data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=='
+	};
+	var done = false;
+	function restore() {
+		if (opt.scale) {
+			el.style.setProperty('width', w);
+			el.style.setProperty('height', h);
+		}
+		el.classList.remove('capture');
+	}
+	// Watchdog: html-to-image + Leaflet can occasionally hang if a tile
+	// Image element never fires load/error (CORS edge cases). Bail
+	// after 15s with a clear user-facing message rather than leaving
+	// the button silently broken.
+	setTimeout(function () {
+		if (done) return;
+		done = true;
+		console.warn('saveDOMImage: timed out after 15s');
+		restore();
+		try { window.alert('Sorry — saving the map as a PNG took too long. Please try your browser\'s built-in screenshot tool.'); } catch (e) {}
+	}, 15000);
+	htmlToImage.toPng(el, htiOpts).then(function(dataUrl){
+		if (done) return;
+		done = true;
 		var link = document.createElement('a');
 		link.download = opt.src;
 		link.href = dataUrl;
 		link.click();
-		// Reset element
-		if(opt.scale){
-			el.style.setProperty('width',w);
-			el.style.setProperty('height',h);
-		}
-		el.classList.remove('capture');
+		restore();
+	}).catch(function (err) {
+		if (done) return;
+		done = true;
+		console.error('saveDOMImage: html-to-image failed', err);
+		restore();
+		try { window.alert('Sorry — could not save the map as a PNG. Try reloading the page or using your browser\'s screenshot tool.'); } catch (e) {}
 	});
 }
 function defaultSpacing(mn,mx,n){
