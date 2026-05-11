@@ -1242,6 +1242,12 @@ a { color: inherit; }
 	font-weight: 500;
 }
 .site-footer a:hover { color: var(--white); text-decoration: underline; }
+/* .site-footer a above has specificity (0,1,1) which beats the
+   plain .btn--primary (0,1,0) rule and forced the "Get in touch"
+   pill to render white-text-on-white. Restore the pill's contrast
+   without touching the link rule. */
+.site-footer .btn--primary { color: var(--black-100); }
+.site-footer .btn--primary:hover { color: var(--white); text-decoration: none; }
 
 .footer-top {
 	display: grid;
@@ -1297,17 +1303,26 @@ a { color: inherit; }
 /* Recolour the white-fill OI/ERM SVGs so they sit on the dark footer.
    They were already white, so leave them as-is. */
 
+/* The credits paragraph on the left has ~5x more text than the
+   utility links on the right. Flex space-between split the row
+   roughly 50/50, which left the credits cramped into a narrow
+   column wrapping over 6+ lines. Grid lets the left grow and the
+   right shrink to its content. */
 .footer-bottom {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
+	display: grid;
+	grid-template-columns: 1fr auto;
+	align-items: end;
+	gap: var(--sp-5);
 	font-size: 12px;
 	color: rgba(255,255,255,0.6);
-	flex-wrap: wrap;
-	gap: var(--sp-3);
 }
+.footer-bottom > div:last-child { white-space: nowrap; }
 .footer-bottom a { color: rgba(255,255,255,0.85); text-decoration: none; }
 .footer-bottom a:hover { color: var(--white); }
+@media (max-width: 700px) {
+	.footer-bottom { grid-template-columns: 1fr; }
+	.footer-bottom > div:last-child { white-space: normal; }
+}
 
 
 /* === Responsive — chrome only === */
