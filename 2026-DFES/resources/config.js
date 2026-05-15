@@ -14,7 +14,7 @@ OI.ready(function(){
 
 	dfes = new FES({
 		"options": {
-			"scenario": "NPg Reference Scenario",
+			"scenario": "Holistic Transition",
 			"view": "lad_view",
 			"key": "2024/25",
 			"parameter": "ev",
