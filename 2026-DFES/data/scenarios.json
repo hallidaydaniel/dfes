@@ -214,7 +214,7 @@
 	},
 	"Holistic Transition": {
 		"description": "<ul><li>Net zero compliant to 2050 target</li><li>Heating primarily through electricity</li><li>Hydrogen used around industrial clusters</li><li>Smart homes and electric vehicles provide grid flexibility</li></ul>",
-		"color": "#2CB9FF",
+		"color": "#70E85E",
 		"negativecolor": "#d01c8b",
 		"data": {
 			"evportal": {
