@@ -1,6 +1,4 @@
 /* DFES 2026 redesign — animated SVG network for the Hero band.
-   Vanilla-JS port of HeroNetwork from the React prototype
-   (design-handover/2026/app-hero.jsx).
 
    Builds an equirectangular projection of ~32 named towns/cities across
    Northern Powergrid's licence area, wires each node to its 2 nearest
