@@ -1,0 +1,10 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "dfes",
+  "compatibility_date": "2026-05-01",
+  "assets": {
+    "directory": "./",
+    "not_found_handling": "none"
+  },
+  "observability": { "enabled": true }
+}

@@ -313,42 +313,8 @@
   margin: 0;
 }
 
-/* ===================================================================
-   Footer hooks (active link state for graphs nav)
-   =================================================================== */
+/* Active link state for graphs nav */
 .site-nav a.active { color: var(--red-100); font-weight: 600; }
-
-/* Preserved licensing block — sits between footer-top and footer-bottom.
-   Carries the original CC-BY copy from the source graphs page. */
-.site-footer .footer-credits {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--sp-5);
-  padding: var(--sp-4) 0;
-  margin-top: var(--sp-4);
-  border-top: 1px solid rgba(255,255,255,0.1);
-}
-.site-footer .footer-credits h4 {
-  font-family: var(--font-display);
-  font-size: 11px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--pink-30);
-  font-weight: 700;
-  margin: 0 0 8px;
-}
-.site-footer .footer-credits p {
-  font-size: 13px;
-  line-height: 1.55;
-  color: rgba(255,255,255,0.78);
-  margin: 0;
-}
-.site-footer .footer-credits a {
-  color: var(--white);
-  text-decoration: underline;
-  text-underline-offset: 2px;
-}
-.site-footer .footer-credits a:hover { color: var(--pink-30); }
 
 /* ===================================================================
    Responsive
@@ -359,9 +325,6 @@
   .g-tab-label { font-size: 13px; }
   .g-tab-count { display: none; }
   .g-pageintro { padding: var(--sp-5) 0 var(--sp-4); }
-}
-@media (max-width: 840px) {
-  .site-footer .footer-credits { grid-template-columns: 1fr; gap: var(--sp-4); }
 }
 @media (max-width: 560px) {
   .g-mini-toc { padding: 10px; gap: 6px; }
