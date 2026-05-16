@@ -27,7 +27,13 @@ OI.ready(function(){
 				"scenarios": "data/scenarios.json"
 			},
 			"map": {
-				"bounds": [[52.6497,-5.5151],[56.01680,2.35107]],
+				// Initial bounds frame Northern Powergrid's licence area
+				// (north-east England + Yorkshire + N. Lincolnshire) so
+				// the first paint shows the relevant region rather than
+				// a wide UK+Europe view. events.buildMap re-fits to the
+				// exact union of the loaded polygon layers once data
+				// is in, so this just needs to be close.
+				"bounds": [[52.75,-3.0],[55.95,0.7]],
 				"attribution": "Vis: <a href=\"https://open-innovations.org/projects/\">Open Innovations</a>, Data: NPG/Element Energy"
 			}
 		},
@@ -258,12 +264,51 @@ OI.ready(function(){
 			},
 			"buildMap": function(){
 				var el,div,_obj;
+				_obj = this;
+
+				// One-time map viewport setup. Leaflet captures the
+				// container size at L.map() time; if the container
+				// grows afterwards (left column populates, #scale gets
+				// its colour bar, fonts shift layout) Leaflet keeps
+				// drawing to the old size and the bottom of the map
+				// stays blank. invalidateSize() forces a re-measure;
+				// the ResizeObserver catches any future resizes.
+				// We also re-fit to the union of loaded polygon layers
+				// so the first view frames NPg's region instead of the
+				// wide UK+Europe defaults from options.map.bounds.
+				if(this.map && !this._mapViewportReady){
+					this._mapViewportReady = true;
+
+					this.map.invalidateSize({animate:false});
+
+					var unionBounds = null;
+					for(var lid in this.layers){
+						var lyr = this.layers[lid] && this.layers[lid].layer;
+						if(lyr && typeof lyr.getBounds==="function"){
+							var b = lyr.getBounds();
+							if(b && b.isValid()){
+								if(!unionBounds) unionBounds = L.latLngBounds(b.getSouthWest(), b.getNorthEast());
+								else unionBounds.extend(b);
+							}
+						}
+					}
+					if(unionBounds && unionBounds.isValid()){
+						this.map.fitBounds(unionBounds,{padding:[20,20]});
+					}
+
+					if(typeof ResizeObserver!=="undefined"){
+						var ro = new ResizeObserver(function(){
+							if(_obj.map) _obj.map.invalidateSize({animate:false});
+						});
+						ro.observe(this.map.getContainer());
+						this._mapResizeObserver = ro;
+					}
+				}
+
 				el = document.querySelector('.leaflet-top.leaflet-left');
 				if(el){
 					// Does the place search exist?
 					if(!el.querySelector('.placesearch')){
-						
-						_obj = this;
 
 						div = document.createElement('div');
 						div.classList.add('leaflet-control','leaflet-bar');
