@@ -28,12 +28,11 @@ my $file_html = $dir."../graphs.html";
 my $indent = "";
 
 # Define variables
-my (@lines,%scenarios,@cols,$line,$scenario,@graphs,$html,$tabs,$toc,$figs,$i,$graph,$svg,@sections,$section,$s,$str,$fig,$table,$slug,$num,$count);
+my (@lines,%scenarios,@cols,$line,$scenario,@graphs,$html,$tabs,$toc,$figs,$i,$graph,$svg,@sections,$section,$s,$str,$fig,$table,$num,$count);
 
 # Get the scenario config
 msg("Reading scenarios from <cyan>$file_scenario<none>\n");
-open(FILE,$file_scenario);
-binmode(FILE, ':utf8');
+open(FILE,$file_scenario) or die "Cannot open $file_scenario: $!\n";
 @lines = <FILE>;
 close(FILE);
 %scenarios = %{JSON::PP->new->utf8->decode(join("\n",@lines))};
@@ -45,8 +44,7 @@ foreach $scenario (keys(%scenarios)){
 # Load in the extra colour definitions
 msgIndent(0);
 msg("Reading colours from <cyan>$file_colours<none>\n");
-open(FILE,$file_colours);
-binmode(FILE, ':utf8');
+open(FILE,$file_colours) or die "Cannot open $file_colours: $!\n";
 @lines = <FILE>;
 close(FILE);
 foreach $line  (@lines){
@@ -63,11 +61,21 @@ foreach $line  (@lines){
 if(-e $file_index){
 	msg("Read in graph definitions from <cyan>$file_index<none>\n");
 	# Get the graph config
-	open(FILE,$file_index);
-	binmode(FILE, ':utf8');
+	open(FILE,$file_index) or die "Cannot open $file_index: $!\n";
 	@lines = <FILE>;
 	close(FILE);
 	@sections = @{JSON::PP->new->utf8->decode(join("\n",@lines))};
+
+	# Pre-read graphs.html and validate marker presence BEFORE writing any output.
+	# Avoids partial-regen drift: SVG files updated but HTML splice failing.
+	open(FILE,$file_html) or die "Cannot open $file_html: $!\n";
+	@lines = <FILE>;
+	close(FILE);
+	my $template = join("",@lines);
+	$template =~ /<!-- START TABS -->.*?<!-- END TABS -->/s
+		or die "<!-- START TABS --> / <!-- END TABS --> markers missing in $file_html\n";
+	$template =~ /<!-- START GRAPHS -->.*?<!-- END GRAPHS -->/s
+		or die "<!-- START GRAPHS --> / <!-- END GRAPHS --> markers missing in $file_html\n";
 
 	# Create the SVG output
 	$graph = OpenInnovations::NPG->new();
@@ -82,14 +90,17 @@ if(-e $file_index){
 		msgIndent(0);
 		msg("Section: <green>".($sections[$s]->{'title'}||"")."<none>\n");
 
-		$slug = $sections[$s]->{'slug'} || "";
+		my $title_raw = $sections[$s]->{'title'} || "";
+		my $title = html_escape($title_raw);
+		my $slug = html_escape($sections[$s]->{'slug'} || "");
+		my $intro = $sections[$s]->{'intro'} || "";
 		$num = sprintf("%02d", $s + 1);
 		@graphs = @{$sections[$s]->{'graphs'}};
 		$count = scalar @graphs;
 
 		$tabs .= "    <button class=\"g-tab".($s == 0 ? " active" : "")."\" data-tab=\"$slug\" type=\"button\">\n";
 		$tabs .= "     <span class=\"g-tab-num\">$num</span>\n";
-		$tabs .= "     <span class=\"g-tab-label\">".($sections[$s]->{'title'}||"")."</span>\n";
+		$tabs .= "     <span class=\"g-tab-label\">$title</span>\n";
 		$tabs .= "     <span class=\"g-tab-count\">$count</span>\n";
 		$tabs .= "   </button>\n";
 
@@ -97,8 +108,11 @@ if(-e $file_index){
 		$html .= "    <div class=\"holder\">\n";
 		$html .= "      <header class=\"g-section-head\">\n";
 		$html .= "        <div class=\"g-section-eyebrow\">Section $num</div>\n";
-		$html .= "        <h2 class=\"g-section-title\">".($sections[$s]->{'title'}||"")."</h2>\n";
+		$html .= "        <h2 class=\"g-section-title\">$title</h2>\n";
 		$html .= "        <p class=\"g-section-lede\">$count graphs &middot; downloadable as SVG and CSV</p>\n";
+		if($intro ne ""){
+			$html .= "        <div class=\"g-section-intro\">$intro</div>\n";
+		}
 		$html .= "      </header>\n";
 
 		$toc = "";
@@ -106,6 +120,7 @@ if(-e $file_index){
 		msgIndent(1);
 
 		for($i = 0; $i < (@graphs); $i++,$fig++){
+			my $gtitle = html_escape($graphs[$i]{'title'} || "");
 			msg("Figure <yellow>$fig<none>: <cyan>".$dir."graphs/$graphs[$i]{'csv'}<none>\n");
 			$graph->load($dir.'graphs/'.$graphs[$i]{'csv'})->process();
 			
@@ -134,8 +149,7 @@ if(-e $file_index){
 				'left'=>$graphs[$i]{'left'},
 				'tooltip'=>$graphs[$i]{'tooltip'}
 			));
-			open(FILE,'>',$dir.'graphs/'.$graphs[$i]{'svg'});
-			binmode(FILE, ':utf8');
+			open(FILE,'>',$dir.'graphs/'.$graphs[$i]{'svg'}) or die "Cannot write ".$dir.'graphs/'.$graphs[$i]{'svg'}.": $!\n";
 			print FILE $svg;
 			close(FILE);
 
@@ -143,16 +157,16 @@ if(-e $file_index){
 			$svg =~ s/\n/\n\t\t\t\t\t/g;
 			$table =~ s/\n/\n\t\t\t\t/g;
 
-			$toc .= "<a href=\"#figure-$fig\" class=\"g-mini-toc-item\"><span>$fig</span> $graphs[$i]{'title'}</a>\n";
+			$toc .= "<a href=\"#figure-$fig\" class=\"g-mini-toc-item\"><span>$fig</span> $gtitle</a>\n";
 
 			$figs .= "<article class=\"g-figure\" id=\"figure-$fig\" data-fig-num=\"$fig\">\n";
 			$figs .= "      <header class=\"g-figure-head\">\n";
 			$figs .= "        <div class=\"g-figure-num\">Figure $fig</div>\n";
-			$figs .= "        <h3 class=\"g-figure-title\">$graphs[$i]{'title'}</h3>\n";
+			$figs .= "        <h3 class=\"g-figure-title\">$gtitle</h3>\n";
 			$figs .= "      </header>\n";
 			$figs .= "      <div class=\"g-figure-body\">\n";
 			$figs .= "        <figure>\n";
-			$figs .= "\t\t\t\t<figcaption><strong>Figure ".($fig).":</strong> $graphs[$i]{'title'}</figcaption>\n";
+			$figs .= "\t\t\t\t<figcaption><strong>Figure ".($fig).":</strong> $gtitle</figcaption>\n";
 			$figs .= "\t\t\t\t<div class=\"table-holder\">\n";
 			$figs .= "\t\t\t\t".$table;
 			$figs .= "</div>\n";
@@ -171,7 +185,7 @@ if(-e $file_index){
 
 		}
 
-		$html .= "      <nav class=\"g-mini-toc\" aria-label=\"".($sections[$s]->{'title'}||"")." graphs\">\n";
+		$html .= "      <nav class=\"g-mini-toc\" aria-label=\"$title graphs\">\n";
 		$html .= $toc;
 		$html .= "      </nav>\n";
 		$html .= "      <div class=\"g-figures\">\n";
@@ -181,19 +195,14 @@ if(-e $file_index){
 		$html .= "  </section>\n";
 	}
 
-	open(FILE,$file_html);
-	binmode(FILE, ':utf8');
-	@lines = <FILE>;
-	close(FILE);
-	$str = join("",@lines);
+	$str = $template;
 	$str =~ s/(<!-- START TABS -->)(.*?)(<!-- END TABS -->)/$1\n$tabs    $3/s
 		or die "<!-- START TABS --> / <!-- END TABS --> markers missing in $file_html\n";
 	$str =~ s/(<!-- START GRAPHS -->)(.*?)(<!-- END GRAPHS -->)/$1\n$html  $3/s
 		or die "<!-- START GRAPHS --> / <!-- END GRAPHS --> markers missing in $file_html\n";
 
 	msg("Save result in <cyan>$file_html<none>\n");
-	open(FILE,">",$file_html);
-	binmode(FILE, ':utf8');
+	open(FILE,">",$file_html) or die "Cannot write $file_html: $!\n";
 	print FILE $str;
 	close(FILE);
 
@@ -206,6 +215,16 @@ if(-e $file_index){
 
 #####################
 # Subroutines
+
+sub html_escape {
+	my $s = shift;
+	return "" unless defined $s;
+	$s =~ s/&/&amp;/g;
+	$s =~ s/</&lt;/g;
+	$s =~ s/>/&gt;/g;
+	$s =~ s/"/&quot;/g;
+	return $s;
+}
 
 sub msgIndent {
 	$indent = "\t" x shift;
