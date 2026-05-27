@@ -24,6 +24,260 @@
 	<script src="resources/hero-network.js?v=9" defer></script>
 	<script src="resources/stats-strip.js?v=1" defer></script>
 	<script src="resources/controls.js?v=2" defer></script>
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:site" content="@Northpowergrid" />
+	<meta name="twitter:url" property="og:url" content="https://northernpowergrid.github.io/dfes/2026-DFES/" />
+	<meta name="twitter:title" property="og:title" content="NorthernPowerGrid Future Energy Scenarios 2026" />
+	<meta name="twitter:description" property="og:description" content="Northern Powergrid's potential future scenarios, a regionalised interpretion of the 2026 National Grid Future Energy Pathways in the transitional Regional Energy Strategic Plan (tRESP). The Northern Powergrid Reference Scenario follows Holistic Transition until an update is issued in July" />
+	<meta name="twitter:image" property="og:image" content="https://northernpowergrid.github.io/dfes/2026-DFES/screenshot.png" />
+</head>
+<body>
+
+	<!-- Top utility bar — black, links left, Power cut CTA right. -->
+	<div class="utility-bar">
+		<div class="holder">
+			<div>
+				<a href="https://www.northernpowergrid.com/about-us">About us</a>
+				<a href="https://www.northernpowergrid.com/our-future-business-plan">Our network</a>
+				<a href="https://www.northernpowergrid.com/connections-and-services">Connections</a>
+				<a href="https://www.northernpowergrid.com/priority-services">Priority Services</a>
+			</div>
+			<a href="https://www.northernpowergrid.com/power-cuts" class="powercut">
+				<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+				Power cut? <span>105</span>
+			</a>
+		</div>
+	</div>
+
+	<!-- Site header — sticky white, NPG brand + nav. -->
+	<header class="site-header">
+		<div class="holder">
+			<a href="/" class="brand">
+				<img src="resources/npg-logo.svg" alt="Northern Powergrid" />
+				<span class="breadcrumb">Future Energy Scenarios <strong>2026</strong></span>
+			</a>
+			<nav class="site-nav" aria-label="Primary">
+				<a href="#workspace">Map</a>
+				<a href="#about">Scenarios</a>
+				<a href="graphs.html">Graphs</a>
+				<a href="#download" class="btn btn--outline btn--sm">Download data</a>
+			</nav>
+		</div>
+	</header>
+
+	<div class="warning tallpadded">
+		<div class="holder">
+		<h2>WARNING</h2>
+		<p>This page is currently <em>under development</em>. It contains placeholder parameters, scenarios, data, and text.<br />The real DFES 2026 data will be included here later.</p>
+		</div>
+	</div>
+	<!-- Hero band — theme-c (red). Copy + chip numbers are placeholder
+	     pending NPg sign-off. -->
+	<section class="hero">
+		<div class="holder">
+			<div>
+				<div class="eyebrow">Distribution Future Energy Scenarios &middot; 2026</div>
+				<h1>
+					Powering the<br />North to net zero
+					<span class="accent">A region-by-region forecast to 2050</span>
+				</h1>
+				<p class="lede">
+					Five scenarios. 24 years of forecasts. Every primary substation across the North East, Yorkshire and northern Lincolnshire &mdash; modelled side by side so you can plan with confidence.
+				</p>
+				<div class="hero-meta">
+					<span class="hero-chip">
+						<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+						<strong>3.9M</strong> homes &amp; businesses
+					</span>
+					<span class="hero-chip">63,000 substations</span>
+					<span class="hero-chip">Updated January 2026</span>
+				</div>
+				<div class="hero-cta">
+					<a href="#workspace" class="btn btn--primary">
+						Explore the map
+						<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+					</a>
+					<a href="#about" class="btn btn--ghost-on-red">How the scenarios work</a>
+				</div>
+			</div>
+			<div class="hero-network" aria-hidden="true">
+				<svg viewBox="0 0 500 500" preserveAspectRatio="xMidYMid meet"></svg>
+			</div>
+		</div>
+	</section>
+
+
+	<!-- Stats strip — region overview, live-bound to current scenario/param/year. -->
+	<section class="stats-strip" aria-label="Region overview">
+		<div class="holder">
+			<div class="stat stat-scenario">
+				<div class="label">Scenario</div>
+				<div class="value">&mdash;</div>
+				<div class="desc">Choose one of five future pathways below.</div>
+			</div>
+			<div class="stat stat-year">
+				<div class="label">Year</div>
+				<div class="value">&mdash;</div>
+				<div class="desc">Drag the timeline to forecast each year through 2050.</div>
+			</div>
+			<div class="stat stat-total">
+				<div class="label">Region total</div>
+				<div class="value"><span class="number">&mdash;</span><span class="unit"></span></div>
+				<div class="desc">Loading region totals&hellip;</div>
+			</div>
+			<div class="stat stat-netzero">
+				<div class="label">Net zero by 2050</div>
+				<div class="value">&mdash;</div>
+				<div class="desc">&nbsp;</div>
+			</div>
+		</div>
+	</section>
+
+	<a id="workspace" aria-hidden="true"></a>
+	<div class="b6-bg" id="scenario">
+		<div class="intro tallpadded b5-bg">
+			<div class="holder">
+				<p>Northern Powergrid's potential future scenarios, a regionalised interpretion of the 2026 National Grid future energy net zero compliant pathways in the transitional Regional Energy Strategic Plan (tRESP). Falling Behind comes from FES 2025. The Northern Powergrid Reference Scenario follows Holistic Transition until an update to be issued in July 2026.</p>
+			</div>
+		</div>
+		<div class="message"></div>
+
+		<div class="scenario thickline leading-the-way"></div>
+		<div class="columns">
+			<div class="left">
+				<!-- 1. Scenario — cards mirror the (hidden) #scenarios select.
+				     The select stays in the DOM as the canonical state holder
+				     so dfes.js / config.js continue to function unchanged. -->
+				<div class="control-group">
+					<h3><span class="num">1</span> Scenario</h3>
+					<div id="scenario-holder" hidden>
+						<select id="scenarios"></select>
+					</div>
+					<div class="scenario-cards" role="group" aria-label="Scenario picker"></div>
+				</div>
+
+				<!-- 2. Parameter — keep the existing select, just restyle. -->
+				<div class="control-group">
+					<h3><span class="num">2</span> Parameter</h3>
+					<div class="select-wrap" id="parameter-holder">
+						<select id="parameters" aria-label="Parameter"></select>
+					</div>
+				</div>
+
+				<!-- 3. View — segmented control mirrors the (hidden) #views select. -->
+				<div class="control-group">
+					<h3><span class="num">3</span> View by</h3>
+					<div id="view-holder" hidden>
+						<select id="views"></select>
+					</div>
+					<div class="segmented view-segmented" role="group" aria-label="View"></div>
+				</div>
+
+				<!-- 4. Year — big display + play/pause + custom scrubber over real <input range>. -->
+				<div class="control-group">
+					<h3><span class="num">4</span> Year</h3>
+					<div class="timeline">
+						<div class="timeline-head">
+							<div class="timeline-year">
+								<span class="small">Forecast</span>
+								<span class="year">&mdash;</span>
+							</div>
+							<div class="timeline-controls">
+								<button id="play" class="icon-btn" title="Play" aria-label="Play animation through years">
+									<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="6 4 20 12 6 20 6 4"/></svg>
+								</button>
+								<button id="pause" class="icon-btn ghost" title="Pause" disabled aria-label="Pause animation">
+									<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+								</button>
+							</div>
+						</div>
+						<div class="scrubber">
+							<div class="scrubber-track"><div class="scrubber-fill"></div></div>
+							<input type="range" id="slider" min="2024" max="2051" step="1" class="scrubber-input" aria-label="Year selector" />
+							<div class="scrubber-thumb"></div>
+							<div class="scrubber-ticks">
+								<span class="scrubber-tick major">2024</span>
+								<span class="scrubber-tick">2030</span>
+								<span class="scrubber-tick">2035</span>
+								<span class="scrubber-tick">2040</span>
+								<span class="scrubber-tick">2045</span>
+								<span class="scrubber-tick major">2050</span>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- 5. Colour scale — segmented mirrors the (hidden) #scale-mode checkbox.
+				     #scale-holder is required by dfes.js (lines 137, 228, 593-594)
+				     which queries it for state syncing. Kept as a hidden wrapper
+				     around the input the segmented mirrors. -->
+				<div class="control-group">
+					<h3><span class="num">5</span> Colour scale</h3>
+					<div id="scale-holder" hidden>
+						<input type="checkbox" id="scale-mode" name="scale-mode" />
+					</div>
+					<div class="segmented scale-segmented" role="group" aria-label="Colour scale mode">
+						<button class="active" data-mode="relative">This year</button>
+						<button data-mode="absolute">2024&ndash;2050 range</button>
+					</div>
+					<p class="scale-help">Colours adjust to the selected year for higher contrast within that year.</p>
+				</div>
+
+				<!-- Legacy info-bubbles — kept (hidden) so config.js setScale() can still toggle them by [data-scale]. -->
+				<div class="info-bubble warning" data-scale="absolute" hidden></div>
+				<div class="info-bubble warning" data-scale="relative" hidden></div>
+
+				<div id="download">
+					<button class="page-header__branding scenario" id="download-csv"><svg width="1em" height="1em" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M 0 32 l 32 0 l 0 -10 l -4 0 l 0 6 l -24 0 l 0 -6 l -4 0 l 0 10 M 12 5 l 8 0 l 0 10 l 8 0 l -12 12 l -12 -12 l 8 0"></path></svg> Download CSV for this view</button>
+				</div>
+			</div>
+			<div class="right">
+				<div id="screenshot">
+					<div id="map">
+						<div class="spinner">
+							<div class="sk-cube-grid">
+							<div class="sk-cube sk-cube1"></div>
+							<div class="sk-cube sk-cube2"></div>
+							<div class="sk-cube sk-cube3"></div>
+							<div class="sk-cube sk-cube4"></div>
+							<div class="sk-cube sk-cube5"></div>
+							<div class="sk-cube sk-cube6"></div>
+							<div class="sk-cube sk-cube7"></div>
+							<div class="sk-cube sk-cube8"></div>
+							<div class="sk-cube sk-cube9"></div>
+							</div>
+						</div>
+					</div>
+					<div id="scale"></div>
+				</div>
+				<!-- Scale-mode toggle now lives in the left controls (step 5).
+				     Old #scale-holder block removed; the original duplicate
+				     id="scale-mode" was a problem — only one input can drive
+				     dfes.js's scale state. The #issues action row is hoisted
+				     out of .right (below) so the map can fill the column. -->
+			</div>
+		</div>
+		<!-- Action row — pill buttons under the whole workspace so the map
+		     and sidebar can match heights without competing for vertical
+		     space inside the right column. -->
+		<div class="holder">
+			<div id="issues">
+				<a href="#" id="save-png-link" class="issue-pill">
+					<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+					Save map as PNG
+				</a>
+				<a href="graphs.html" class="issue-pill">
+					<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+					Graphs
+				</a>
+				<a href="https://northernpowergrid.opendatasoft.com/explore/dataset/northern-powergrid-dfes/" class="issue-pill">
+					<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+					Get the data
+				</a>
+				<a href="https://github.com/northernpowergrid/dfes/issues/" class="issue-pill">
+					<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+					Report an issue
+				</a>
 			</div>
 		</div>
 	</div>
