@@ -22,8 +22,12 @@ my $file_scenario = $dir."scenarios.json";
 my $file_colours = $dir."colours.csv";
 my $file_index = $dir."graphs/index.json";
 
-# Define output file
+# Define output files. graphs.html is the full page; graphs-embed.html is
+# the chrome-less iframe version. Both carry the same START/END markers so
+# the generated tabs + graphs stay in sync from this single source.
 my $file_html = $dir."../graphs.html";
+my $file_embed = $dir."../graphs-embed.html";
+my @outputs = ($file_html, $file_embed);
 
 my $indent = "";
 
@@ -66,16 +70,19 @@ if(-e $file_index){
 	close(FILE);
 	@sections = @{JSON::PP->new->utf8->decode(join("\n",@lines))};
 
-	# Pre-read graphs.html and validate marker presence BEFORE writing any output.
-	# Avoids partial-regen drift: SVG files updated but HTML splice failing.
-	open(FILE,$file_html) or die "Cannot open $file_html: $!\n";
-	@lines = <FILE>;
-	close(FILE);
-	my $template = join("",@lines);
-	$template =~ /<!-- START TABS -->.*?<!-- END TABS -->/s
-		or die "<!-- START TABS --> / <!-- END TABS --> markers missing in $file_html\n";
-	$template =~ /<!-- START GRAPHS -->.*?<!-- END GRAPHS -->/s
-		or die "<!-- START GRAPHS --> / <!-- END GRAPHS --> markers missing in $file_html\n";
+	# Pre-read every output template and validate marker presence BEFORE
+	# writing any output. Avoids partial-regen drift: SVG files updated but
+	# an HTML splice failing.
+	foreach my $out (@outputs){
+		open(FILE,$out) or die "Cannot open $out: $!\n";
+		@lines = <FILE>;
+		close(FILE);
+		my $tmpl = join("",@lines);
+		$tmpl =~ /<!-- START TABS -->.*?<!-- END TABS -->/s
+			or die "<!-- START TABS --> / <!-- END TABS --> markers missing in $out\n";
+		$tmpl =~ /<!-- START GRAPHS -->.*?<!-- END GRAPHS -->/s
+			or die "<!-- START GRAPHS --> / <!-- END GRAPHS --> markers missing in $out\n";
+	}
 
 	# Create the SVG output
 	$graph = OpenInnovations::NPG->new();
@@ -195,16 +202,22 @@ if(-e $file_index){
 		$html .= "  </section>\n";
 	}
 
-	$str = $template;
-	$str =~ s/(<!-- START TABS -->)(.*?)(<!-- END TABS -->)/$1\n$tabs    $3/s
-		or die "<!-- START TABS --> / <!-- END TABS --> markers missing in $file_html\n";
-	$str =~ s/(<!-- START GRAPHS -->)(.*?)(<!-- END GRAPHS -->)/$1\n$html  $3/s
-		or die "<!-- START GRAPHS --> / <!-- END GRAPHS --> markers missing in $file_html\n";
+	# Splice the generated tabs + graphs into each output template.
+	foreach my $out (@outputs){
+		open(FILE,$out) or die "Cannot open $out: $!\n";
+		@lines = <FILE>;
+		close(FILE);
+		$str = join("",@lines);
+		$str =~ s/(<!-- START TABS -->)(.*?)(<!-- END TABS -->)/$1\n$tabs    $3/s
+			or die "<!-- START TABS --> / <!-- END TABS --> markers missing in $out\n";
+		$str =~ s/(<!-- START GRAPHS -->)(.*?)(<!-- END GRAPHS -->)/$1\n$html  $3/s
+			or die "<!-- START GRAPHS --> / <!-- END GRAPHS --> markers missing in $out\n";
 
-	msg("Save result in <cyan>$file_html<none>\n");
-	open(FILE,">",$file_html) or die "Cannot write $file_html: $!\n";
-	print FILE $str;
-	close(FILE);
+		msg("Save result in <cyan>$out<none>\n");
+		open(FILE,">",$out) or die "Cannot write $out: $!\n";
+		print FILE $str;
+		close(FILE);
+	}
 
 }else{
 	error("Unable to read graph definitions from <cyan>$file_index<none>\n");

@@ -333,3 +333,9 @@
   .g-figure-body { padding: 14px 16px 16px; }
   .g-figure-body figure .table-holder { overflow-x: auto; }
 }
+
+/* ===================================================================
+   Embed view (graphs-embed.html — iframed, no site chrome)
+   No sticky site-header, so the tabs nav sticks to the iframe top.
+   =================================================================== */
+body.embed-page .g-tabs { top: 0; }
