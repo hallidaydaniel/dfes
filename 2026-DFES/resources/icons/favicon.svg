@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Northern Powergrid DFES 2026 — scalable browser favicon (rounded).
+  NPG lightning mark on NPG Red (#CE0037, Brand Guide 4.3).
+-->
+<svg width="64" height="64" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <rect width="64" height="64" rx="12" fill="#CE0037"/>
+  <g fill="#FFFFFF" transform="translate(13 13) scale(0.9842) translate(0 -0.7033)">
+    <path d="M19.3011 19.9984L38.6053 0.703331H38.6083H0L19.3011 19.9984Z"/>
+    <path d="M38.6025 15.2055L31.675 20.438L30.7146 20.447L38.6025 13.4654V11.9631L27.7461 20.447L26.7647 20.438L38.6085 9.54252L38.6055 8.47074L23.8022 20.453L22.8147 20.444L38.6085 5.30356V4.72251L19.7891 20.4982L38.6085 39.3116V18.2402L35.5918 20.45H34.6646L38.6085 17.0841L38.6025 15.2055Z"/>
+  </g>
+</svg>
