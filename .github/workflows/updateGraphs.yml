@@ -9,6 +9,12 @@ on:
     branches: [ main ]
     paths:
       - .github/workflows/updateGraphs.yml
+      - 2026-DFES/data/graphs.pl
+      - 2026-DFES/data/graphs/index.json
+      - 2026-DFES/data/graphs/*.csv
+      - 2024-DFES/data/graphs.pl
+      - 2024-DFES/data/graphs/index.json
+      - 2024-DFES/data/graphs/*.csv
       - 2023-DFES/data/graphs.pl
       - 2023-DFES/data/graphs/index.json
       - 2023-DFES/data/graphs/*.csv
@@ -34,6 +40,8 @@ jobs:
   build:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -45,10 +53,18 @@ jobs:
         uses: perl-actions/install-with-cpanm@v1
         with:
           install: JSON::XS
-
+      
       # Runs script
       - name: Run update script and push
         run: |
+          perl 2026-DFES/data/graphs.pl
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add .
+          perl 2024-DFES/data/graphs.pl
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add .
           perl 2023-DFES/data/graphs.pl
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
