@@ -19,6 +19,7 @@
 		'Holistic Transition': true,
 		'Hydrogen Evolution': true,
 		'Electric Engagement': true,
+		'Falling Behind': false,
 		'Counterfactual': false
 	};
 
@@ -99,7 +100,7 @@
 			: 0;
 		var hasUnits = !!(param.units && param.units !== '');
 		var nz = NET_ZERO[o.scenario];
-		if (nz === undefined) nz = !/counterfactual/i.test(o.scenario);
+		if (nz === undefined) nz = !/counterfactual|falling.?behind/i.test(o.scenario);
 
 		var root = document.querySelector('.stats-strip');
 		if (!root) return;
