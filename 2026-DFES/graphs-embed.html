@@ -15,50 +15,18 @@
 <link rel="icon" type="image/png" sizes="32x32" href="resources/icons/favicon-32.png"/>
 <link rel="icon" type="image/png" sizes="16x16" href="resources/icons/favicon-16.png"/>
 <link rel="apple-touch-icon" sizes="180x180" href="resources/icons/apple-touch-icon.png"/>
-<link rel="manifest" href="resources/icons/site.webmanifest"/>
 <meta name="theme-color" content="#ce0037"/>
-<meta name="apple-mobile-web-app-title" content="NPg DFES 2026"/>
 </head>
-<body class="graphs-page">
+<body class="graphs-page embed-page">
 
-<div class="utility-bar">
-  <div class="holder">
-    <div>
-      <a href="https://www.northernpowergrid.com/about-us">About us</a>
-      <a href="https://www.northernpowergrid.com/our-future-business-plan">Our network</a>
-      <a href="https://www.northernpowergrid.com/connections-and-services">Connections</a>
-      <a href="https://www.northernpowergrid.com/priority-services">Priority Services</a>
-    </div>
-    <a href="https://www.northernpowergrid.com/power-cuts" class="powercut">
-      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
-      Power cut? <span>105</span>
-    </a>
-  </div>
-</div>
-<header class="site-header">
-  <div class="holder">
-    <a href="index.html" class="brand">
-      <img src="resources/npg-logo.svg" alt="Northern Powergrid"/>
-      <span class="breadcrumb">Future Energy Scenarios <strong>2026</strong> · Graphs</span>
-    </a>
-    <nav class="site-nav">
-      <a href="./">DFES 2026</a>
-      <a href="index.html#workspace">Map</a>
-      <a href="index.html#about">Scenarios</a>
-      <a href="#" class="active">Graphs</a>
-      <a class="btn btn--outline btn--sm" style="padding: 8px 16px">Download all data</a>
-    </nav>
-  </div>
-</header>
-
-
-<section class="g-pageintro">
-  <div class="holder">
-    <div class="g-pageintro-eyebrow">Distribution Future Energy Scenarios · 2026</div>
-    <h1 class="g-pageintro-title">Graphs &amp; charts</h1>
-    <p class="g-pageintro-lede">Twelve supplemental graphs underpinning the <a href="index.html">DFES 2026 interactive map</a>. Every chart can be downloaded as a scalable vector and the underlying data exported as CSV.</p>
-  </div>
-</section>
+<!-- Embedded graphs view — designed to be iframed inside the NPg Open
+     Data Portal or similar. No utility bar, no site header, no page
+     intro, no footer — those would conflict with the host page's
+     chrome. Just the two tab sections and their graphs, styled with
+     the same brand language as graphs.html.
+     GENERATED: the tabs + graphs between the START/END markers are
+     kept in sync with graphs.html by data/graphs.pl. Edit the markers'
+     content there, not by hand. -->
 
 <nav class="g-tabs" aria-label="Graph categories">
   <div class="holder">
@@ -2516,65 +2484,6 @@
   </section>
   <!-- END GRAPHS -->
 </main>
-
-
-<footer class="site-footer">
-  <div class="holder">
-    <div class="footer-top">
-      <div>
-        <h4>Don&rsquo;t be a stranger.</h4>
-        <p>Our system forecasting team is here for stakeholders, planners and partners. Questions, corrections, partnerships &mdash; send them through.</p>
-        <a href="mailto:System.Forecasting@Northernpowergrid.com?subject=Northern%20Powergrid%202026%20DFES" class="btn btn--primary">
-          Get in touch
-        </a>
-      </div>
-      <div class="footer-col">
-        <h4>DFES</h4>
-        <ul>
-          <li><a href="../2026-DFES/">2026 (this report)</a></li>
-          <li><a href="../2024-DFES/">2024 archive</a></li>
-          <li><a href="../2023-DFES/">2023 archive</a></li>
-          <li><a href="../">All previous years</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Data &amp; tools</h4>
-        <ul>
-          <li><a href="https://northernpowergrid.opendatasoft.com/">Open Data Portal</a></li>
-          <li><a href="index.html#about">Methodology</a></li>
-          <li><a href="index.html#download">Download CSVs</a></li>
-          <li><a href="https://github.com/northernpowergrid/dfes/issues/">Report an issue</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Northern Powergrid</h4>
-        <ul>
-          <li><a href="https://www.northernpowergrid.com/power-cuts">Power cuts &middot; 105</a></li>
-          <li><a href="https://www.northernpowergrid.com/connections-and-services">Connections</a></li>
-          <li><a href="https://www.northernpowergrid.com/priority-services">Priority Services</a></li>
-          <li><a href="https://www.northernpowergrid.com/about-us">About us</a></li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="partners">
-      <span class="partner-eye">In partnership with</span>
-      <div class="partner-row">
-        <a href="https://open-innovations.org/" title="Open Innovations"><img alt="Open Innovations" src="resources/logos/oi-square-white.svg" /></a>
-        <a href="https://www.erm.com/" title="ERM"><img alt="ERM" src="resources/logos/erm.svg" /></a>
-      </div>
-    </div>
-
-    <div class="footer-bottom">
-      <div class="footer-attrib">
-        <p>Visualisation &copy; <a href="https://open-innovations.org/">Open Innovations</a> 2020&ndash;2026, released under an <a href="https://github.com/northernpowergrid/dfes/blob/main/LICENSE">MIT licence</a>. Energy scenario data &copy; Northern Powergrid &amp; ERM 2026, <a href="http://creativecommons.org/licenses/by/4.0/">CC&nbsp;BY 4.0</a>. Geographic boundaries (LAD, Output Areas, Postcodes) from the ONS geo service under the <a href="https://www.ons.gov.uk/methodology/geography/licences">OGL</a> &mdash; contains National Statistics data and OS data &copy; Crown copyright and database right 2021. Postcode lookup by <a href="https://findthatpostcode.uk/">FindThatPostcode</a> (&copy; David Kane).</p>
-      </div>
-      <div class="footer-meta">
-        <a href="https://www.northernpowergrid.com/accessibility">Accessibility</a> &middot; <a href="https://northernpowergrid.opendatasoft.com/explore/dataset/northern-powergrid-dfes/information/">Open Data Licence</a> &middot; <a href="https://www.northernpowergrid.com/privacy">Privacy</a>
-      </div>
-    </div>
-  </div>
-</footer>
 
 
 <script src="resources/graphs-ui.js"></script>

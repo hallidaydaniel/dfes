@@ -1,0 +1,17 @@
+.git
+.github
+.gitignore
+.assetsignore
+README.md
+LICENSE
+wrangler.jsonc
+node_modules
+*.pl
+
+# Temporarily excluded: contain filenames with '#' or '&' which trip
+# wrangler 4.86.0's "Manifest path must be URI encoded" (code 10304).
+# Re-include once the upstream encoding bug is fixed.
+2020-DFES
+2020-emerging-thinking
+2021-DFES
+2022-DFES
