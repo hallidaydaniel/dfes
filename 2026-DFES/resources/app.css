@@ -823,47 +823,6 @@ a { color: inherit; }
 .scen-card .scen-stat .k { color: var(--black-70); }
 .scen-card .scen-stat .v { font-weight: 700; color: var(--black-100); font-family: var(--font-display); font-size: 18px; }
 
-/* Compare row */
-.compare-band {
-  padding: var(--sp-9) 0;
-  background: var(--white);
-}
-.compare-table {
-  width: 100%;
-  border-collapse: separate;
-  border-spacing: 0;
-  font-size: 14px;
-}
-.compare-table th, .compare-table td {
-  text-align: left;
-  padding: 14px 18px;
-  border-bottom: 1px solid var(--navy-10);
-  vertical-align: top;
-}
-.compare-table thead th {
-  font-size: 12px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--black-70);
-  font-weight: 700;
-  background: var(--black-5);
-  position: sticky;
-  top: 0;
-}
-.compare-table thead th:first-child { border-top-left-radius: var(--r-sm); }
-.compare-table thead th:last-child { border-top-right-radius: var(--r-sm); }
-.compare-table .row-label {
-  font-weight: 700;
-  color: var(--black-100);
-}
-.compare-table .swatch-cell {
-  display: inline-flex; align-items: center; gap: 8px;
-  font-weight: 700;
-}
-.compare-table .swatch-cell .sw {
-  width: 14px; height: 14px; border-radius: 999px;
-}
-
 /* Stat callout band — pink-tinted theme-e */
 .callout-band {
   background: var(--pink-5);
@@ -2281,57 +2240,6 @@ a { color: inherit; }
 	color: var(--black-100);
 	font-family: var(--font-display);
 	font-size: 18px;
-}
-
-/* Compare band — side-by-side scenario assumption table */
-.compare-band {
-	padding: var(--sp-9) 0;
-	background: var(--white);
-}
-.compare-table-wrap {
-	overflow-x: auto;
-	border: 1px solid var(--navy-10);
-	border-radius: var(--r-md);
-}
-.compare-table {
-	width: 100%;
-	border-collapse: separate;
-	border-spacing: 0;
-	font-size: 14px;
-	font-family: var(--font-body);
-}
-.compare-table th, .compare-table td {
-	text-align: left;
-	padding: 14px 18px;
-	border-bottom: 1px solid var(--navy-10);
-	vertical-align: top;
-	color: var(--black-100);
-}
-.compare-table thead th {
-	font-size: 12px;
-	letter-spacing: 0.08em;
-	text-transform: uppercase;
-	color: var(--black-70);
-	font-weight: 700;
-	background: var(--black-5);
-	font-family: var(--font-body);
-}
-.compare-table tbody tr:last-child td { border-bottom: 0; }
-.compare-table .row-label {
-	font-weight: 700;
-	color: var(--black-100);
-}
-.compare-table .swatch-cell {
-	display: inline-flex;
-	align-items: center;
-	gap: 8px;
-	font-weight: 700;
-}
-.compare-table .swatch-cell .sw {
-	width: 14px;
-	height: 14px;
-	border-radius: 999px;
-	flex-shrink: 0;
 }
 
 /* Responsive collapses */
