@@ -1,27 +1,27 @@
 /* =====================================================================
-   Northern Powergrid — Design Tokens + Typography
+   Northern Powergrid, Design Tokens + Typography
    Source: Northern Powergrid Brand Guidelines v1 / 2025
    ---------------------------------------------------------------------
    Raw palette aligns with the 2025 brand guide (NPG Red #CE0037, Warm
    Maroon #651D32, Procced Black #1A1A1A). Do NOT consume raw tokens
-   inside components — consume semantic tokens (--text-color-1,
+   inside components; consume semantic tokens (--text-color-1,
    --input-color-5 etc.) so the six-theme system works.
 
    Note: the live site themes.css still ships the pre-2025 hexes
-   (#ab1236 etc). This system leads that update — in new design work,
+   (#ab1236 etc). This system leads that update; in new design work,
    these are the correct values to use.
    ===================================================================== */
 
 /* ------------------------------
-   Fonts — confirmed by brand team
-   Display: Bebas Neue — the heavy condensed UPPERCASE face
+   Fonts, confirmed by brand team
+   Display: Bebas Neue, the heavy condensed UPPERCASE face
    ("POWERING AHEAD WHATEVER THE WEATHER", "DON'T BE A STRANGER").
-   Body: DM Sans — the humanist sans-serif for UI, body, navigation.
+   Body: DM Sans, the humanist sans-serif for UI, body, navigation.
    ------------------------------ */
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap');
 
 :root {
-  /* || PRIMARY — NPG Red #CE0037 (Brand Guide 4.3) */
+  /* || PRIMARY, NPG Red #CE0037 (Brand Guide 4.3) */
   --red-100: #ce0037;
   --red-90:  #d31a4b;
   --red-80:  #d8335f;
@@ -34,7 +34,7 @@
   --red-10:  #fcf0f3;
   --red-5:   #fef7f9;
 
-  /* || PRIMARY — Procced Black #1A1A1A (Brand Guide 4.3) */
+  /* || PRIMARY, Procced Black #1A1A1A (Brand Guide 4.3) */
   --black-100: #1a1a1a;
   --black-95:  #252525;
   --black-90:  #313131;
@@ -48,7 +48,7 @@
   --black-10:  #ededed;
   --black-5:   #f6f6f6;
 
-  /* || SECONDARY — Warm Maroon #651D32 (Brand Guide 4.4)
+  /* || SECONDARY, Warm Maroon #651D32 (Brand Guide 4.4)
      Token kept under `--purple-*` for back-compat with live themes.css. */
   --white: #ffffff;
   --purple-100: #651d32;
@@ -63,10 +63,10 @@
   --purple-10:  #f7f4f5;
   --purple-5:   #fbf9fa;
 
-  /* || SECONDARY — Steel Grey #B4B4B4 (Brand Guide 4.4) */
+  /* || SECONDARY, Steel Grey #B4B4B4 (Brand Guide 4.4) */
   --steel-grey: #b4b4b4;
 
-  /* || ACCENT — Vivid Red / Warm Red family (Brand Guide 4.5, row 4)
+  /* || ACCENT, Vivid Red / Warm Red family (Brand Guide 4.5, row 4)
      Exact 7-step ramp from the guide. Legacy `--pink-*` names retained. */
   --pink-100: #651d32;  /* Warm Maroon (darkest) */
   --pink-90:  #921938;  /* Warm Red */
@@ -75,22 +75,22 @@
   --pink-60:  #ff4783;
   --pink-50:  #ff74a1;
   --pink-40:  #ffa3c0;
-  --pink-30:  #fac4d2;  /* computed — guide stops at 7 */
+  --pink-30:  #fac4d2;  /* computed, guide stops at 7 */
   --pink-20:  #fcd7e1;  /* computed */
   --pink-10:  #fdebf0;  /* computed */
   --pink-5:   #fef4f6;  /* computed */
 
-  /* Named aliases for the secondary reds — preferred for new work */
+  /* Named aliases for the secondary reds, preferred for new work */
   --vivid-red:    #e40046;
   --deep-red:     #b70539;
   --warm-red:     #921938;
   --warm-maroon:  #651d32;
 
-  /* || ACCENT — Data-viz palette (Brand Guide 4.5)
+  /* || ACCENT, Data-viz palette (Brand Guide 4.5)
      Five families × 7 steps, for charts, highlights, complex content.
      Use sparingly and intentionally. */
 
-  /* Golden Amber #FF8E01 — warnings, highlights */
+  /* Golden Amber #FF8E01, warnings, highlights */
   --amber-100: #ff6f00;
   --amber-90:  #ff8e01;
   --amber-80:  #ffb200;
@@ -99,7 +99,7 @@
   --amber-40:  #ffe981;
   --amber-20:  #fff4c2;
 
-  /* Teal Green #38C598 — success, positive, eco */
+  /* Teal Green #38C598, success, positive, eco */
   --teal-100: #00594d;
   --teal-90:  #017766;
   --teal-80:  #028b77;
@@ -108,7 +108,7 @@
   --teal-40:  #8fdcce;
   --teal-20:  #d4fff6;
 
-  /* Vivid Blue #0780FD — info, links in accent contexts */
+  /* Vivid Blue #0780FD, info, links in accent contexts */
   --blue-100: #002b56;
   --blue-90:  #0351a1;
   --blue-80:  #296dc4;
@@ -117,7 +117,7 @@
   --blue-40:  #a4d0ff;
   --blue-20:  #d1e7ff;
 
-  /* Soft Steel #5840FB — tech/innovation accent (brand guide swatch) */
+  /* Soft Steel #5840FB, tech/innovation accent (brand guide swatch) */
   --soft-steel-100: #5840fb;
 
   /* Neutral Grey ramp (Brand Guide 4.5, row 5) */
@@ -129,7 +129,7 @@
   --neutral-40:  #dedede;
   --neutral-20:  #eeeeee;
 
-  /* Legacy Navy tokens — retained for live themes.css compatibility */
+  /* Legacy Navy tokens, retained for live themes.css compatibility */
   --navy-100: #1e1e51;
   --navy-90:  #353562;
   --navy-80:  #4b4b74;
@@ -143,7 +143,7 @@
   --navy-10:  #e9e9ee;
   --navy-5:   #f4f4f7;
 
-  /* || UTILITY (legacy) — superseded by --teal-* for new work */
+  /* || UTILITY (legacy), superseded by --teal-* for new work */
   --green-100: #3b7f81;
   --green-60:  #8fdcce;
   --green-40:  #c2ede5;
@@ -175,7 +175,7 @@
   --fs-caption: 12px;  --lh-caption: 1.35;
   --fs-eyebrow: 12px;  --tr-eyebrow: 0.12em;
 
-  /* Weights — Bebas Neue only ships 400 */
+  /* Weights, Bebas Neue only ships 400 */
   --fw-display: 400;
   --fw-heavy: 700;
   --fw-bold: 700;
@@ -202,7 +202,7 @@
   --r-lg:   16px;  /* large surfaces */
   --r-pill: 999px; /* primary CTAs */
 
-  /* Elevation — almost always 'none' on NP; cards use 1px border */
+  /* Elevation; almost always 'none' on NP. Cards use 1px border */
   --shadow-none: none;
   --shadow-sm:   0 1px 2px rgba(19,19,19,0.06);
   --shadow-md:   0 4px 12px rgba(19,19,19,0.08);
@@ -224,7 +224,7 @@
 }
 
 /* =====================================================================
-   THEMES — verbatim from production themes.css
+   THEMES, verbatim from production themes.css
    Every component consumes these semantic tokens, never raw palette.
    ===================================================================== */
 
@@ -369,7 +369,7 @@
 }
 
 /* =====================================================================
-   Semantic type classes — use these instead of ad-hoc font rules
+   Semantic type classes; use these instead of ad-hoc font rules
    ===================================================================== */
 body {
   font-family: var(--font-body);

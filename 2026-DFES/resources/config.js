@@ -589,7 +589,7 @@ function saveDOMImage(el,opt){
 	// Pass html-to-image options explicitly: skipFonts avoids fetching
 	// the Google Fonts CSS at render time (the fonts are visually loaded
 	// via the page's normal stylesheet so this only affects embedded
-	// font definitions in the exported PNG — accepted trade-off).
+	// font definitions in the exported PNG; accepted trade-off).
 	// cacheBust ensures freshly-fetched tile URLs rather than tainted
 	// browser-cached ones that can fail CORS.
 	var htiOpts = {
@@ -598,7 +598,7 @@ function saveDOMImage(el,opt){
 		cacheBust: false,    // tile cache already warm, no need for round trips
 		skipFonts: true,     // avoid Google Fonts CSS fetch
 		pixelRatio: opt.scale ? 2 : 1,
-		// 1x1 transparent pixel — used in place of any image that fails
+		// 1x1 transparent pixel, used in place of any image that fails
 		// to load (e.g. a tile with bad CORS). Prevents one bad tile from
 		// rejecting the whole toPng promise.
 		imagePlaceholder: 'data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=='
@@ -620,7 +620,7 @@ function saveDOMImage(el,opt){
 		done = true;
 		console.warn('saveDOMImage: timed out after 15s');
 		restore();
-		try { window.alert('Sorry — saving the map as a PNG took too long. Please try your browser\'s built-in screenshot tool.'); } catch (e) {}
+		try { window.alert('Sorry - saving the map as a PNG took too long. Please try your browser\'s built-in screenshot tool.'); } catch (e) {}
 	}, 15000);
 	htmlToImage.toPng(el, htiOpts).then(function(dataUrl){
 		if (done) return;
@@ -635,7 +635,7 @@ function saveDOMImage(el,opt){
 		done = true;
 		console.error('saveDOMImage: html-to-image failed', err);
 		restore();
-		try { window.alert('Sorry — could not save the map as a PNG. Try reloading the page or using your browser\'s screenshot tool.'); } catch (e) {}
+		try { window.alert('Sorry - could not save the map as a PNG. Try reloading the page or using your browser\'s screenshot tool.'); } catch (e) {}
 	});
 }
 function defaultSpacing(mn,mx,n){

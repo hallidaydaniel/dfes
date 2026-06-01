@@ -1,4 +1,4 @@
-/* DFES 2026 — Northern Powergrid prototype styles */
+/* DFES 2026, Northern Powergrid prototype styles */
 
 * { box-sizing: border-box; }
 html, body { margin: 0; padding: 0; }
@@ -105,7 +105,7 @@ a { color: inherit; }
 .site-nav a:hover { color: var(--red-100); }
 
 /* ------------------------------------------------------------------- */
-/* Hero band — theme-c (red) */
+/* Hero band, theme-c (red) */
 .hero {
   position: relative;
   background: var(--red-100);
@@ -180,7 +180,7 @@ a { color: inherit; }
 .hero-chip strong { font-weight: 700; }
 .hero-cta { display: flex; gap: var(--sp-3); flex-wrap: wrap; }
 
-/* Buttons — pill */
+/* Buttons, pill */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -208,7 +208,7 @@ a { color: inherit; }
 .btn--outline:hover { background: var(--black-100); color: var(--white); }
 .btn--sm { padding: 9px 16px; font-size: 13px; gap: 6px; }
 
-/* Hero animated network — design-system reference. The integration
+/* Hero animated network, design-system reference. The integration
    override section below sets aspect-ratio: 1/1 to better match the
    portrait NPg silhouette. */
 .hero-network {
@@ -219,7 +219,7 @@ a { color: inherit; }
 .hero-network svg { width: 100%; height: 100%; display: block; }
 
 /* ------------------------------------------------------------------- */
-/* Stats strip — theme-b */
+/* Stats strip, theme-b */
 .stats-strip {
   background: var(--black-100);
   color: var(--white);
@@ -251,7 +251,7 @@ a { color: inherit; }
 .stat .desc { font-size: 13px; color: rgba(255,255,255,0.7); line-height: 1.4; }
 
 /* ------------------------------------------------------------------- */
-/* Map workspace — theme-a */
+/* Map workspace, theme-a */
 .workspace {
   background: var(--white);
   padding-top: var(--sp-8);
@@ -320,7 +320,7 @@ a { color: inherit; }
   font-weight: 700;
 }
 
-/* Scenario picker — cards */
+/* Scenario picker, cards */
 .scenario-cards {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -733,7 +733,7 @@ a { color: inherit; }
 }
 
 /* ------------------------------------------------------------------- */
-/* About — scenario comparison cards (theme-d) */
+/* About, scenario comparison cards (theme-d) */
 .about-band {
   background: var(--theme-d-background);
   padding: var(--sp-9) 0;
@@ -826,7 +826,7 @@ a { color: inherit; }
 .scen-card .scen-stat .k { color: var(--black-70); }
 .scen-card .scen-stat .v { font-weight: 700; color: var(--black-100); font-family: var(--font-display); font-size: 18px; }
 
-/* Stat callout band — pink-tinted theme-e */
+/* Stat callout band, pink-tinted theme-e */
 .callout-band {
   background: var(--pink-5);
   padding: var(--sp-9) 0;
@@ -876,7 +876,7 @@ a { color: inherit; }
 }
 
 /* ------------------------------------------------------------------- */
-/* Footer — theme-b */
+/* Footer, theme-b */
 .site-footer {
   background: var(--black-100);
   color: var(--white);
@@ -953,7 +953,7 @@ a { color: inherit; }
   .workspace-grid { grid-template-columns: 1fr; }
   .controls { position: static; }
   .footer-top { grid-template-columns: 1fr; }
-  /* Site header — declutter for small screens */
+  /* Site header, declutter for small screens */
   .site-header .holder { padding-top: 12px; padding-bottom: 12px; gap: 14px; }
   .brand .breadcrumb { display: none; }
   .site-nav { gap: 16px; }
@@ -967,7 +967,7 @@ a { color: inherit; }
 }
 
 /* ===================================================================
-   THEME OVERRIDE — Bold/Impact (default) is what's defined above.
+   THEME OVERRIDE, Bold/Impact (default) is what's defined above.
    Calm/Editorial mode flips the hero to theme-d (off-white) and
    softens accents. Activated by .mode-calm on <body>.
    =================================================================== */
@@ -1005,7 +1005,7 @@ a { color: inherit; }
 
 
 /* =========================================================================
-   DFES INDEX PAGE — INTEGRATION OVERRIDES
+   DFES INDEX PAGE, INTEGRATION OVERRIDES
    -------------------------------------------------------------------------
    Everything below was originally in resources/redesign.css and has been
    folded in here so app.css is the single canonical stylesheet. Both
@@ -1015,7 +1015,7 @@ a { color: inherit; }
    dfes.js / config.js / Leaflet DOM hooks (#scenario, #parameter-holder,
    #scale-holder, .barchart .balloon, .leaflet-control-container .scenario,
    .pip-labels, etc.). They do not appear on graphs.html because that page
-   doesn't render any of those elements — the rules are dormant there.
+   doesn't render any of those elements; the rules are dormant there.
 
    Some selectors below (e.g. .scrubber, .scrubber-track, .scrubber-thumb,
    .scrubber-ticks) are also defined earlier in this file as part of the
@@ -1023,7 +1023,7 @@ a { color: inherit; }
    integration-tested values; CSS source order means the later ones win.
    ========================================================================= */
 
-/* DFES 2026 redesign — chrome, buttons, footer.
+/* DFES 2026 redesign, chrome, buttons, footer.
    This file is loaded AFTER style.css in index.html so its rules win.
    Subsequent redesign steps will append more sections (hero, stats strip,
    workspace, scenario cards, callout, etc.). When the migration is
@@ -1117,7 +1117,7 @@ a { color: inherit; }
 	text-decoration: none;
 }
 /* index.html now uses the proper red+black resources/npg-logo.svg.
-   No filter needed — render at native colours. */
+   No filter needed; render at native colours. */
 .brand img {
 	height: 38px;
 	width: auto;
@@ -1211,7 +1211,7 @@ a { color: inherit; }
    plain .btn--primary (0,1,0) rule and forced the "Get in touch"
    pill to render white-text-on-white. Restore the pill's contrast
    without touching the link rule. Hover lands on a brand pink
-   (warm-maroon) rather than the design-system default black —
+   (warm-maroon) rather than the design-system default black;
    keeps the CTA feeling part of the NPg palette in the dark footer. */
 .site-footer .btn--primary { color: var(--black-100); }
 .site-footer .btn--primary:hover {
@@ -1296,9 +1296,9 @@ a { color: inherit; }
 }
 
 
-/* === Responsive — chrome only === */
+/* === Responsive, chrome only === */
 @media (max-width: 840px) {
-	/* Site header — declutter for small screens */
+	/* Site header, declutter for small screens */
 	.site-header .holder { padding-top: 12px; padding-bottom: 12px; gap: 14px; }
 	.brand .breadcrumb { display: none; }
 	.site-nav { gap: 16px; }
@@ -1315,7 +1315,7 @@ a { color: inherit; }
 }
 
 
-/* === Hero band — theme-c (red) === */
+/* === Hero band, theme-c (red) === */
 .hero {
 	position: relative;
 	background: var(--red-100);
@@ -1406,7 +1406,7 @@ a { color: inherit; }
 }
 .hero-cta .btn svg { width: 14px; height: 14px; }
 
-/* Hero animated network. Container is square (1/1 aspect) — closer
+/* Hero animated network. Container is square (1/1 aspect), closer
    to the data's natural portrait silhouette than 4/3 was, so the
    geographic projection fills more of the box while still preserving
    shape. Hero overall height is still driven by the left column
@@ -1434,7 +1434,7 @@ a { color: inherit; }
 }
 
 
-/* === Stats strip — theme-b (black), region overview === */
+/* === Stats strip, theme-b (black), region overview === */
 .stats-strip {
 	background: var(--black-100);
 	color: var(--white);
@@ -1481,7 +1481,7 @@ a { color: inherit; }
 }
 
 
-/* === Workspace (map area) — theme-a === */
+/* === Workspace (map area), theme-a === */
 /* The existing markup is .columns > .left + .right; redesign treats
    them as .workspace-grid > .controls + map. We keep .left/.right
    selectors targeted via parents so the existing JS that finds them
@@ -1512,7 +1512,7 @@ a { color: inherit; }
 	flex-direction: column;
 	min-height: 0;
 }
-/* Kill the old <h2><label>...</label></h2> control headers — replaced by .control-group h3 */
+/* Kill the old <h2><label>...</label></h2> control headers; replaced by .control-group h3 */
 #scenario .columns > .left > h2 { display: none; }
 
 .control-group h3 {
@@ -1540,7 +1540,7 @@ a { color: inherit; }
 	font-weight: 700;
 }
 
-/* Scenario picker — cards */
+/* Scenario picker, cards */
 .scenario-cards {
 	display: grid;
 	grid-template-columns: 1fr 1fr;
@@ -1609,7 +1609,7 @@ a { color: inherit; }
 	cursor: pointer;
 	line-height: normal;
 }
-/* Live-updated parameter description — restyled from the legacy
+/* Live-updated parameter description, restyled from the legacy
    coloured-banner '.about' div to a subtle help-text caption that
    mirrors the scale-mode help. dfes.js writes the description via
    document.querySelector('#parameter-holder .about').innerHTML. */
@@ -1631,7 +1631,7 @@ a { color: inherit; }
 	outline-offset: 2px;
 	border-color: var(--black-100);
 }
-/* Dropdown chevron — anchored to the top of the wrapper (where the
+/* Dropdown chevron, anchored to the top of the wrapper (where the
    <select> lives) rather than 50% of the wrapper, because the <select>
    is followed by the live ".about" description and 50% of the combined
    wrapper height puts the chevron below the select. The select height
@@ -1679,7 +1679,7 @@ a { color: inherit; }
 	color: var(--white);
 }
 
-/* Timeline — year display + play/pause + scrubber */
+/* Timeline, year display + play/pause + scrubber */
 .timeline {
 	display: flex;
 	flex-direction: column;
@@ -1735,7 +1735,7 @@ a { color: inherit; }
 .icon-btn.ghost:hover:not(:disabled) { background: var(--black-5); }
 .icon-btn svg { width: 14px; height: 14px; display: block; }
 
-/* Scrubber — custom track/fill/thumb on top of the existing <input range> */
+/* Scrubber, custom track/fill/thumb on top of the existing <input range> */
 .scrubber {
 	position: relative;
 	height: 36px;
@@ -1790,7 +1790,7 @@ a { color: inherit; }
 	transform: translateX(-50%) scale(1.15);
 }
 /* Hide the legacy .pip-labels element dfes.js auto-creates next to
-   the slider — its tick-mark hashes were rendering on top of (and
+   the slider, its tick-mark hashes were rendering on top of (and
    competing with) the new .scrubber-ticks row. */
 .pip-labels { display: none !important; }
 /* And kill any native browser slider tickmarks that might leak through
@@ -1861,7 +1861,7 @@ a { color: inherit; }
 }
 
 
-/* === Map presentation — theme-a === */
+/* === Map presentation, theme-a === */
 /* Stretch the right column to match the left controls' height (set by
    align-items: stretch on .columns above), then make #screenshot a flex
    column whose <map> takes the remaining space. Leaflet needs a concrete
@@ -1890,7 +1890,7 @@ a { color: inherit; }
    that overrides the `hidden` HTML attribute. Force it back. */
 [hidden]#scale-holder, #scale-holder[hidden] { display: none !important; }
 
-/* Map legend — the existing #scale gets a card-like wrapper feel
+/* Map legend; the existing #scale gets a card-like wrapper feel
    and a pill-button "Save PNG" button via #issues. */
 #scenario #scale {
 	border-top: 1px solid var(--navy-10);
@@ -1941,7 +1941,7 @@ a { color: inherit; }
 	text-align: right;
 }
 
-/* Action row (Save PNG / Graphs / Data / Issues) — pill buttons under
+/* Action row (Save PNG / Graphs / Data / Issues); pill buttons under
    the whole workspace, hoisted out of .right so the map can fill the
    column. Snug to the workspace above. */
 #scenario > .holder > #issues {
@@ -2036,7 +2036,7 @@ a { color: inherit; }
 	line-height: 1;
 }
 
-/* Leaflet popups — match the redesign card aesthetic */
+/* Leaflet popups, match the redesign card aesthetic */
 .leaflet-popup-content-wrapper {
 	border-radius: var(--r-md) !important;
 	border: 1px solid var(--navy-10);
@@ -2078,10 +2078,10 @@ a { color: inherit; }
 	padding: 6px 8px !important;
 }
 
-/* Map spinner restyle — keep it visible against the new bg */
+/* Map spinner restyle, keep it visible against the new bg */
 .spinner .sk-cube { background: var(--red-100) !important; }
 
-/* Bar-chart hover tooltip — the legacy .balloon and OI.Tooltips inner
+/* Bar-chart hover tooltip; the legacy .balloon and OI.Tooltips inner
    either showed black-on-grey or inherited the scenario red. Force a
    readable white card with dark text matching the rest of the redesign. */
 #scenario .barchart .balloon,
@@ -2115,7 +2115,7 @@ a { color: inherit; }
 }
 
 
-/* === About — scenario cards (theme-d, off-white) === */
+/* === About, scenario cards (theme-d, off-white) === */
 /* The existing #about section is repurposed to host the cards grid.
    We override the existing .b5-bg + .holder.tallpadded that wraps it. */
 #about.b5-bg {
@@ -2257,7 +2257,7 @@ a { color: inherit; }
 }
 
 
-/* === Callout band — theme-e (pink-tinted) === */
+/* === Callout band, theme-e (pink-tinted) === */
 .callout-band {
 	background: var(--pink-5);
 	padding: var(--sp-9) 0;

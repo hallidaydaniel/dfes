@@ -1,4 +1,4 @@
-/* DFES 2026 — Graphs page-specific styles
+/* DFES 2026, Graphs page-specific styles
    Builds on tokens.css + app.css. Reuses utility-bar, site-header,
    site-footer, and the brand chrome from app.css verbatim.
 */
@@ -96,7 +96,7 @@
 .g-tab.active .g-tab-count { background: var(--red-100); color: var(--white); }
 
 /* ===================================================================
-   Section panels — only the active one is shown
+   Section panels; only the active one is shown
    =================================================================== */
 .g-main { background: var(--black-5); }
 .g-panel { display: none; padding: var(--sp-7) 0 var(--sp-9); }
@@ -127,7 +127,7 @@
   color: var(--black-70);
 }
 
-/* Mini TOC — chip row */
+/* Mini TOC, chip row */
 .g-mini-toc {
   display: flex;
   flex-wrap: wrap;
@@ -274,7 +274,7 @@
 }
 .g-figure-body .oi-viz svg { width: 100%; height: auto; }
 
-/* Download links — restyle as pill */
+/* Download links, restyle as pill */
 .g-figure-body figure .download {
   display: flex;
   gap: 8px;
@@ -335,7 +335,7 @@
 }
 
 /* ===================================================================
-   Embed view (graphs-embed.html — iframed, no site chrome)
+   Embed view (graphs-embed.html, iframed, no site chrome)
    No sticky site-header, so the tabs nav sticks to the iframe top.
    =================================================================== */
 body.embed-page .g-tabs { top: 0; }

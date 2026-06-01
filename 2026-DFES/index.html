@@ -40,7 +40,7 @@
 </head>
 <body>
 
-	<!-- Top utility bar — black, links left, Power cut CTA right. -->
+	<!-- Top utility bar -->
 	<div class="utility-bar">
 		<div class="holder">
 			<div>
@@ -56,7 +56,7 @@
 		</div>
 	</div>
 
-	<!-- Site header — sticky white, NPG brand + nav. -->
+	<!-- Site header -->
 	<header class="site-header">
 		<div class="holder">
 			<a href="/" class="brand">
@@ -79,8 +79,7 @@
 		<p>This page is currently <em>under development</em>. It contains placeholder parameters, scenarios, data, and text.<br />The real DFES 2026 data will be included here later.</p>
 		</div>
 	</div>
-	<!-- Hero band — theme-c (red). Copy + chip numbers are placeholder
-	     pending NPg sign-off. -->
+	<!-- Hero -->
 	<section class="hero">
 		<div class="holder">
 			<div>
@@ -115,7 +114,7 @@
 	</section>
 
 
-	<!-- Stats strip — region overview, live-bound to current scenario/param/year. -->
+	<!-- Stats strip -->
 	<section class="stats-strip" aria-label="Region overview">
 		<div class="holder">
 			<div class="stat stat-scenario">
@@ -153,9 +152,7 @@
 		<div class="scenario thickline leading-the-way"></div>
 		<div class="columns">
 			<div class="left">
-				<!-- 1. Scenario — cards mirror the (hidden) #scenarios select.
-				     The select stays in the DOM as the canonical state holder
-				     so dfes.js / config.js continue to function unchanged. -->
+				<!-- Scenario. The hidden #scenarios select is the canonical state holder for dfes.js. -->
 				<div class="control-group">
 					<h3><span class="num">1</span> Scenario</h3>
 					<div id="scenario-holder" hidden>
@@ -164,7 +161,6 @@
 					<div class="scenario-cards" role="group" aria-label="Scenario picker"></div>
 				</div>
 
-				<!-- 2. Parameter — keep the existing select, just restyle. -->
 				<div class="control-group">
 					<h3><span class="num">2</span> Parameter</h3>
 					<div class="select-wrap" id="parameter-holder">
@@ -172,7 +168,6 @@
 					</div>
 				</div>
 
-				<!-- 3. View — segmented control mirrors the (hidden) #views select. -->
 				<div class="control-group">
 					<h3><span class="num">3</span> View by</h3>
 					<div id="view-holder" hidden>
@@ -181,7 +176,6 @@
 					<div class="segmented view-segmented" role="group" aria-label="View"></div>
 				</div>
 
-				<!-- 4. Year — big display + play/pause + custom scrubber over real <input range>. -->
 				<div class="control-group">
 					<h3><span class="num">4</span> Year</h3>
 					<div class="timeline">
@@ -215,10 +209,7 @@
 					</div>
 				</div>
 
-				<!-- 5. Colour scale — segmented mirrors the (hidden) #scale-mode checkbox.
-				     #scale-holder is required by dfes.js (lines 137, 228, 593-594)
-				     which queries it for state syncing. Kept as a hidden wrapper
-				     around the input the segmented mirrors. -->
+				<!-- Colour scale. #scale-holder is required by dfes.js for state syncing. -->
 				<div class="control-group">
 					<h3><span class="num">5</span> Colour scale</h3>
 					<div id="scale-holder" hidden>
@@ -231,7 +222,7 @@
 					<p class="scale-help">Colours adjust to the selected year for higher contrast within that year.</p>
 				</div>
 
-				<!-- Legacy info-bubbles — kept (hidden) so config.js setScale() can still toggle them by [data-scale]. -->
+				<!-- Legacy info-bubbles, kept hidden so config.js setScale() can still toggle them by [data-scale]. -->
 				<div class="info-bubble warning" data-scale="absolute" hidden></div>
 				<div class="info-bubble warning" data-scale="relative" hidden></div>
 
@@ -258,16 +249,8 @@
 					</div>
 					<div id="scale"></div>
 				</div>
-				<!-- Scale-mode toggle now lives in the left controls (step 5).
-				     Old #scale-holder block removed; the original duplicate
-				     id="scale-mode" was a problem — only one input can drive
-				     dfes.js's scale state. The #issues action row is hoisted
-				     out of .right (below) so the map can fill the column. -->
 			</div>
 		</div>
-		<!-- Action row — pill buttons under the whole workspace so the map
-		     and sidebar can match heights without competing for vertical
-		     space inside the right column. -->
 		<div class="holder">
 			<div id="issues">
 				<a href="#" id="save-png-link" class="issue-pill">
@@ -290,10 +273,6 @@
 		</div>
 	</div>
 	<div class="scenario thickline">&nbsp;</div>
-	<!-- About — Scenario cards (theme-d). Replaces the legacy prose About
-	     section. Detailed scenario assumption text lives in the original
-	     index.html in git history; it can be promoted to a Methodology
-	     page later. -->
 	<section class="b5-bg" id="about">
 		<div class="holder tallpadded">
 			<div class="about-head">
@@ -366,12 +345,8 @@
 		</div>
 	</section>
 
-	<!-- Callout band — verified NPg figures (per stakeholder review).
-	     8M people, 63k substations and 5 scenarios are stated facts;
-	     "26 years" counts inclusively from 2024/25 through 2050/51.
-	     The "96k km of cable" placeholder from the design prototype
-	     was dropped on review (real figure is much larger and not
-	     publicly verified). -->
+	<!-- Callout band. Figures verified with NPg stakeholders; "26 years"
+	     counts inclusively from 2024/25 to 2050/51. -->
 	<section class="callout-band">
 		<div class="holder">
 			<div class="callout-grid">

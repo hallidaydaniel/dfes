@@ -1,4 +1,4 @@
-/* DFES 2026 redesign — Controls panel wiring.
+/* DFES 2026 redesign, Controls panel wiring.
    Mirrors the new visual controls (scenario cards, view-segmented,
    scale-mode segmented, scrubber visuals) onto the existing form
    elements (<select id="scenarios">, <select id="views">,
@@ -21,8 +21,8 @@
 	// <select> element via innerHTML on every render rather than just
 	// updating its options. So any cached reference to that element goes
 	// stale. We work around it by re-querying inside each poll tick AND
-	// using event delegation on a stable host element. Same defensive
-	// pattern is used for scenarios in case the same gets refactored.
+	// using event delegation on a stable host element. Same pattern
+	// is used for scenarios in case the same gets refactored.
 
 	// === Scenario cards ===
 	function setupScenarios() {
@@ -175,7 +175,7 @@
 		var thumb = document.querySelector('.scrubber-thumb');
 
 		function render() {
-			// Don't use `|| fallback` — slider.min is often "0" which is falsy
+			// Don't use `|| fallback`; slider.min is often "0" which is falsy
 			// but is the actual valid minimum (dfes.js uses an integer index
 			// 0..N-1 for years). Use isNaN checks instead.
 			var min = parseFloat(slider.min); if (isNaN(min)) min = 0;
@@ -185,7 +185,7 @@
 			pct = Math.max(0, Math.min(100, pct));
 			if (fill) fill.style.width = pct + '%';
 			if (thumb) thumb.style.left = pct + '%';
-			// Accessibility — dfes.js doesn't set these.
+			// Accessibility, dfes.js doesn't set these.
 			slider.setAttribute('aria-valuemin', String(min));
 			slider.setAttribute('aria-valuemax', String(max));
 			slider.setAttribute('aria-valuenow', String(v));
@@ -196,7 +196,7 @@
 
 		slider.addEventListener('input', render);
 		slider.addEventListener('change', render);
-		// Also poll — dfes.js can set the slider value programmatically
+		// Also poll; dfes.js can set the slider value programmatically
 		// during the play animation, and that doesn't always fire input.
 		setInterval(render, 250);
 		render();

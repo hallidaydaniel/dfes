@@ -1,4 +1,4 @@
-/* DFES 2026 redesign — animated SVG network for the Hero band.
+/* DFES 2026 redesign, animated SVG network for the Hero band.
 
    Builds an equirectangular projection of ~32 named towns/cities across
    Northern Powergrid's licence area, wires each node to its 2 nearest
@@ -56,7 +56,7 @@
 	function project(cities, vbW, vbH, margin) {
 		// Equirectangular: x = lon*cos(lat), y = -lat. Geographic-accurate
 		// uniform scale so the silhouette reads as the actual NPg licence
-		// area — Northumberland down to Lincolnshire, Pennines to the
+		// area, Northumberland down to Lincolnshire, Pennines to the
 		// coast. The container CSS (height: 100% inside .hero .holder
 		// align-items: stretch) lets the SVG grow to match the hero
 		// height, which gives the portrait data plenty of room without
@@ -123,7 +123,7 @@
 		return node;
 	}
 
-	// Easter egg: lazy-loaded "full network" data — 3-tier NPg
+	// Easter egg: lazy-loaded "full network" data, 3-tier NPg
 	// licence-area network from the public open data:
 	//   - 6 GSPs  (transmission boundary, biggest anchor dots)
 	//   - 82 BSPs + 5 Secondaries (132/33 kV, medium dots)
@@ -167,7 +167,7 @@
 		return fullNetPromise;
 	}
 
-	// Render-generation counter — every renderNetwork() call bumps
+	// Render-generation counter; every renderNetwork() call bumps
 	// this; the rAF tick loop bails the moment its captured generation
 	// is no longer current. Prevents stacked animation loops when the
 	// user toggles between cities and fullnet rapidly.
@@ -185,7 +185,7 @@
 		// Square viewBox matching the container aspect-ratio. With
 		// geographic-accurate projection (uniform x/y scale) the
 		// portrait NPg silhouette fills the height and is centred
-		// horizontally — readable as the licence-area shape.
+		// horizontally, readable as the licence-area shape.
 		var VB_W = 500, VB_H = 500, MARGIN = 15;
 		var nodes = project(cities, VB_W, VB_H, MARGIN);
 		var edges = buildEdges(nodes);
@@ -193,7 +193,7 @@
 		// Dense (primaries / fullnet) mode: way more nodes, so reduce
 		// visual weight per node. Three node tiers in fullnet mode:
 		//   gsp        → anchorR (biggest)
-		//   bsp / sec  → midR    (medium — only present in fullnet)
+		//   bsp / sec  → midR    (medium, only present in fullnet)
 		//   p          → nodeR   (smallest)
 		var nodeR = dense ? 1.5 : 4;
 		var midR = dense ? 2.4 : 5;
@@ -206,14 +206,14 @@
 		var haloMaxRBoost = dense ? 2 : 4; // halo r-pulse extra
 		var midMaxRBoost = dense ? 3 : 5;
 		var anchorMaxRBoost = dense ? 5 : 7;
-		// One pulse per edge in both modes — primaries-mode hero looked
+		// One pulse per edge in both modes; primaries-mode hero looked
 		// quiet at the earlier 50-pulse cap. Direction rules below
 		// still apply (GSP → outward; primary → primary follows BFS
 		// distance from nearest GSP).
 		var pulseStride = 1;
 
 		// Pulse direction: pulses originate at the largest dots (GSP
-		// nodes) and travel OUT into the network — never into a GSP.
+		// nodes) and travel OUT into the network, never into a GSP.
 		// For each edge:
 		//   - one end GSP, one not  → pulse goes GSP → non-GSP
 		//   - both ends GSP         → pulse goes lower-index → higher
@@ -300,7 +300,7 @@
 		});
 		svg.appendChild(pulsesG);
 
-		// Nodes — halo (animated radius/opacity) + dot (static).
+		// Nodes; halo (animated radius/opacity) + dot (static).
 		// Three tiers: GSP (anchor), BSP/sec (mid), primary/other (leaf).
 		var nodesG = el('g');
 		var haloEls = [];
@@ -323,7 +323,7 @@
 		});
 		svg.appendChild(nodesG);
 
-		// Animation loop — bail if user prefers reduced motion.
+		// Animation loop; bail if user prefers reduced motion.
 		var prefersReduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 		if (prefersReduce) {
 			// Set a static "midway" frame so it doesn't look broken.

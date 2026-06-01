@@ -1,7 +1,7 @@
-/* DFES 2026 redesign — Stats strip live binding.
+/* DFES 2026 redesign, Stats strip live binding.
    Reads the live FES state (window.dfes) and re-renders the four stats
    whenever scenario / parameter / year changes. Polls dfes.options
-   every 400ms — cheap, robust, and avoids needing to know dfes.js's
+   every 400ms; cheap, and avoids needing to know dfes.js's
    internal change-event plumbing.
 
    Region total is summed from the primary-substation raw CSV
@@ -24,7 +24,7 @@
 	};
 
 	function fmt(v) {
-		if (v == null || isNaN(v)) return '—'; // em-dash
+		if (v == null || isNaN(v)) return '—';
 		var abs = Math.abs(v);
 		if (abs >= 1e9) return (v / 1e9).toFixed(1) + 'B';
 		if (abs >= 1e6) return (v / 1e6).toFixed(1) + 'M';
@@ -40,7 +40,7 @@
 		var d = sd.data[parameter];
 		// Standard path used across the codebase: data[param].primary.raw
 		if (d.primary && d.primary.raw) return d.primary.raw;
-		// Defensive fallbacks if the structure differs
+		// Fallbacks if the structure differs
 		if (d.LAD && d.LAD.raw) return d.LAD.raw;
 		if (d.raw) return d.raw;
 		return null;
@@ -88,7 +88,7 @@
 		var param = dfes.parameters[o.parameter];
 		if (!scenario || !param) return;
 
-		// Only mark cache once we've confirmed the data is present —
+		// Only mark cache once we've confirmed the data is present;
 		// otherwise we'd skip the next poll and never render.
 		var total = regionTotal(o.scenario, o.parameter, o.key);
 		if (total == null) return; // data not yet loaded
@@ -123,7 +123,7 @@
 
 		if ($yearVal) $yearVal.textContent = o.key;
 
-		if ($totalLabel) $totalLabel.textContent = 'Region total — ' + (param.title || o.parameter);
+		if ($totalLabel) $totalLabel.textContent = 'Region total - ' + (param.title || o.parameter);
 		if ($totalNumber) $totalNumber.textContent = fmt(total);
 		if ($totalUnit) $totalUnit.textContent = hasUnits ? ' ' + param.units : '';
 		if ($totalDesc) {
