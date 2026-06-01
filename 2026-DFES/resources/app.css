@@ -25,6 +25,9 @@ a { color: inherit; }
   background: var(--black-100);
   color: var(--white);
   font-size: 13px;
+  /* Reset inherited em-based line-height from style.css so the Power cut
+     pill sits in the bar with a small black border (matches graphs.html). */
+  line-height: normal;
 }
 .utility-bar .holder {
   display: flex;
@@ -1054,6 +1057,9 @@ a { color: inherit; }
 	background: var(--black-100);
 	color: var(--white);
 	font-size: 13px;
+	/* Reset inherited em-based line-height from style.css so the Power cut
+	   pill sits in the bar with a small black border (matches graphs.html). */
+	line-height: normal;
 }
 .utility-bar .holder {
 	display: flex;
