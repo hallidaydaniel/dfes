@@ -45,8 +45,8 @@
 		"left": 90
 	}]
 },{
-	"slug":"network-data",
-	"title": "Network data",
+	"slug":"network-demand",
+	"title": "Network demand",
 	"graphs": [{
 		"title":"Annual peak demand (with ToUT) (GW)",
 		"csv":"AnnualPeakDemand_GW.csv",
