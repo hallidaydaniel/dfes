@@ -1,4 +1,5 @@
 [{
+	"slug":"low-carbon-technologies",
 	"title":"Low carbon technologies",
 	"intro": "",
 	"graphs": [{
@@ -44,7 +45,8 @@
 		"left": 90
 	}]
 },{
-	"title": "Network data",
+	"slug":"network-demand",
+	"title": "Network demand",
 	"graphs": [{
 		"title":"Annual peak demand (with ToUT) (GW)",
 		"csv":"AnnualPeakDemand_GW.csv",

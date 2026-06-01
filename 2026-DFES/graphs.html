@@ -1,97 +1,107 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width" />
-	<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; base-uri 'self'; form-action 'self';" />
-	<title>Northern Powergrid DFES 2026: graphs</title>
-	<link rel="StyleSheet" href="resources/style.css" type="text/css" />
-	<link href="favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.icon">
-	<style>
-	.glory { height: unset; }
-	.glory .holder { height: unset; }
-	.glory-opacity { height: unset; }
-	h2 { font-weight: bold; font-size: 1.4em; margin-top: 2em; }
-	figure { border-top: 2px solid #cc0935; padding: 0.5em 0; width: 640px; max-width:100%; margin-bottom: 3rem; }
-	figure h3 { font-size: 1em; margin-top: 0; }
-	figure table { border-spacing: 0.4em; border-collapse: separate; width: 100%; margin-left: -0.4em; }
-	figure table tr { opacity: 0.9; }
-	figure table tr.active, figure table tr:hover { cursor: pointer; opacity: 1; }
-	figure table tr.active td, figure table tr:hover td { font-weight: bold; background-color: rgba(204, 9, 53,0.3); }
-	figure table th, figure table td { padding: 0.25em 0.5em; text-align: right; }
-	figure table th { background-color: #cc0935; color: white; font-weight: bold; }
-	figure table td {background-color: rgba(180, 180, 180,0.3); color: black; width: 80px; }
-	figure table td:first-child span:after { color: rgb(0, 255, 255); mix-blend-mode: difference; }
-	figure table th:first-child, figure table td:first-child { text-align: left; font-weight: bold; border-left: 0; width: auto; }
-	figure figcaption { font-size: 1em; color: inherit; text-align: left; margin-bottom: 0.5em; }
-	figure .download { display: block; text-align: right; }
-	figure .download a { display: inline-block; line-height: 1.25em; padding: 0.25em 0.5em; text-decoration: none; color: inherit; }
-	figure .download a:hover, figure .download a:focus { background-color: #cc0935; color: white; }
-	figure .download a:hover img, figure .download a:focus img { filter: invert(); }
-	figure .download img { width: 1.25em; height: 1.25em; float: left; margin-right: 0.5em; }
-	.oi-viz { position: relative; line-height: 0; margin-block: 0.5rem; }
-	.oi-viz svg { width: 100%; height: auto; }
-	.oi-viz .skip-link {
-		z-index: 2000;
-		position: absolute !important;
-		width: 1px !important;
-		height: 1px !important;
-		margin: 0;
-		overflow: hidden !important;
-		clip: rect(0 0 0 0) !important;
-		-webkit-clip-path: inset(50%) !important;
-		clip-path: inset(50%) !important;
-		white-space: nowrap !important;
-		display: inline-block;
-		top: 0;
-		left: 0;
-	}
-	.oi-viz .skip-link:focus, .oi-viz .skip-link:active {
-		width: auto !important;
-		height: auto !important;
-		left: 0;
-		margin: inherit;
-		overflow: visible !important;
-		clip: auto !important;
-		-webkit-clip-path: none !important;
-		clip-path: none !important;
-		white-space: inherit !important;
-	}
-	.oi-viz .skip-link-bottom {
-		bottom: 0;
-		top: unset;
-	}
-
-	@media only screen and (max-width: 700px) {
-		figure .table-holder { overflow-x: auto; margin-bottom: 0.5em; }
-	}
-	</style>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: blob:; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com; base-uri 'self'; form-action 'self';"/>
+<title>DFES 2026 · Graphs — Northern Powergrid</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link rel="stylesheet" href="resources/tokens.css?v=1"/>
+<link rel="stylesheet" href="resources/app.css?v=6"/>
+<link rel="stylesheet" href="resources/graphs.css?v=2"/>
+<link rel="icon" href="resources/icons/favicon.ico" sizes="any"/>
+<link rel="icon" type="image/svg+xml" href="resources/icons/favicon.svg"/>
+<link rel="icon" type="image/png" sizes="32x32" href="resources/icons/favicon-32.png"/>
+<link rel="icon" type="image/png" sizes="16x16" href="resources/icons/favicon-16.png"/>
+<link rel="apple-touch-icon" sizes="180x180" href="resources/icons/apple-touch-icon.png"/>
+<link rel="manifest" href="resources/icons/site.webmanifest"/>
+<meta name="theme-color" content="#ce0037"/>
+<meta name="apple-mobile-web-app-title" content="NPg DFES 2026"/>
 </head>
-<body>
+<body class="graphs-page">
 
-	<header class="b1-bg">
-		<div class="b1-bg glory">
-			<div class="glory-opacity">
-				<div class="holder logos">
-					<a href="https://open-innovations.org/"><img alt="Open Innovations" src="resources/logos/oi-square-white.svg" /></a>
-					<a href="https://www.northernpowergrid.com/"><img alt="Northern Powergrid" src="resources/logos/northernpowergrid.svg" /></a>
-					<a href="https://www.erm.com/"><img alt="ERM" src="resources/logos/erm.svg" /></a>
-				</div>
-			</div>
-		</div>
-		<div class="scenario title reference-scenario">
-			<div class="holder">
-				<h1>Northern Powergrid DFES 2026: graphs</h1>
-			</div>
-		</div>
-	</header>
+<div class="utility-bar">
+  <div class="holder">
+    <div>
+      <a href="https://www.northernpowergrid.com/about-us">About us</a>
+      <a href="https://www.northernpowergrid.com/our-future-business-plan">Our network</a>
+      <a href="https://www.northernpowergrid.com/connections-and-services">Connections</a>
+      <a href="https://www.northernpowergrid.com/priority-services">Priority Services</a>
+    </div>
+    <a href="https://www.northernpowergrid.com/power-cuts" class="powercut">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+      Power cut? <span>105</span>
+    </a>
+  </div>
+</div>
+<header class="site-header">
+  <div class="holder">
+    <a href="index.html" class="brand">
+      <img src="resources/npg-logo.svg" alt="Northern Powergrid"/>
+      <span class="breadcrumb">Future Energy Scenarios <strong>2026</strong> · Graphs</span>
+    </a>
+    <nav class="site-nav">
+      <a href="./">DFES 2026</a>
+      <a href="index.html#workspace">Map</a>
+      <a href="index.html#about">Scenarios</a>
+      <a href="#" class="active">Graphs</a>
+      <a class="btn btn--outline btn--sm" style="padding: 8px 16px">Download all data</a>
+    </nav>
+  </div>
+</header>
 
-	<div class="b6-bg" id="graphs">
-		<div class="holder padded">
-			<p>The following graphs are supplemental to <a href="index.html">Northern Powergrid's DFES 2026 interactive map</a>. Each graph can be downloaded as a scalable-vector-graphic (SVG). The underlying data for each graph is also available as a CSV file.</p>
-	
-			<!-- START GRAPHS --><h2>Low carbon technologies</h2>
-			<figure>
+
+<section class="g-pageintro">
+  <div class="holder">
+    <div class="g-pageintro-eyebrow">Distribution Future Energy Scenarios · 2026</div>
+    <h1 class="g-pageintro-title">Graphs &amp; charts</h1>
+    <p class="g-pageintro-lede">Twelve supplemental graphs underpinning the <a href="index.html">DFES 2026 interactive map</a>. Every chart can be downloaded as a scalable vector and the underlying data exported as CSV.</p>
+  </div>
+</section>
+
+<nav class="g-tabs" aria-label="Graph categories">
+  <div class="holder">
+    <!-- START TABS -->
+    <button class="g-tab active" data-tab="low-carbon-technologies" type="button">
+     <span class="g-tab-num">01</span>
+     <span class="g-tab-label">Low carbon technologies</span>
+     <span class="g-tab-count">6</span>
+   </button>
+    <button class="g-tab" data-tab="network-demand" type="button">
+     <span class="g-tab-num">02</span>
+     <span class="g-tab-label">Network demand</span>
+     <span class="g-tab-count">6</span>
+   </button>
+    <!-- END TABS -->
+  </div>
+</nav>
+
+<main class="g-main">
+  <!-- START GRAPHS -->
+  <section class="g-panel active" data-panel="low-carbon-technologies" id="panel-low-carbon-technologies">
+    <div class="holder">
+      <header class="g-section-head">
+        <div class="g-section-eyebrow">Section 01</div>
+        <h2 class="g-section-title">Low carbon technologies</h2>
+        <p class="g-section-lede">6 graphs &middot; downloadable as SVG and CSV</p>
+      </header>
+      <nav class="g-mini-toc" aria-label="Low carbon technologies graphs">
+<a href="#figure-1" class="g-mini-toc-item"><span>1</span> Electric vehicle uptake forecast (#)</a>
+<a href="#figure-2" class="g-mini-toc-item"><span>2</span> Electric vehicle penetration of total car stock (%)</a>
+<a href="#figure-3" class="g-mini-toc-item"><span>3</span> Total number of heat pumps residential and commercial (#)</a>
+<a href="#figure-4" class="g-mini-toc-item"><span>4</span> Battery storage capacity installed (GW)</a>
+<a href="#figure-5" class="g-mini-toc-item"><span>5</span> Renewable generation installed (GW)</a>
+<a href="#figure-6" class="g-mini-toc-item"><span>6</span> Electric bus and HGV uptake forecast (#)</a>
+      </nav>
+      <div class="g-figures">
+<article class="g-figure" id="figure-1" data-fig-num="1">
+      <header class="g-figure-head">
+        <div class="g-figure-num">Figure 1</div>
+        <h3 class="g-figure-title">Electric vehicle uptake forecast (#)</h3>
+      </header>
+      <div class="g-figure-body">
+        <figure>
 				<figcaption><strong>Figure 1:</strong> Electric vehicle uptake forecast (#)</figcaption>
 				<div class="table-holder">
 				<table>
@@ -293,9 +303,16 @@
 					<a href="data/graphs/graph-ev.svg"><img src="resources/download.svg" alt="download" title="Download graph from Figure 1" /> SVG</a>
 					<a href="data/graphs/TotalNumberOfEVs.csv"><img src="resources/download.svg" alt="download" title="Download data from Figure 1" /> CSV</a>
 				</div>
-			</figure>
-
-			<figure>
+        </figure>
+      </div>
+    </article>
+<article class="g-figure" id="figure-2" data-fig-num="2">
+      <header class="g-figure-head">
+        <div class="g-figure-num">Figure 2</div>
+        <h3 class="g-figure-title">Electric vehicle penetration of total car stock (%)</h3>
+      </header>
+      <div class="g-figure-body">
+        <figure>
 				<figcaption><strong>Figure 2:</strong> Electric vehicle penetration of total car stock (%)</figcaption>
 				<div class="table-holder">
 				<table>
@@ -377,9 +394,16 @@
 					<a href="data/graphs/graph-ev-percent.svg"><img src="resources/download.svg" alt="download" title="Download graph from Figure 2" /> SVG</a>
 					<a href="data/graphs/ElectricVehiclePenetrationOfTotalCarStock_percent.csv"><img src="resources/download.svg" alt="download" title="Download data from Figure 2" /> CSV</a>
 				</div>
-			</figure>
-
-			<figure>
+        </figure>
+      </div>
+    </article>
+<article class="g-figure" id="figure-3" data-fig-num="3">
+      <header class="g-figure-head">
+        <div class="g-figure-num">Figure 3</div>
+        <h3 class="g-figure-title">Total number of heat pumps residential and commercial (#)</h3>
+      </header>
+      <div class="g-figure-body">
+        <figure>
 				<figcaption><strong>Figure 3:</strong> Total number of heat pumps residential and commercial (#)</figcaption>
 				<div class="table-holder">
 				<table>
@@ -579,9 +603,16 @@
 					<a href="data/graphs/graph-heatpumps.svg"><img src="resources/download.svg" alt="download" title="Download graph from Figure 3" /> SVG</a>
 					<a href="data/graphs/TotalNumberOfHeatPumps.csv"><img src="resources/download.svg" alt="download" title="Download data from Figure 3" /> CSV</a>
 				</div>
-			</figure>
-
-			<figure>
+        </figure>
+      </div>
+    </article>
+<article class="g-figure" id="figure-4" data-fig-num="4">
+      <header class="g-figure-head">
+        <div class="g-figure-num">Figure 4</div>
+        <h3 class="g-figure-title">Battery storage capacity installed (GW)</h3>
+      </header>
+      <div class="g-figure-body">
+        <figure>
 				<figcaption><strong>Figure 4:</strong> Battery storage capacity installed (GW)</figcaption>
 				<div class="table-holder">
 				<table>
@@ -781,9 +812,16 @@
 					<a href="data/graphs/graph-battery-storage.svg"><img src="resources/download.svg" alt="download" title="Download graph from Figure 4" /> SVG</a>
 					<a href="data/graphs/BatteryStorageCapacityInstalled_GW.csv"><img src="resources/download.svg" alt="download" title="Download data from Figure 4" /> CSV</a>
 				</div>
-			</figure>
-
-			<figure>
+        </figure>
+      </div>
+    </article>
+<article class="g-figure" id="figure-5" data-fig-num="5">
+      <header class="g-figure-head">
+        <div class="g-figure-num">Figure 5</div>
+        <h3 class="g-figure-title">Renewable generation installed (GW)</h3>
+      </header>
+      <div class="g-figure-body">
+        <figure>
 				<figcaption><strong>Figure 5:</strong> Renewable generation installed (GW)</figcaption>
 				<div class="table-holder">
 				<table>
@@ -982,9 +1020,16 @@
 					<a href="data/graphs/graph-renewable-generation-installed.svg"><img src="resources/download.svg" alt="download" title="Download graph from Figure 5" /> SVG</a>
 					<a href="data/graphs/RenewableGenerationInstalled_GW.csv"><img src="resources/download.svg" alt="download" title="Download data from Figure 5" /> CSV</a>
 				</div>
-			</figure>
-
-			<figure>
+        </figure>
+      </div>
+    </article>
+<article class="g-figure" id="figure-6" data-fig-num="6">
+      <header class="g-figure-head">
+        <div class="g-figure-num">Figure 6</div>
+        <h3 class="g-figure-title">Electric bus and HGV uptake forecast (#)</h3>
+      </header>
+      <div class="g-figure-body">
+        <figure>
 				<figcaption><strong>Figure 6:</strong> Electric bus and HGV uptake forecast (#)</figcaption>
 				<div class="table-holder">
 				<table>
@@ -1185,10 +1230,35 @@
 					<a href="data/graphs/graph-ebus-ehgv.svg"><img src="resources/download.svg" alt="download" title="Download graph from Figure 6" /> SVG</a>
 					<a href="data/graphs/TotalNumberOfBusesAndHGVs.csv"><img src="resources/download.svg" alt="download" title="Download data from Figure 6" /> CSV</a>
 				</div>
-			</figure>
-
-<h2>Network data</h2>
-			<figure>
+        </figure>
+      </div>
+    </article>
+      </div>
+    </div>
+  </section>
+  <section class="g-panel" data-panel="network-demand" id="panel-network-demand">
+    <div class="holder">
+      <header class="g-section-head">
+        <div class="g-section-eyebrow">Section 02</div>
+        <h2 class="g-section-title">Network demand</h2>
+        <p class="g-section-lede">6 graphs &middot; downloadable as SVG and CSV</p>
+      </header>
+      <nav class="g-mini-toc" aria-label="Network demand graphs">
+<a href="#figure-7" class="g-mini-toc-item"><span>7</span> Annual peak demand (with ToUT) (GW)</a>
+<a href="#figure-8" class="g-mini-toc-item"><span>8</span> Network peak demand breakdown - NPg Reference Scenario (MW)</a>
+<a href="#figure-9" class="g-mini-toc-item"><span>9</span> Network energy consumption breakdown - NPg Reference Scenario (TWh)</a>
+<a href="#figure-10" class="g-mini-toc-item"><span>10</span> Annual network energy consumption (TWh)</a>
+<a href="#figure-11" class="g-mini-toc-item"><span>11</span> Additional industrial peak demand breakdown - NPg Reference Scenario (MW)</a>
+<a href="#figure-12" class="g-mini-toc-item"><span>12</span> Additional industrial energy consumption breakdown - NPg Reference Scenario (TWh)</a>
+      </nav>
+      <div class="g-figures">
+<article class="g-figure" id="figure-7" data-fig-num="7">
+      <header class="g-figure-head">
+        <div class="g-figure-num">Figure 7</div>
+        <h3 class="g-figure-title">Annual peak demand (with ToUT) (GW)</h3>
+      </header>
+      <div class="g-figure-body">
+        <figure>
 				<figcaption><strong>Figure 7:</strong> Annual peak demand (with ToUT) (GW)</figcaption>
 				<div class="table-holder">
 				<table>
@@ -1388,12 +1458,19 @@
 					<a id="post-fig-7" href="#pre-fig-7" class="skip-link skip-link-bottom button">Go to start of chart</a>
 				</div>
 				<div class="download">
-					<a href="data/graphs/graph-annual-peak-demand.svg"><img src="resources/download.svg" alt="download" title="Download graph from Figure 1" /> SVG</a>
-					<a href="data/graphs/AnnualPeakDemand_GW.csv"><img src="resources/download.svg" alt="download" title="Download data from Figure 1" /> CSV</a>
+					<a href="data/graphs/graph-annual-peak-demand.svg"><img src="resources/download.svg" alt="download" title="Download graph from Figure 7" /> SVG</a>
+					<a href="data/graphs/AnnualPeakDemand_GW.csv"><img src="resources/download.svg" alt="download" title="Download data from Figure 7" /> CSV</a>
 				</div>
-			</figure>
-
-			<figure>
+        </figure>
+      </div>
+    </article>
+<article class="g-figure" id="figure-8" data-fig-num="8">
+      <header class="g-figure-head">
+        <div class="g-figure-num">Figure 8</div>
+        <h3 class="g-figure-title">Network peak demand breakdown - NPg Reference Scenario (MW)</h3>
+      </header>
+      <div class="g-figure-body">
+        <figure>
 				<figcaption><strong>Figure 8:</strong> Network peak demand breakdown - NPg Reference Scenario (MW)</figcaption>
 				<div class="table-holder">
 				<table>
@@ -1651,12 +1728,19 @@
 					<a id="post-fig-8" href="#pre-fig-8" class="skip-link skip-link-bottom button">Go to start of chart</a>
 				</div>
 				<div class="download">
-					<a href="data/graphs/graph-annual-peak-demand-breakdown.svg"><img src="resources/download.svg" alt="download" title="Download graph from Figure 2" /> SVG</a>
-					<a href="data/graphs/NetworkAnnualGrossPeakDemandBreakdown_ReferenceScenario_MW.csv"><img src="resources/download.svg" alt="download" title="Download data from Figure 2" /> CSV</a>
+					<a href="data/graphs/graph-annual-peak-demand-breakdown.svg"><img src="resources/download.svg" alt="download" title="Download graph from Figure 8" /> SVG</a>
+					<a href="data/graphs/NetworkAnnualGrossPeakDemandBreakdown_ReferenceScenario_MW.csv"><img src="resources/download.svg" alt="download" title="Download data from Figure 8" /> CSV</a>
 				</div>
-			</figure>
-
-			<figure>
+        </figure>
+      </div>
+    </article>
+<article class="g-figure" id="figure-9" data-fig-num="9">
+      <header class="g-figure-head">
+        <div class="g-figure-num">Figure 9</div>
+        <h3 class="g-figure-title">Network energy consumption breakdown - NPg Reference Scenario (TWh)</h3>
+      </header>
+      <div class="g-figure-body">
+        <figure>
 				<figcaption><strong>Figure 9:</strong> Network energy consumption breakdown - NPg Reference Scenario (TWh)</figcaption>
 				<div class="table-holder">
 				<table>
@@ -1974,12 +2058,19 @@
 					<a id="post-fig-9" href="#pre-fig-9" class="skip-link skip-link-bottom button">Go to start of chart</a>
 				</div>
 				<div class="download">
-					<a href="data/graphs/graph-energy-consumption-breakdown.svg"><img src="resources/download.svg" alt="download" title="Download graph from Figure 3" /> SVG</a>
-					<a href="data/graphs/NetworkEnergyConsumptionBreakdown_ReferenceScenario_TWh.csv"><img src="resources/download.svg" alt="download" title="Download data from Figure 3" /> CSV</a>
+					<a href="data/graphs/graph-energy-consumption-breakdown.svg"><img src="resources/download.svg" alt="download" title="Download graph from Figure 9" /> SVG</a>
+					<a href="data/graphs/NetworkEnergyConsumptionBreakdown_ReferenceScenario_TWh.csv"><img src="resources/download.svg" alt="download" title="Download data from Figure 9" /> CSV</a>
 				</div>
-			</figure>
-
-			<figure>
+        </figure>
+      </div>
+    </article>
+<article class="g-figure" id="figure-10" data-fig-num="10">
+      <header class="g-figure-head">
+        <div class="g-figure-num">Figure 10</div>
+        <h3 class="g-figure-title">Annual network energy consumption (TWh)</h3>
+      </header>
+      <div class="g-figure-body">
+        <figure>
 				<figcaption><strong>Figure 10:</strong> Annual network energy consumption (TWh)</figcaption>
 				<div class="table-holder">
 				<table>
@@ -2176,12 +2267,19 @@
 					<a id="post-fig-10" href="#pre-fig-10" class="skip-link skip-link-bottom button">Go to start of chart</a>
 				</div>
 				<div class="download">
-					<a href="data/graphs/graph-annual-energy-consumption.svg"><img src="resources/download.svg" alt="download" title="Download graph from Figure 4" /> SVG</a>
-					<a href="data/graphs/AnnualNetworkEnergyConsumption_TWh.csv"><img src="resources/download.svg" alt="download" title="Download data from Figure 4" /> CSV</a>
+					<a href="data/graphs/graph-annual-energy-consumption.svg"><img src="resources/download.svg" alt="download" title="Download graph from Figure 10" /> SVG</a>
+					<a href="data/graphs/AnnualNetworkEnergyConsumption_TWh.csv"><img src="resources/download.svg" alt="download" title="Download data from Figure 10" /> CSV</a>
 				</div>
-			</figure>
-
-			<figure>
+        </figure>
+      </div>
+    </article>
+<article class="g-figure" id="figure-11" data-fig-num="11">
+      <header class="g-figure-head">
+        <div class="g-figure-num">Figure 11</div>
+        <h3 class="g-figure-title">Additional industrial peak demand breakdown - NPg Reference Scenario (MW)</h3>
+      </header>
+      <div class="g-figure-body">
+        <figure>
 				<figcaption><strong>Figure 11:</strong> Additional industrial peak demand breakdown - NPg Reference Scenario (MW)</figcaption>
 				<div class="table-holder">
 				<table>
@@ -2288,12 +2386,19 @@
 					<a id="post-fig-11" href="#pre-fig-11" class="skip-link skip-link-bottom button">Go to start of chart</a>
 				</div>
 				<div class="download">
-					<a href="data/graphs/graph-industry-additional-peak-demand-planning-scenario.svg"><img src="resources/download.svg" alt="download" title="Download graph from Figure 5" /> SVG</a>
-					<a href="data/graphs/IndustryAdditionalPeakDemandBreakdown_NPgReferenceScenario_MW.csv"><img src="resources/download.svg" alt="download" title="Download data from Figure 5" /> CSV</a>
+					<a href="data/graphs/graph-industry-additional-peak-demand-planning-scenario.svg"><img src="resources/download.svg" alt="download" title="Download graph from Figure 11" /> SVG</a>
+					<a href="data/graphs/IndustryAdditionalPeakDemandBreakdown_NPgReferenceScenario_MW.csv"><img src="resources/download.svg" alt="download" title="Download data from Figure 11" /> CSV</a>
 				</div>
-			</figure>
-
-			<figure>
+        </figure>
+      </div>
+    </article>
+<article class="g-figure" id="figure-12" data-fig-num="12">
+      <header class="g-figure-head">
+        <div class="g-figure-num">Figure 12</div>
+        <h3 class="g-figure-title">Additional industrial energy consumption breakdown - NPg Reference Scenario (TWh)</h3>
+      </header>
+      <div class="g-figure-body">
+        <figure>
 				<figcaption><strong>Figure 12:</strong> Additional industrial energy consumption breakdown - NPg Reference Scenario (TWh)</figcaption>
 				<div class="table-holder">
 				<table>
@@ -2400,33 +2505,84 @@
 					<a id="post-fig-12" href="#pre-fig-12" class="skip-link skip-link-bottom button">Go to start of chart</a>
 				</div>
 				<div class="download">
-					<a href="data/graphs/graph-industry-additional-energy-consumption-planning-scenario.svg"><img src="resources/download.svg" alt="download" title="Download graph from Figure 6" /> SVG</a>
-					<a href="data/graphs/IndustryAdditionalEnergyConsumptionBreakdown_NPgReferenceScenario_TWh.csv"><img src="resources/download.svg" alt="download" title="Download data from Figure 6" /> CSV</a>
+					<a href="data/graphs/graph-industry-additional-energy-consumption-planning-scenario.svg"><img src="resources/download.svg" alt="download" title="Download graph from Figure 12" /> SVG</a>
+					<a href="data/graphs/IndustryAdditionalEnergyConsumptionBreakdown_NPgReferenceScenario_TWh.csv"><img src="resources/download.svg" alt="download" title="Download data from Figure 12" /> CSV</a>
 				</div>
-			</figure>
+        </figure>
+      </div>
+    </article>
+      </div>
+    </div>
+  </section>
+  <!-- END GRAPHS -->
+</main>
 
-<!-- END GRAPHS -->
-		</div>
-	</div>
 
-	<section class="b5-bg">
-		<div class="holder tallpadded">
-			<h2 style="margin-top:0">About this visualisation</h2>
-			<p>These figures have been created to show some of the parameters calculated in Northern Powergrid's 2026 DFES.</p>
-		</div>
-	</section>
-	<footer class="b1-bg">
-		<div class="holder">
-				<h3>Interactive visualisation</h3>
-				<p>&copy; Open Innovations (Stuart Lowe) 2026. Released under a <a href="http://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a> licence. <a href="https://odileeds.org/projects/northernpowergrid/dfes/">Read about the project</a> or view the <a href="https://github.com/odileeds/northern-powergrid">repository on Github</a>.</p>
-				<h3>Energy scenario data</h3>
-				<p>&copy; Northern Powergrid &amp; ERM 2026. Released under a Creative Commons Attribution Licence.</p>
-		</div>
-	</footer>
+<footer class="site-footer">
+  <div class="holder">
+    <div class="footer-top">
+      <div>
+        <h4>Don&rsquo;t be a stranger.</h4>
+        <p>Our system forecasting team is here for stakeholders, planners and partners. Questions, corrections, partnerships &mdash; send them through.</p>
+        <a href="mailto:System.Forecasting@Northernpowergrid.com?subject=Northern%20Powergrid%202026%20DFES" class="btn btn--primary">
+          Get in touch
+        </a>
+      </div>
+      <div class="footer-col">
+        <h4>DFES</h4>
+        <ul>
+          <li><a href="../2026-DFES/">2026 (this report)</a></li>
+          <li><a href="../2024-DFES/">2024 archive</a></li>
+          <li><a href="../2023-DFES/">2023 archive</a></li>
+          <li><a href="../">All previous years</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Data &amp; tools</h4>
+        <ul>
+          <li><a href="https://northernpowergrid.opendatasoft.com/">Open Data Portal</a></li>
+          <li><a href="index.html#about">Methodology</a></li>
+          <li><a href="index.html#download">Download CSVs</a></li>
+          <li><a href="https://github.com/northernpowergrid/dfes/issues/">Report an issue</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Northern Powergrid</h4>
+        <ul>
+          <li><a href="https://www.northernpowergrid.com/power-cuts">Power cuts &middot; 105</a></li>
+          <li><a href="https://www.northernpowergrid.com/connections-and-services">Connections</a></li>
+          <li><a href="https://www.northernpowergrid.com/priority-services">Priority Services</a></li>
+          <li><a href="https://www.northernpowergrid.com/about-us">About us</a></li>
+        </ul>
+      </div>
+    </div>
 
-	<script type="text/javascript" src="resources/graphs.js"></script>
-	<script type="text/javascript" src="resources/chart.js"></script>
-	<script type="text/javascript" src="resources/tooltips.js"></script>
+    <div class="partners">
+      <span class="partner-eye">In partnership with</span>
+      <div class="partner-row">
+        <a href="https://open-innovations.org/" title="Open Innovations"><img alt="Open Innovations" src="resources/logos/oi-square-white.svg" /></a>
+        <a href="https://www.erm.com/" title="ERM"><img alt="ERM" src="resources/logos/erm.svg" /></a>
+      </div>
+    </div>
 
+    <div class="footer-bottom">
+      <div class="footer-attrib">
+        <p>Visualisation &copy; <a href="https://open-innovations.org/">Open Innovations</a> 2020&ndash;2026, released under an <a href="https://github.com/northernpowergrid/dfes/blob/main/LICENSE">MIT licence</a>. Energy scenario data &copy; Northern Powergrid &amp; ERM 2026, <a href="http://creativecommons.org/licenses/by/4.0/">CC&nbsp;BY 4.0</a>. Geographic boundaries (LAD, Output Areas, Postcodes) from the ONS geo service under the <a href="https://www.ons.gov.uk/methodology/geography/licences">OGL</a> &mdash; contains National Statistics data and OS data &copy; Crown copyright and database right 2021. Postcode lookup by <a href="https://findthatpostcode.uk/">FindThatPostcode</a> (&copy; David Kane).</p>
+      </div>
+      <div class="footer-meta">
+        <a href="https://www.northernpowergrid.com/accessibility">Accessibility</a> &middot; <a href="https://northernpowergrid.opendatasoft.com/explore/dataset/northern-powergrid-dfes/information/">Open Data Licence</a> &middot; <a href="https://www.northernpowergrid.com/privacy-policy">Privacy</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<script src="resources/graphs-ui.js"></script>
+
+
+<!-- Original chart behaviours from the source repo -->
+<script type="text/javascript" src="resources/graphs.js"></script>
+<script type="text/javascript" src="resources/chart.js"></script>
+<script type="text/javascript" src="resources/tooltips.js"></script>
 </body>
 </html>
