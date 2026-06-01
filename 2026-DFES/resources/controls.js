@@ -64,7 +64,7 @@
 					color = dfes.scenarios[name].color || '#000';
 				}
 				// Net-zero: hand-mapped here too (same list as stats-strip.js).
-				var nz = !/counterfactual/i.test(name);
+				var nz = !/counterfactual|falling.?behind/i.test(name);
 				html += '<button type="button" class="scenario-card' + (isActive ? ' active' : '') +
 					'" data-value="' + escapeAttr(name) + '">' +
 					'<span class="swatch" style="background:' + escapeAttr(color) + '"></span>' +
