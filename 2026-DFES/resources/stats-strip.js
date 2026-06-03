@@ -23,6 +23,13 @@
 		'Counterfactual': false
 	};
 
+	function scenarioClass(name) {
+		if (window.dfes && dfes.scenarios && dfes.scenarios[name] && dfes.scenarios[name].css) {
+			return dfes.scenarios[name].css;
+		}
+		return String(name).replace(/[^_a-zA-Z0-9-]/g, '-').toLowerCase();
+	}
+
 	function fmt(v) {
 		if (v == null || isNaN(v)) return '—'; // em-dash
 		var abs = Math.abs(v);
@@ -116,8 +123,12 @@
 		var $nzDesc = root.querySelector('.stat-netzero .desc');
 
 		if ($scenarioVal) {
-			$scenarioVal.textContent = o.scenario;
-			$scenarioVal.style.color = scenario.color || 'var(--white)';
+			$scenarioVal.textContent = '';
+			$scenarioVal.style.color = '';
+			var pill = document.createElement('span');
+			pill.className = 'scenario-pill ' + scenarioClass(o.scenario);
+			pill.textContent = o.scenario;
+			$scenarioVal.appendChild(pill);
 		}
 		if ($scenarioDesc) $scenarioDesc.textContent = scenarioTagline(o.scenario);
 

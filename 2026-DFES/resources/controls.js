@@ -58,16 +58,11 @@
 			opts.forEach(function (opt) {
 				var name = opt.value;
 				var isActive = opt.selected;
-				// Pull colour and net-zero status from the live FES object.
-				var color = '#000';
-				if (window.dfes && dfes.scenarios && dfes.scenarios[name]) {
-					color = dfes.scenarios[name].color || '#000';
-				}
 				// Net-zero: hand-mapped here too (same list as stats-strip.js).
 				var nz = !/counterfactual|falling.?behind/i.test(name);
 				html += '<button type="button" class="scenario-card' + (isActive ? ' active' : '') +
 					'" data-value="' + escapeAttr(name) + '">' +
-					'<span class="swatch" style="background:' + escapeAttr(color) + '"></span>' +
+					'<span class="swatch ' + escapeAttr(scenarioClass(name)) + '"></span>' +
 					'<div class="name">' + escapeHtml(name) + '</div>' +
 					'<span class="nz ' + (nz ? 'yes' : 'no') + '">' +
 					(nz ? checkSvg() + 'Net zero ‘50' : crossSvg() + 'Misses target') +
@@ -216,6 +211,12 @@
 	}
 	function crossSvg() {
 		return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" width="10" height="10" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg> ';
+	}
+	function scenarioClass(name) {
+		if (window.dfes && dfes.scenarios && dfes.scenarios[name] && dfes.scenarios[name].css) {
+			return dfes.scenarios[name].css;
+		}
+		return String(name).replace(/[^_a-zA-Z0-9-]/g, '-').toLowerCase();
 	}
 
 	function init() {
