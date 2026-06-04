@@ -143,6 +143,7 @@
 			if(!document.getElementById('scenarios')) document.getElementById('scenario-holder').innerHTML = '<select id="scenarios"></select>';
 			html = "";
 			for(s in this.scenarios){
+				if(this.scenarios[s].hidden) continue;
 				html += "<option"+(this.options.scenario == s ? " selected=\"selected\"":"")+" class=\""+(this.scenarios[s].css||"")+"\" value=\""+s+"\">"+s+"</option>";
 			}
 			document.getElementById('scenarios').innerHTML = html;

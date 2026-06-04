@@ -33,34 +33,34 @@
 	<text style="text-anchor:middle;dominant-baseline:hanging;font-weight:bold;transform: translateY(150px) rotate(-90deg);"></text>
 </g>
 <g class="data-layer" role="table">
-<g data-scenario="npg-reference-scenario" class="series series-1" tabindex="0" role="row" aria-label="Series: NPg Reference Scenario" data-series="1">	<path d="M 60.00,274.60L 81.11,264.52L 102.22,251.08L 123.33,235.96L 144.44,219.72L 165.56,202.36L 186.67,182.20L 207.78,162.88L 228.89,144.68L 250.00,127.88L 271.11,111.92L 292.22,97.08L 313.33,83.64L 334.44,71.60L 355.56,60.68L 376.67,51.16L 397.78,43.04L 418.89,37.44L 440.00,32.68L 461.11,28.48L 482.22,24.84L 503.33,21.48L 524.44,19.52L 545.56,17.56L 566.67,15.60L 587.78,13.92L 608.89,12.24" id="NPg Reference Scenario" class="line" stroke="#ab1236" stroke-width="3" stroke-linecap="round"><title>NPg Reference Scenario</title></path>
-	<circle class="marker" cx="60.00" cy="274.60" data-y="5.5" data-x="2024/25" data-i="0" data-series="1" r="4" fill="#ab1236" roll="cell"><title>2024/25: 5.5%</title></circle>
-	<circle class="marker" cx="81.11" cy="264.52" data-y="9.1" data-x="2025/26" data-i="1" data-series="1" r="4" fill="#ab1236" roll="cell"><title>2025/26: 9.1%</title></circle>
-	<circle class="marker" cx="102.22" cy="251.08" data-y="13.9" data-x="2026/27" data-i="2" data-series="1" r="4" fill="#ab1236" roll="cell"><title>2026/27: 13.9%</title></circle>
-	<circle class="marker" cx="123.33" cy="235.96" data-y="19.3" data-x="2027/28" data-i="3" data-series="1" r="4" fill="#ab1236" roll="cell"><title>2027/28: 19.3%</title></circle>
-	<circle class="marker" cx="144.44" cy="219.72" data-y="25.1" data-x="2028/29" data-i="4" data-series="1" r="4" fill="#ab1236" roll="cell"><title>2028/29: 25.1%</title></circle>
-	<circle class="marker" cx="165.56" cy="202.36" data-y="31.3" data-x="2029/30" data-i="5" data-series="1" r="4" fill="#ab1236" roll="cell"><title>2029/30: 31.3%</title></circle>
-	<circle class="marker" cx="186.67" cy="182.20" data-y="38.5" data-x="2030/31" data-i="6" data-series="1" r="4" fill="#ab1236" roll="cell"><title>2030/31: 38.5%</title></circle>
-	<circle class="marker" cx="207.78" cy="162.88" data-y="45.4" data-x="2031/32" data-i="7" data-series="1" r="4" fill="#ab1236" roll="cell"><title>2031/32: 45.4%</title></circle>
-	<circle class="marker" cx="228.89" cy="144.68" data-y="51.9" data-x="2032/33" data-i="8" data-series="1" r="4" fill="#ab1236" roll="cell"><title>2032/33: 51.9%</title></circle>
-	<circle class="marker" cx="250.00" cy="127.88" data-y="57.9" data-x="2033/34" data-i="9" data-series="1" r="4" fill="#ab1236" roll="cell"><title>2033/34: 57.9%</title></circle>
-	<circle class="marker" cx="271.11" cy="111.92" data-y="63.6" data-x="2034/35" data-i="10" data-series="1" r="4" fill="#ab1236" roll="cell"><title>2034/35: 63.6%</title></circle>
-	<circle class="marker" cx="292.22" cy="97.08" data-y="68.9" data-x="2035/36" data-i="11" data-series="1" r="4" fill="#ab1236" roll="cell"><title>2035/36: 68.9%</title></circle>
-	<circle class="marker" cx="313.33" cy="83.64" data-y="73.7" data-x="2036/37" data-i="12" data-series="1" r="4" fill="#ab1236" roll="cell"><title>2036/37: 73.7%</title></circle>
-	<circle class="marker" cx="334.44" cy="71.60" data-y="78" data-x="2037/38" data-i="13" data-series="1" r="4" fill="#ab1236" roll="cell"><title>2037/38: 78%</title></circle>
-	<circle class="marker" cx="355.56" cy="60.68" data-y="81.9" data-x="2038/39" data-i="14" data-series="1" r="4" fill="#ab1236" roll="cell"><title>2038/39: 81.9%</title></circle>
-	<circle class="marker" cx="376.67" cy="51.16" data-y="85.3" data-x="2039/40" data-i="15" data-series="1" r="4" fill="#ab1236" roll="cell"><title>2039/40: 85.3%</title></circle>
-	<circle class="marker" cx="397.78" cy="43.04" data-y="88.2" data-x="2040/41" data-i="16" data-series="1" r="4" fill="#ab1236" roll="cell"><title>2040/41: 88.2%</title></circle>
-	<circle class="marker" cx="418.89" cy="37.44" data-y="90.2" data-x="2041/42" data-i="17" data-series="1" r="4" fill="#ab1236" roll="cell"><title>2041/42: 90.2%</title></circle>
-	<circle class="marker" cx="440.00" cy="32.68" data-y="91.9" data-x="2042/43" data-i="18" data-series="1" r="4" fill="#ab1236" roll="cell"><title>2042/43: 91.9%</title></circle>
-	<circle class="marker" cx="461.11" cy="28.48" data-y="93.4" data-x="2043/44" data-i="19" data-series="1" r="4" fill="#ab1236" roll="cell"><title>2043/44: 93.4%</title></circle>
-	<circle class="marker" cx="482.22" cy="24.84" data-y="94.7" data-x="2044/45" data-i="20" data-series="1" r="4" fill="#ab1236" roll="cell"><title>2044/45: 94.7%</title></circle>
-	<circle class="marker" cx="503.33" cy="21.48" data-y="95.9" data-x="2045/46" data-i="21" data-series="1" r="4" fill="#ab1236" roll="cell"><title>2045/46: 95.9%</title></circle>
-	<circle class="marker" cx="524.44" cy="19.52" data-y="96.6" data-x="2046/47" data-i="22" data-series="1" r="4" fill="#ab1236" roll="cell"><title>2046/47: 96.6%</title></circle>
-	<circle class="marker" cx="545.56" cy="17.56" data-y="97.3" data-x="2047/48" data-i="23" data-series="1" r="4" fill="#ab1236" roll="cell"><title>2047/48: 97.3%</title></circle>
-	<circle class="marker" cx="566.67" cy="15.60" data-y="98" data-x="2048/49" data-i="24" data-series="1" r="4" fill="#ab1236" roll="cell"><title>2048/49: 98%</title></circle>
-	<circle class="marker" cx="587.78" cy="13.92" data-y="98.6" data-x="2049/50" data-i="25" data-series="1" r="4" fill="#ab1236" roll="cell"><title>2049/50: 98.6%</title></circle>
-	<circle class="marker" cx="608.89" cy="12.24" data-y="99.2" data-x="2050/51" data-i="26" data-series="1" r="4" fill="#ab1236" roll="cell"><title>2050/51: 99.2%</title></circle>
+<g data-scenario="holistic-transition" class="series series-1" tabindex="0" role="row" aria-label="Series: Holistic Transition" data-series="1">	<path d="M 60.00,274.60L 81.11,264.52L 102.22,251.08L 123.33,235.96L 144.44,219.72L 165.56,202.36L 186.67,182.20L 207.78,162.88L 228.89,144.68L 250.00,127.88L 271.11,111.92L 292.22,97.08L 313.33,83.64L 334.44,71.60L 355.56,60.68L 376.67,51.16L 397.78,43.04L 418.89,37.44L 440.00,32.68L 461.11,28.48L 482.22,24.84L 503.33,21.48L 524.44,19.52L 545.56,17.56L 566.67,15.60L 587.78,13.92L 608.89,12.24" id="Holistic Transition" class="line" stroke="#70E85E" stroke-width="3" stroke-linecap="round"><title>Holistic Transition</title></path>
+	<circle class="marker" cx="60.00" cy="274.60" data-y="5.5" data-x="2024/25" data-i="0" data-series="1" r="4" fill="#70E85E" roll="cell"><title>2024/25: 5.5%</title></circle>
+	<circle class="marker" cx="81.11" cy="264.52" data-y="9.1" data-x="2025/26" data-i="1" data-series="1" r="4" fill="#70E85E" roll="cell"><title>2025/26: 9.1%</title></circle>
+	<circle class="marker" cx="102.22" cy="251.08" data-y="13.9" data-x="2026/27" data-i="2" data-series="1" r="4" fill="#70E85E" roll="cell"><title>2026/27: 13.9%</title></circle>
+	<circle class="marker" cx="123.33" cy="235.96" data-y="19.3" data-x="2027/28" data-i="3" data-series="1" r="4" fill="#70E85E" roll="cell"><title>2027/28: 19.3%</title></circle>
+	<circle class="marker" cx="144.44" cy="219.72" data-y="25.1" data-x="2028/29" data-i="4" data-series="1" r="4" fill="#70E85E" roll="cell"><title>2028/29: 25.1%</title></circle>
+	<circle class="marker" cx="165.56" cy="202.36" data-y="31.3" data-x="2029/30" data-i="5" data-series="1" r="4" fill="#70E85E" roll="cell"><title>2029/30: 31.3%</title></circle>
+	<circle class="marker" cx="186.67" cy="182.20" data-y="38.5" data-x="2030/31" data-i="6" data-series="1" r="4" fill="#70E85E" roll="cell"><title>2030/31: 38.5%</title></circle>
+	<circle class="marker" cx="207.78" cy="162.88" data-y="45.4" data-x="2031/32" data-i="7" data-series="1" r="4" fill="#70E85E" roll="cell"><title>2031/32: 45.4%</title></circle>
+	<circle class="marker" cx="228.89" cy="144.68" data-y="51.9" data-x="2032/33" data-i="8" data-series="1" r="4" fill="#70E85E" roll="cell"><title>2032/33: 51.9%</title></circle>
+	<circle class="marker" cx="250.00" cy="127.88" data-y="57.9" data-x="2033/34" data-i="9" data-series="1" r="4" fill="#70E85E" roll="cell"><title>2033/34: 57.9%</title></circle>
+	<circle class="marker" cx="271.11" cy="111.92" data-y="63.6" data-x="2034/35" data-i="10" data-series="1" r="4" fill="#70E85E" roll="cell"><title>2034/35: 63.6%</title></circle>
+	<circle class="marker" cx="292.22" cy="97.08" data-y="68.9" data-x="2035/36" data-i="11" data-series="1" r="4" fill="#70E85E" roll="cell"><title>2035/36: 68.9%</title></circle>
+	<circle class="marker" cx="313.33" cy="83.64" data-y="73.7" data-x="2036/37" data-i="12" data-series="1" r="4" fill="#70E85E" roll="cell"><title>2036/37: 73.7%</title></circle>
+	<circle class="marker" cx="334.44" cy="71.60" data-y="78" data-x="2037/38" data-i="13" data-series="1" r="4" fill="#70E85E" roll="cell"><title>2037/38: 78%</title></circle>
+	<circle class="marker" cx="355.56" cy="60.68" data-y="81.9" data-x="2038/39" data-i="14" data-series="1" r="4" fill="#70E85E" roll="cell"><title>2038/39: 81.9%</title></circle>
+	<circle class="marker" cx="376.67" cy="51.16" data-y="85.3" data-x="2039/40" data-i="15" data-series="1" r="4" fill="#70E85E" roll="cell"><title>2039/40: 85.3%</title></circle>
+	<circle class="marker" cx="397.78" cy="43.04" data-y="88.2" data-x="2040/41" data-i="16" data-series="1" r="4" fill="#70E85E" roll="cell"><title>2040/41: 88.2%</title></circle>
+	<circle class="marker" cx="418.89" cy="37.44" data-y="90.2" data-x="2041/42" data-i="17" data-series="1" r="4" fill="#70E85E" roll="cell"><title>2041/42: 90.2%</title></circle>
+	<circle class="marker" cx="440.00" cy="32.68" data-y="91.9" data-x="2042/43" data-i="18" data-series="1" r="4" fill="#70E85E" roll="cell"><title>2042/43: 91.9%</title></circle>
+	<circle class="marker" cx="461.11" cy="28.48" data-y="93.4" data-x="2043/44" data-i="19" data-series="1" r="4" fill="#70E85E" roll="cell"><title>2043/44: 93.4%</title></circle>
+	<circle class="marker" cx="482.22" cy="24.84" data-y="94.7" data-x="2044/45" data-i="20" data-series="1" r="4" fill="#70E85E" roll="cell"><title>2044/45: 94.7%</title></circle>
+	<circle class="marker" cx="503.33" cy="21.48" data-y="95.9" data-x="2045/46" data-i="21" data-series="1" r="4" fill="#70E85E" roll="cell"><title>2045/46: 95.9%</title></circle>
+	<circle class="marker" cx="524.44" cy="19.52" data-y="96.6" data-x="2046/47" data-i="22" data-series="1" r="4" fill="#70E85E" roll="cell"><title>2046/47: 96.6%</title></circle>
+	<circle class="marker" cx="545.56" cy="17.56" data-y="97.3" data-x="2047/48" data-i="23" data-series="1" r="4" fill="#70E85E" roll="cell"><title>2047/48: 97.3%</title></circle>
+	<circle class="marker" cx="566.67" cy="15.60" data-y="98" data-x="2048/49" data-i="24" data-series="1" r="4" fill="#70E85E" roll="cell"><title>2048/49: 98%</title></circle>
+	<circle class="marker" cx="587.78" cy="13.92" data-y="98.6" data-x="2049/50" data-i="25" data-series="1" r="4" fill="#70E85E" roll="cell"><title>2049/50: 98.6%</title></circle>
+	<circle class="marker" cx="608.89" cy="12.24" data-y="99.2" data-x="2050/51" data-i="26" data-series="1" r="4" fill="#70E85E" roll="cell"><title>2050/51: 99.2%</title></circle>
 </g>
 </g>
 </svg>
