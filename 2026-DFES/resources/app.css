@@ -758,7 +758,8 @@ a { color: inherit; }
 
 .scenario-grid {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  /* 3 cols while Reference + Falling Behind are hidden; restore repeat(5, 1fr) when they return */
+  grid-template-columns: repeat(3, 1fr);
   gap: var(--sp-3);
 }
 .scen-card {
@@ -2184,7 +2185,8 @@ a { color: inherit; }
 
 .scenario-grid {
 	display: grid;
-	grid-template-columns: repeat(5, 1fr);
+	/* 3 cols while Reference + Falling Behind are hidden; restore repeat(5, 1fr) when they return */
+	grid-template-columns: repeat(3, 1fr);
 	gap: var(--sp-3);
 }
 .scen-card {
