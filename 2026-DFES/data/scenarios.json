@@ -1,5 +1,6 @@
 {
 	"Falling Behind": {
+		"hidden": true,
 		"description": "<ul><li>Does not meet net zero by 2050</li><li>Slowest decarbonisation effort</li><li>Heavy reliance on gas across all sectors</li></ul>",
 		"color": "#070E40",
 		"negativecolor": "#d7191c",
@@ -300,6 +301,7 @@
 		}
 	},
 	"NPg Reference Scenario": {
+		"hidden": true,
 		"description": "<ul><li>Net zero compliant to 2050 target</li><li>Accelerated uptake of electric vehicles</li><li>Early adoption of heat pumps</li></ul>",
 		"color": "#ab1236",
 		"data": {
