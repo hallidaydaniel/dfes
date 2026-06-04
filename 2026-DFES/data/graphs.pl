@@ -62,6 +62,12 @@ foreach $line  (@lines){
 
 
 
+# Scenarios flagged as hidden in scenarios.json are left out of the CSV
+# downloads too, so a downloaded file matches the chart it came from.
+my %hidden;
+foreach my $sc (keys(%scenarios)){ $hidden{$sc} = 1 if($scenarios{$sc}{'hidden'}); }
+my $pubdir = $dir."graphs/published/";
+
 if(-e $file_index){
 	msg("Read in graph definitions from <cyan>$file_index<none>\n");
 	# Get the graph config
@@ -182,9 +188,14 @@ if(-e $file_index){
 			$figs .= "\t\t\t\t\t$svg\n";
 			$figs .= "\t\t\t\t\t<a id=\"post-fig-$fig\" href=\"#pre-fig-$fig\" class=\"skip-link skip-link-bottom button\">Go to start of chart</a>\n";
 			$figs .= "\t\t\t\t</div>\n";
+			# Offer a filtered CSV when the source holds hidden scenarios
+			my $csvhref = "data/graphs/".$graphs[$i]{'csv'};
+			if(publish_csv($dir.'graphs/'.$graphs[$i]{'csv'},$pubdir.$graphs[$i]{'csv'},\%hidden)){
+				$csvhref = "data/graphs/published/".$graphs[$i]{'csv'};
+			}
 			$figs .= "\t\t\t\t<div class=\"download\">\n";
 			$figs .= "\t\t\t\t\t<a href=\"data/graphs/$graphs[$i]{'svg'}\"><img src=\"resources/download.svg\" alt=\"download\" title=\"Download graph from Figure $fig\" /> SVG</a>\n";
-			$figs .= "\t\t\t\t\t<a href=\"data/graphs/$graphs[$i]{'csv'}\"><img src=\"resources/download.svg\" alt=\"download\" title=\"Download data from Figure $fig\" /> CSV</a>\n";
+			$figs .= "\t\t\t\t\t<a href=\"$csvhref\"><img src=\"resources/download.svg\" alt=\"download\" title=\"Download data from Figure $fig\" /> CSV</a>\n";
 			$figs .= "\t\t\t\t</div>\n";
 			$figs .= "        </figure>\n";
 			$figs .= "      </div>\n";
@@ -237,6 +248,34 @@ sub html_escape {
 	$s =~ s/>/&gt;/g;
 	$s =~ s/"/&quot;/g;
 	return $s;
+}
+
+# Write a copy of a graph CSV with hidden-scenario rows removed. Returns
+# the number of rows dropped; 0 means nothing was hidden so the caller
+# can link the original file.
+sub publish_csv {
+	my ($src,$dest,$hidden) = @_;
+	open(my $in,'<',$src) or die "Cannot open $src: $!\n";
+	my @lines = <$in>;
+	close($in);
+	my (@keep,$first,$dropped,$pd);
+	$dropped = 0;
+	for(my $i = 0; $i < @lines; $i++){
+		if($i == 0){ push(@keep,$lines[$i]); next; }
+		($first) = split(/,/,$lines[$i]);
+		$first =~ s/[\r\n]//g;
+		$first =~ s/^\s+|\s+$//g;
+		$first =~ s/(^\"|\"$)//g;
+		if($hidden->{$first}){ $dropped++; next; }
+		push(@keep,$lines[$i]);
+	}
+	return 0 unless($dropped);
+	($pd = $dest) =~ s/[^\/]*$//;
+	mkdir($pd) unless(-d $pd);
+	open(my $out,'>',$dest) or die "Cannot write $dest: $!\n";
+	print $out @keep;
+	close($out);
+	return $dropped;
 }
 
 sub msgIndent {
