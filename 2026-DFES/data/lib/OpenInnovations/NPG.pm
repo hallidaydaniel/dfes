@@ -84,6 +84,8 @@ sub process {
 		$lines[$i] =~ s/[\n\r]//g;
 		(@cols) = split(/,(?=(?:[^\"]*\"[^\"]*\")*(?![^\"]*\"))/,$lines[$i]);
 		for($c = 0; $c < @header; $c++){ $cols[$c] =~ s/(^\"|\"$)//g; }
+		# Skip scenarios flagged as hidden in scenarios.json
+		next if($self->{'scenario-props'}{$cols[0]} && $self->{'scenario-props'}{$cols[0]}{'hidden'});
 		$self->{'scenarios'}{$cols[0]} = {};
 		push(@{$self->{'scenariolookup'}},$cols[0]);
 		for($c = 1; $c < @header; $c++){
