@@ -55,14 +55,14 @@
 		"yaxis-label": "Annual peak demand (GW)",
 		"left": 50
 	},{
-		"title":"Network peak demand breakdown - NPg Reference Scenario (MW)",
+		"title":"Network peak demand breakdown - Holistic Transition (MW)",
 		"csv":"NetworkAnnualGrossPeakDemandBreakdown_ReferenceScenario_MW.csv",
 		"svg":"graph-annual-peak-demand-breakdown.svg",
 		"tooltip":"{{x}}: {{y}} MW",
 		"yaxis-label": "Annual gross peak demand (MW)",
 		"left": 50
 	},{
-		"title":"Network energy consumption breakdown - NPg Reference Scenario (TWh)",
+		"title":"Network energy consumption breakdown - Holistic Transition (TWh)",
 		"csv":"NetworkEnergyConsumptionBreakdown_ReferenceScenario_TWh.csv",
 		"svg":"graph-energy-consumption-breakdown.svg",
 		"tooltip":"{{x}}: {{y}} TWh",
@@ -76,14 +76,14 @@
 		"yaxis-label": "Energy consumption (TWh)",
 		"left": 60
 	},{
-		"title":"Additional industrial peak demand breakdown - NPg Reference Scenario (MW)",
+		"title":"Additional industrial peak demand breakdown - Holistic Transition (MW)",
 		"csv":"IndustryAdditionalPeakDemandBreakdown_NPgReferenceScenario_MW.csv",
 		"svg":"graph-industry-additional-peak-demand-planning-scenario.svg",
 		"tooltip":"{{x}}: {{y}} MW",
 		"yaxis-label": "Peak demand (MW)",
 		"left": 70
 	},{
-		"title":"Additional industrial energy consumption breakdown - NPg Reference Scenario (TWh)",
+		"title":"Additional industrial energy consumption breakdown - Holistic Transition (TWh)",
 		"csv":"IndustryAdditionalEnergyConsumptionBreakdown_NPgReferenceScenario_TWh.csv",
 		"tooltip":"{{x}}: {{y}} TWh",
 		"svg":"graph-industry-additional-energy-consumption-planning-scenario.svg",
