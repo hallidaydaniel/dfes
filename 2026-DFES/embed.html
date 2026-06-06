@@ -42,7 +42,7 @@
 	     or similar. Just the workspace + action pills; no chrome that would
 	     conflict with a host page. -->
 
-	<div class="b6-bg" id="scenario">
+	<main class="b6-bg" id="scenario">
 		<div class="intro tallpadded b5-bg">
 			<div class="holder">
 				<p>Northern Powergrid's potential future scenarios are aligned to NESO's transitional Regional Energy Strategic Plan (tRESP). These are all net zero compliant pathways.</p>
@@ -117,8 +117,8 @@
 						<input type="checkbox" id="scale-mode" name="scale-mode" />
 					</div>
 					<div class="segmented scale-segmented" role="group" aria-label="Colour scale mode">
-						<button class="active" data-mode="relative">This year</button>
-						<button data-mode="absolute">2024&ndash;2050 range</button>
+						<button class="active" data-mode="relative" aria-pressed="true">This year</button>
+						<button data-mode="absolute" aria-pressed="false">2024&ndash;2050 range</button>
 					</div>
 					<p class="scale-help">Colours adjust to the selected year for higher contrast within that year.</p>
 				</div>
@@ -173,7 +173,7 @@
 				</a>
 			</div>
 		</div>
-	</div>
+	</main>
 
 </body>
 </html>
