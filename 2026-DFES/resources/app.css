@@ -1439,10 +1439,31 @@ a { color: inherit; }
 	.hero-network svg :is(circle.pulse, circle.halo) { animation: none; }
 }
 
+/* Hero background-animation pause control */
+.hero-motion-toggle {
+	position: absolute;
+	right: var(--gutter-desktop);
+	bottom: var(--sp-5);
+	z-index: 3;
+	padding: 6px 12px;
+	border-radius: var(--r-pill);
+	background: rgba(255,255,255,0.14);
+	border: 1px solid rgba(255,255,255,0.35);
+	color: var(--white);
+	font: inherit;
+	font-size: 12px;
+	font-weight: 600;
+	cursor: pointer;
+}
+@media (hover: hover) {
+	.hero-motion-toggle:hover { background: rgba(255,255,255,0.24); }
+}
+
 /* Hero responsive */
 @media (max-width: 840px) {
 	.hero .holder { grid-template-columns: 1fr; gap: var(--sp-5); }
 	.hero-network { display: none; }
+	.hero-motion-toggle { display: none; }
 }
 
 /* Skip to content link, off-screen until it receives keyboard focus */
