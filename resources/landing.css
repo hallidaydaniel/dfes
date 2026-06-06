@@ -117,7 +117,10 @@ a { color: inherit; }
 .btn--dark { background: var(--black-100); color: var(--white); }
 @media (hover: hover) { .btn--dark:hover { background: var(--red-100); color: var(--white); } }
 .btn--outline { background: transparent; color: var(--black-100); border-color: var(--black-100); }
-@media (hover: hover) { .btn--outline:hover { background: var(--black-100); color: var(--white); } }
+@media (hover: hover) {
+  .btn--outline:hover,
+  .site-nav a.btn--outline:hover { background: var(--red-10); color: var(--red-100); border-color: var(--red-100); }
+}
 .btn--sm { padding: 9px 16px; font-size: 13px; gap: 6px; }
 
 /* hero */
