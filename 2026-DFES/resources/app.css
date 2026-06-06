@@ -1433,10 +1433,48 @@ a { color: inherit; }
 	.hero-network svg :is(circle.pulse, circle.halo) { animation: none; }
 }
 
+/* Hero background-animation pause control. Compact icon button, kept
+   subtle so it doesn't fight the hero; it strengthens on hover and on
+   keyboard focus so mouse, keyboard and touch users can all reach it. */
+.hero-motion-toggle {
+	position: absolute;
+	right: var(--sp-3);
+	bottom: var(--sp-3);
+	z-index: 3;
+	display: grid;
+	place-items: center;
+	width: 30px;
+	height: 30px;
+	padding: 0;
+	border-radius: var(--r-pill);
+	background: rgba(0,0,0,0.28);
+	border: 1px solid rgba(255,255,255,0.45);
+	color: var(--white);
+	cursor: pointer;
+	opacity: 0.45;
+	transition: opacity var(--dur-fast) var(--ease-std), background var(--dur-fast) var(--ease-std);
+}
+.hero-motion-toggle[hidden] { display: none; }
+.hero-motion-toggle .hmt-icon { width: 13px; height: 13px; display: block; }
+.hero-motion-toggle .hmt-play { display: none; }
+.hero-motion-toggle[aria-pressed="true"] .hmt-pause { display: none; }
+.hero-motion-toggle[aria-pressed="true"] .hmt-play { display: block; }
+.hero:hover .hero-motion-toggle,
+.hero-motion-toggle:hover,
+.hero-motion-toggle:focus-visible {
+	opacity: 1;
+	background: rgba(0,0,0,0.55);
+}
+.hero-motion-toggle:focus-visible {
+	outline: 2px solid var(--white);
+	outline-offset: 2px;
+}
+
 /* Hero responsive */
 @media (max-width: 840px) {
 	.hero .holder { grid-template-columns: 1fr; gap: var(--sp-5); }
 	.hero-network { display: none; }
+	.hero-motion-toggle { display: none; }
 }
 
 /* Skip to content link, off-screen until it receives keyboard focus */

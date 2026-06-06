@@ -12,6 +12,10 @@
 (function () {
 	'use strict';
 
+	// Animation run-state, shared so the pause control can stop and
+	// restart the requestAnimationFrame loop.
+	var animPaused = false, rafId = null, resumeFn = null;
+
 	var SVG_NS = 'http://www.w3.org/2000/svg';
 
 	// Real NPG-area population centres (lat, lon).
@@ -337,7 +341,8 @@
 
 		var start = performance.now();
 		function tick(now) {
-			if (thisGen !== renderGen) return; // superseded by a newer renderNetwork()
+			if (thisGen !== renderGen) { rafId = null; return; } // superseded by a newer renderNetwork()
+			if (animPaused) { rafId = null; return; }
 			var t = (now - start) / 1000;
 			haloEls.forEach(function (h, i) {
 				var phase = Math.sin(t * 1.2 + i * 0.7) * 0.5 + 0.5;
@@ -352,14 +357,35 @@
 				c.setAttribute('cx', a.x + (b.x - a.x) * u);
 				c.setAttribute('cy', a.y + (b.y - a.y) * u);
 			});
-			requestAnimationFrame(tick);
+			rafId = requestAnimationFrame(tick);
 		}
-		requestAnimationFrame(tick);
+		resumeFn = function () {
+			if (rafId === null && !animPaused) rafId = requestAnimationFrame(tick);
+		};
+		if (!animPaused) rafId = requestAnimationFrame(tick);
 	}
 
 	function init() {
 		// Default page load: cheap 33-node cities network.
 		renderNetwork(CITIES, false);
+
+		// Pause control, shown only when the animation is actually running
+		// (it never runs under reduced-motion).
+		var motionBtn = document.getElementById('hero-motion-toggle');
+		if (motionBtn) {
+			var prefersReduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+			if (!prefersReduceMotion) {
+				motionBtn.hidden = false;
+				motionBtn.addEventListener('click', function () {
+					animPaused = !animPaused;
+					motionBtn.setAttribute('aria-pressed', animPaused ? 'true' : 'false');
+					var label = animPaused ? 'Play background animation' : 'Pause background animation';
+					motionBtn.setAttribute('aria-label', label);
+					motionBtn.title = label;
+					if (!animPaused && resumeFn) resumeFn();
+				});
+			}
+		}
 
 		// Easter egg: while pressing on the network, after a short
 		// hold-delay the full 667-node multi-voltage network is shown.
