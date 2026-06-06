@@ -286,4 +286,5 @@ a { color: inherit; }
 @media (max-width: 560px) {
   .site-nav a:not(.btn) { display: none; }
   .utility-bar .holder > div { display: none; }
+  .utility-bar .powercut { margin-left: auto; }
 }
