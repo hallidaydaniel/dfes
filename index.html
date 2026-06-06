@@ -1,45 +1,166 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width" />
+	<meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data:; font-src 'self' https://fonts.gstatic.com; base-uri 'self'; form-action 'self';" />
 	<title>Northern Powergrid Distribution Future Energy Scenarios</title>
-	<link rel="StyleSheet" href="style.css" type="text/css" />
-	<link rel="shortcut icon" type="image/png" href="https://www.northernpowergrid.com/sites/default/files/favicon.png" />
+	<link rel="icon" href="resources/icons/favicon.ico" sizes="any" />
+	<link rel="icon" type="image/svg+xml" href="resources/icons/favicon.svg" />
+	<link rel="icon" type="image/png" sizes="32x32" href="resources/icons/favicon-32.png" />
+	<link rel="icon" type="image/png" sizes="16x16" href="resources/icons/favicon-16.png" />
+	<link rel="apple-touch-icon" sizes="180x180" href="resources/icons/apple-touch-icon.png" />
+	<link rel="manifest" href="resources/icons/site.webmanifest" />
+	<meta name="theme-color" content="#ce0037" />
+	<link rel="preconnect" href="https://fonts.googleapis.com" />
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+	<link rel="stylesheet" href="resources/tokens.css" type="text/css" />
+	<link rel="stylesheet" href="resources/landing.css" type="text/css" />
 </head>
-<body>
+<body class="theme-a">
 
-	<header class="b1-bg">
-		<div class="b1-bg glory">
-			<div class="glory-opacity">
-				<div class="holder">
-					<a href="https://open-innovations.org/"><img alt="Open Innovations logo" src="data:image/svg+xml,%3C%3Fxml version='1.0' encoding='UTF-8'%3F%3E%3Csvg width='640' height='640' overflow='auto' viewBox='-32 -32 64 64' xmlns='http://www.w3.org/2000/svg'%3E%3Cmask id='oi-person'%3E%3Cpath d='m-32-32h64v64h-12v-24a4 4 0 0 0 -4 -4h-8a4 4 0 0 0 -4 4v24h-36zm44 27m-8 0a8 8 0 1 0 16 0 8 8 0 1 0-16 0' fill='%23fff'%3E%3C/path%3E%3C/mask%3E%3Cg id='oi-logo' fill='white'%3E%3Ccircle r='32' mask='url(%23oi-person)'%3E%3C/circle%3E%3C/g%3E%3C/svg%3E" style="height:91px;width:91px;padding:0.25em;" /></a>
-					<a href="https://www.northernpowergrid.com/"><img alt="Northern Powergrid" src="https://odileeds.org/dashboard/data/img/northernpowergrid.svg" title="Northern Powergrid"></a>
-					<a href="http://www.element-energy.co.uk/"><img alt="Element Energy" src="https://odileeds.org/dashboard/data/img/elementenergy.svg" title="ERM"></a>
-				</div>
+	<div class="utility-bar">
+		<div class="holder">
+			<div>
+				<a href="https://www.northernpowergrid.com/about-us">About us</a>
+				<a href="https://www.northernpowergrid.com/our-future-business-plan">Our network</a>
+				<a href="https://www.northernpowergrid.com/connections-and-services">Connections</a>
+				<a href="https://www.northernpowergrid.com/priority-services">Priority Services</a>
 			</div>
+			<a href="https://www.northernpowergrid.com/power-cuts" class="powercut">
+				<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+				Power cut? <span>105</span>
+			</a>
 		</div>
-		<div class="deep-electrification title">
-			<div class="holder">
-				<h1>Northern Powergrid Distribution Future Energy Scenarios</h1>
-			</div>
+	</div>
+
+	<header class="site-header">
+		<div class="holder">
+			<a href="./" class="brand">
+				<img src="resources/npg-logo.svg" alt="Northern Powergrid" />
+				<span class="breadcrumb">Distribution Future Energy Scenarios</span>
+			</a>
+			<nav class="site-nav" aria-label="Primary">
+				<a href="#reports">All reports</a>
+				<a href="2026-DFES/index.html" class="btn btn--dark btn--sm">Open 2026</a>
+			</nav>
 		</div>
 	</header>
 
-
-	<div class="b6-bg">
+	<section class="hero">
 		<div class="holder">
-			<p>Please select one of the following visualisations:</p>
-			<ul class="grid">
-				<li><a href="2024-DFES/index.html" class="npg-best-view">Future Energy Scenarios 2024<br /><time>January 2025</time></a></li>
-				<li><a href="2023-DFES/index.html" class="npg-best-view">Future Energy Scenarios 2023<br /><time>January 2024</time></a></li>
-				<li><a href="2022-DFES/index.html" class="planning-scenario">Future Energy Scenarios 2022<br /><time>January 2023</time></a></li>
-				<li><a href="2021-DFES/index.html" class="planning-scenario">Future Energy Scenarios 2021<br /><time>January 2022</time></a></li>
-				<li><a href="2020-DFES/index.html" class="early-net-zero">Future Energy Scenarios 2020<br /><time>December 2020</time></a></li>
-				<li><a href="2020-emerging-thinking/index.html" class="deep-electrification">Emerging Thinking 2020<br /><time>September 2020</time></a></li>
-				<li><a href="2019-DFES/index.html" class="c9-bg">Future Energy Scenarios 2019<br /><time>December 2019</time></a></li>
-			</ul>
+			<p class="eyebrow">Northern Powergrid</p>
+			<h1>Distribution Future Energy Scenarios</h1>
+			<p class="lede">Region-by-region forecasts of how electricity demand and generation could change across the North East, Yorkshire and northern Lincolnshire. Pick a report below to explore the maps and data.</p>
+			<div class="hero-cta">
+				<a href="2026-DFES/index.html" class="btn btn--primary">Explore the 2026 report</a>
+			</div>
+			<div class="partners">
+				<span class="partner-eye">In partnership with</span>
+				<div class="partner-row">
+					<a href="https://open-innovations.org/" title="Open Innovations"><img alt="Open Innovations" src="resources/logos/oi-square-white.svg" /></a>
+					<a href="https://www.erm.com/" title="ERM"><img alt="ERM" src="resources/logos/erm.svg" /></a>
+				</div>
+			</div>
 		</div>
-	</div>
+	</section>
+
+	<section class="reports" id="reports">
+		<div class="holder">
+			<p class="eyebrow">Choose a report</p>
+			<h2>Browse the scenarios</h2>
+			<div class="year-grid">
+				<a class="year-card year-card--latest" href="2026-DFES/index.html">
+					<span class="year-card__text">
+						<span class="year-card__badge">Latest report</span>
+						<span class="year-card__num">2026</span>
+						<span class="year-card__label">Future Energy Scenarios</span>
+						<time datetime="2026-01">January 2026</time>
+					</span>
+					<span class="btn btn--primary">Explore the 2026 report</span>
+				</a>
+				<a class="year-card" href="2024-DFES/index.html">
+					<span class="year-card__num">2024</span>
+					<span class="year-card__label">Future Energy Scenarios</span>
+					<time datetime="2025-01">January 2025</time>
+				</a>
+				<a class="year-card" href="2023-DFES/index.html">
+					<span class="year-card__num">2023</span>
+					<span class="year-card__label">Future Energy Scenarios</span>
+					<time datetime="2024-01">January 2024</time>
+				</a>
+				<a class="year-card" href="2022-DFES/index.html">
+					<span class="year-card__num">2022</span>
+					<span class="year-card__label">Future Energy Scenarios</span>
+					<time datetime="2023-01">January 2023</time>
+				</a>
+				<a class="year-card" href="2021-DFES/index.html">
+					<span class="year-card__num">2021</span>
+					<span class="year-card__label">Future Energy Scenarios</span>
+					<time datetime="2022-01">January 2022</time>
+				</a>
+				<a class="year-card" href="2020-DFES/index.html">
+					<span class="year-card__num">2020</span>
+					<span class="year-card__label">Future Energy Scenarios</span>
+					<time datetime="2020-12">December 2020</time>
+				</a>
+				<a class="year-card" href="2020-emerging-thinking/index.html">
+					<span class="year-card__num">2020</span>
+					<span class="year-card__label">Emerging Thinking</span>
+					<time datetime="2020-09">September 2020</time>
+				</a>
+				<a class="year-card" href="2019-DFES/index.html">
+					<span class="year-card__num">2019</span>
+					<span class="year-card__label">Future Energy Scenarios</span>
+					<time datetime="2019-12">December 2019</time>
+				</a>
+			</div>
+		</div>
+	</section>
+
+	<footer class="site-footer">
+		<div class="holder">
+			<div class="footer-top">
+				<div>
+					<h4>Don&rsquo;t be a stranger.</h4>
+					<p>Our system forecasting team is here for stakeholders, planners and partners. Questions, corrections and partnerships are all welcome.</p>
+					<a href="mailto:System.Forecasting@Northernpowergrid.com?subject=Northern%20Powergrid%20DFES" class="btn btn--primary">Get in touch</a>
+				</div>
+				<div class="footer-col">
+					<h4>DFES</h4>
+					<ul>
+						<li><a href="2026-DFES/index.html">2026 (latest)</a></li>
+						<li><a href="2024-DFES/index.html">2024 archive</a></li>
+						<li><a href="2023-DFES/index.html">2023 archive</a></li>
+						<li><a href="#reports">All previous years</a></li>
+					</ul>
+				</div>
+				<div class="footer-col">
+					<h4>Northern Powergrid</h4>
+					<ul>
+						<li><a href="https://www.northernpowergrid.com/power-cuts">Power cuts &middot; 105</a></li>
+						<li><a href="https://www.northernpowergrid.com/connections-and-services">Connections</a></li>
+						<li><a href="https://www.northernpowergrid.com/priority-services">Priority Services</a></li>
+						<li><a href="https://www.northernpowergrid.com/about-us">About us</a></li>
+					</ul>
+				</div>
+			</div>
+
+			<div class="partners">
+				<span class="partner-eye">In partnership with</span>
+				<div class="partner-row">
+					<a href="https://open-innovations.org/" title="Open Innovations"><img alt="Open Innovations" src="resources/logos/oi-square-white.svg" /></a>
+					<a href="https://www.erm.com/" title="ERM"><img alt="ERM" src="resources/logos/erm.svg" /></a>
+				</div>
+			</div>
+
+			<div class="footer-bottom">
+				<p>Visualisation &copy; <a href="https://open-innovations.org/">Open Innovations</a> 2020&ndash;2026. Energy scenario data &copy; Northern Powergrid &amp; ERM.</p>
+				<div>
+					<a href="https://www.northernpowergrid.com/accessibility">Accessibility</a> &middot; <a href="https://www.northernpowergrid.com/privacy">Privacy</a>
+				</div>
+			</div>
+		</div>
+	</footer>
 </body>
 </html>
