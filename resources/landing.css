@@ -114,6 +114,7 @@ a { color: inherit; }
 .btn:active { transform: translateY(1px); }
 .btn--primary { background: var(--white); color: var(--black-100); }
 @media (hover: hover) { .btn--primary:hover { background: var(--black-100); color: var(--white); } }
+@media (hover: hover) { .site-footer .btn--primary:hover { background: var(--warm-maroon); color: var(--white); } }
 .btn--dark { background: var(--black-100); color: var(--white); }
 @media (hover: hover) { .btn--dark:hover { background: var(--red-100); color: var(--white); } }
 .btn--outline { background: transparent; color: var(--black-100); border-color: var(--black-100); }
