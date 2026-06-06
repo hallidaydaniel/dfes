@@ -1463,6 +1463,25 @@ a { color: inherit; }
 	top: 8px;
 }
 
+/* Skip map link, in flow only when focused so keyboard users can step
+   past the focusable map areas. */
+.skip-map {
+	position: absolute;
+	left: -9999px;
+}
+.skip-map:focus {
+	position: static;
+	display: inline-block;
+	margin-bottom: var(--sp-3);
+	padding: 8px 14px;
+	background: var(--black-100);
+	color: var(--white);
+	border-radius: var(--r-sm);
+	font: inherit;
+	font-weight: 600;
+	text-decoration: none;
+}
+
 
 /* === Stats strip, theme-b (black), region overview === */
 .stats-strip {
