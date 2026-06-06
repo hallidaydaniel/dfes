@@ -40,6 +40,8 @@
 </head>
 <body>
 
+	<a class="skip-to-content" href="#main-content">Skip to content</a>
+
 	<!-- Top utility bar — black, links left, Power cut CTA right. -->
 	<div class="utility-bar">
 		<div class="holder">
@@ -72,6 +74,8 @@
 			</nav>
 		</div>
 	</header>
+
+	<main id="main-content" tabindex="-1">
 
 	<!-- Hero band — theme-c (red). Copy + chip numbers are placeholder
 	     pending NPg sign-off. -->
@@ -219,8 +223,8 @@
 						<input type="checkbox" id="scale-mode" name="scale-mode" />
 					</div>
 					<div class="segmented scale-segmented" role="group" aria-label="Colour scale mode">
-						<button class="active" data-mode="relative">This year</button>
-						<button data-mode="absolute">2024&ndash;2050 range</button>
+						<button class="active" data-mode="relative" aria-pressed="true">This year</button>
+						<button data-mode="absolute" aria-pressed="false">2024&ndash;2050 range</button>
 					</div>
 					<p class="scale-help">Colours adjust to the selected year for higher contrast within that year.</p>
 				</div>
@@ -399,6 +403,8 @@
 			</div>
 		</div>
 	</section>
+
+	</main>
 
 	<footer class="site-footer">
 		<div class="holder">
