@@ -423,14 +423,13 @@ OI.ready(function(){
 								postcode = m[0];
 								if(!postcodes[m[0]]){
 									postcodes[m[0]] = {};
-									AJAX('https://findthatpostcode.uk/postcodes/'+m[0]+'.json',{
-										'dataType':'json',
-										'postcode':m[0],
+									_obj.fetch('https://findthatpostcode.uk/postcodes/'+m[0]+'.json',{
+										'type':'json',
 										'this': e.data.me,
-										'success': function(data,attr){
-											postcodes[attr.postcode] = data;
+										'callback': function(data){
+											postcodes[m[0]] = data;
 											matchedprimary = findPrimary(_obj,data);
-											this.update();
+											e.data.me.update();
 										}
 									});
 								}else{
