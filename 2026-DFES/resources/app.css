@@ -2002,6 +2002,16 @@ a { color: inherit; }
 	color: var(--white);
 	border-color: var(--black-100);
 }
+.issue-pill--cta {
+	background: var(--red-100);
+	border-color: var(--red-100);
+	color: var(--white);
+}
+.issue-pill--cta:hover {
+	background: var(--warm-maroon);
+	border-color: var(--warm-maroon);
+	color: var(--white);
+}
 @media (max-width: 560px) {
 	#scenario > .holder > #issues { justify-content: stretch; }
 	.issue-pill { flex: 1 1 auto; justify-content: center; }
