@@ -1439,7 +1439,7 @@ a { color: inherit; }
 .hero-motion-toggle {
 	position: absolute;
 	right: var(--sp-3);
-	bottom: var(--sp-3);
+	bottom: var(--sp-9);
 	z-index: 3;
 	display: grid;
 	place-items: center;
@@ -1447,23 +1447,23 @@ a { color: inherit; }
 	height: 30px;
 	padding: 0;
 	border-radius: var(--r-pill);
-	background: rgba(0,0,0,0.28);
-	border: 1px solid rgba(255,255,255,0.45);
+	background: transparent;
+	border: 1px solid rgba(255,255,255,0.55);
 	color: var(--white);
 	cursor: pointer;
-	opacity: 0.45;
-	transition: opacity var(--dur-fast) var(--ease-std), background var(--dur-fast) var(--ease-std);
+	opacity: 0.5;
+	transition: opacity var(--dur-fast) var(--ease-std), border-color var(--dur-fast) var(--ease-std);
 }
 .hero-motion-toggle[hidden] { display: none; }
 .hero-motion-toggle .hmt-icon { width: 13px; height: 13px; display: block; }
 .hero-motion-toggle .hmt-play { display: none; }
 .hero-motion-toggle[aria-pressed="true"] .hmt-pause { display: none; }
 .hero-motion-toggle[aria-pressed="true"] .hmt-play { display: block; }
-.hero:hover .hero-motion-toggle,
+.hero-network:hover ~ .hero-motion-toggle,
 .hero-motion-toggle:hover,
 .hero-motion-toggle:focus-visible {
 	opacity: 1;
-	background: rgba(0,0,0,0.55);
+	border-color: var(--white);
 }
 .hero-motion-toggle:focus-visible {
 	outline: 2px solid var(--white);
