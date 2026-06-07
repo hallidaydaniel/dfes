@@ -61,7 +61,8 @@
 				// Net-zero: hand-mapped here too (same list as stats-strip.js).
 				var nz = !/counterfactual|falling.?behind/i.test(name);
 				html += '<button type="button" class="scenario-card' + (isActive ? ' active' : '') +
-					'" data-value="' + escapeAttr(name) + '">' +
+					'" data-value="' + escapeAttr(name) + '"' +
+					' aria-pressed="' + (isActive ? 'true' : 'false') + '">' +
 					'<span class="swatch ' + escapeAttr(scenarioClass(name)) + '"></span>' +
 					'<div class="name">' + escapeHtml(name) + '</div>' +
 					'<span class="nz ' + (nz ? 'yes' : 'no') + '">' +
@@ -116,6 +117,7 @@
 				// Use the FULL option text as the native title tooltip so
 				// hovering "LA" shows "Local Authorities" etc.
 				html += '<button type="button"' + (opt.selected ? ' class="active"' : '') +
+					' aria-pressed="' + (opt.selected ? 'true' : 'false') + '"' +
 					' title="' + escapeAttr(opt.text) + '"' +
 					' data-value="' + escapeAttr(opt.value) + '">' +
 					escapeHtml(label) + '</button>';
@@ -141,7 +143,9 @@
 		function sync() {
 			var mode = cb.checked ? 'absolute' : 'relative';
 			host.querySelectorAll('button').forEach(function (b) {
-				b.classList.toggle('active', b.getAttribute('data-mode') === mode);
+				var on = b.getAttribute('data-mode') === mode;
+				b.classList.toggle('active', on);
+				b.setAttribute('aria-pressed', on ? 'true' : 'false');
 			});
 			if (help) help.textContent = HELP[mode];
 		}

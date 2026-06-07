@@ -1064,6 +1064,31 @@
 								};
 							}
 							l.on(evnt);
+
+							// Keyboard access: make each interactive area focusable
+							// and openable without a pointer, mirroring the
+							// hover highlight and click popup above.
+							if(_obj.views[_obj.options.view].popup){
+								l.on('add',function(){
+									let path = l._path;
+									if(!path || path.getAttribute('tabindex')!==null) return;
+									path.setAttribute('tabindex','0');
+									path.setAttribute('role','button');
+									try {
+										let lid = _obj.views[_obj.options.view].layers[attr.layer].id;
+										let fkey = _obj.layers[lid] ? _obj.layers[lid].key : '';
+										if(fkey && feature.properties[fkey]) path.setAttribute('aria-label',String(feature.properties[fkey]));
+									} catch(err){}
+									path.addEventListener('focus',function(){ highlightFeature({'target':l}); });
+									path.addEventListener('blur',function(){ resetHighlight({'target':l}); });
+									path.addEventListener('keydown',function(e){
+										if(e.key==='Enter'||e.key===' '||e.key==='Spacebar'){
+											e.preventDefault();
+											if(l.getPopup&&l.getPopup()) l.openPopup();
+										}
+									});
+								});
+							}
 						};
 					}
 
