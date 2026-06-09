@@ -25,12 +25,10 @@
 	<text x="178.888888888889" y="290" text-anchor="middle">2030/31</text>
 	<line class="tick" x1="393.703703703704" y1="290" x2="393.703703703704" y2="295"></line>
 	<text x="393.703703703704" y="290" text-anchor="middle">2040/41</text>
-	<line class="tick" x1="608.518518518518" y1="290" x2="608.518518518518" y2="295"></line>
-	<text x="608.518518518518" y="290" text-anchor="middle">2050/51</text>
 	<text style="text-anchor:middle;dominant-baseline:hanging;font-weight:bold;transform: translateY(150px) rotate(-90deg);"></text>
 </g>
 <g class="data-layer" role="table">
-<g data-scenario="electric-engagement" class="series series-1" tabindex="0" role="row" aria-label="Series: Electric Engagement" data-series="1">	<path d="M 50.00,211.73L 71.48,208.75L 92.96,202.90L 114.44,190.51L 135.93,183.29L 157.41,172.32L 178.89,166.18L 200.37,153.54L 221.85,131.22L 243.33,109.77L 264.81,87.80L 286.30,65.35L 307.78,58.54L 329.26,55.16L 350.74,51.84L 372.22,48.17L 393.70,44.16L 415.19,40.26L 436.67,36.20L 458.15,32.25L 479.63,28.22L 501.11,24.25L 522.59,20.00L 544.07,16.64L 565.56,13.27L 587.04,10.00L 608.52,10.00" id="Electric Engagement" class="line" stroke="#EE8C5C" stroke-width="3" stroke-linecap="round"><title>Electric Engagement</title></path>
+<g data-scenario="electric-engagement" class="series series-1" tabindex="0" role="row" aria-label="Series: Electric Engagement" data-series="1">	<path d="M 50.00,211.73L 71.48,208.75L 92.96,202.90L 114.44,190.51L 135.93,183.29L 157.41,172.32L 178.89,166.18L 200.37,153.54L 221.85,131.22L 243.33,109.77L 264.81,87.80L 286.30,65.35L 307.78,58.54L 329.26,55.16L 350.74,51.84L 372.22,48.17L 393.70,44.16L 415.19,40.26L 436.67,36.20L 458.15,32.25L 479.63,28.22L 501.11,24.25L 522.59,20.00L 544.07,16.64L 565.56,13.27L 587.04,10.00" id="Electric Engagement" class="line" stroke="#EE8C5C" stroke-width="3" stroke-linecap="round"><title>Electric Engagement</title></path>
 	<circle class="marker" cx="50.00" cy="211.73" data-y="3.609" data-x="2024/25" data-i="0" data-series="1" r="4" fill="#EE8C5C" roll="cell"><title>2024/25: 3.609 GW</title></circle>
 	<circle class="marker" cx="71.48" cy="208.75" data-y="3.746" data-x="2025/26" data-i="1" data-series="1" r="4" fill="#EE8C5C" roll="cell"><title>2025/26: 3.746 GW</title></circle>
 	<circle class="marker" cx="92.96" cy="202.90" data-y="4.016" data-x="2026/27" data-i="2" data-series="1" r="4" fill="#EE8C5C" roll="cell"><title>2026/27: 4.016 GW</title></circle>
@@ -57,9 +55,8 @@
 	<circle class="marker" cx="544.07" cy="16.64" data-y="12.604" data-x="2047/48" data-i="23" data-series="1" r="4" fill="#EE8C5C" roll="cell"><title>2047/48: 12.604 GW</title></circle>
 	<circle class="marker" cx="565.56" cy="13.27" data-y="12.759" data-x="2048/49" data-i="24" data-series="1" r="4" fill="#EE8C5C" roll="cell"><title>2048/49: 12.759 GW</title></circle>
 	<circle class="marker" cx="587.04" cy="10.00" data-y="12.910" data-x="2049/50" data-i="25" data-series="1" r="4" fill="#EE8C5C" roll="cell"><title>2049/50: 12.910 GW</title></circle>
-	<circle class="marker" cx="608.52" cy="10.00" data-y="12.910" data-x="2050/51" data-i="26" data-series="1" r="4" fill="#EE8C5C" roll="cell"><title>2050/51: 12.910 GW</title></circle>
 </g>
-<g data-scenario="hydrogen-evolution" class="series series-2" tabindex="0" role="row" aria-label="Series: Hydrogen Evolution" data-series="2">	<path d="M 50.00,211.73L 71.48,208.75L 92.96,202.90L 114.44,190.51L 135.93,183.29L 157.41,172.32L 178.89,166.18L 200.37,153.54L 221.85,131.22L 243.33,109.77L 264.81,87.80L 286.30,67.17L 307.78,63.40L 329.26,62.77L 350.74,62.07L 372.22,61.38L 393.70,60.62L 415.19,59.93L 436.67,59.19L 458.15,58.45L 479.63,57.67L 501.11,56.87L 522.59,56.07L 544.07,55.29L 565.56,54.44L 587.04,53.59L 608.52,53.59" id="Hydrogen Evolution" class="line" stroke="#2CB9FF" stroke-width="3" stroke-linecap="round"><title>Hydrogen Evolution</title></path>
+<g data-scenario="hydrogen-evolution" class="series series-2" tabindex="0" role="row" aria-label="Series: Hydrogen Evolution" data-series="2">	<path d="M 50.00,211.73L 71.48,208.75L 92.96,202.90L 114.44,190.51L 135.93,183.29L 157.41,172.32L 178.89,166.18L 200.37,153.54L 221.85,131.22L 243.33,109.77L 264.81,87.80L 286.30,67.17L 307.78,63.40L 329.26,62.77L 350.74,62.07L 372.22,61.38L 393.70,60.62L 415.19,59.93L 436.67,59.19L 458.15,58.45L 479.63,57.67L 501.11,56.87L 522.59,56.07L 544.07,55.29L 565.56,54.44L 587.04,53.59" id="Hydrogen Evolution" class="line" stroke="#2CB9FF" stroke-width="3" stroke-linecap="round"><title>Hydrogen Evolution</title></path>
 	<circle class="marker" cx="50.00" cy="211.73" data-y="3.609" data-x="2024/25" data-i="0" data-series="2" r="4" fill="#2CB9FF" roll="cell"><title>2024/25: 3.609 GW</title></circle>
 	<circle class="marker" cx="71.48" cy="208.75" data-y="3.746" data-x="2025/26" data-i="1" data-series="2" r="4" fill="#2CB9FF" roll="cell"><title>2025/26: 3.746 GW</title></circle>
 	<circle class="marker" cx="92.96" cy="202.90" data-y="4.016" data-x="2026/27" data-i="2" data-series="2" r="4" fill="#2CB9FF" roll="cell"><title>2026/27: 4.016 GW</title></circle>
@@ -86,9 +83,8 @@
 	<circle class="marker" cx="544.07" cy="55.29" data-y="10.822" data-x="2047/48" data-i="23" data-series="2" r="4" fill="#2CB9FF" roll="cell"><title>2047/48: 10.822 GW</title></circle>
 	<circle class="marker" cx="565.56" cy="54.44" data-y="10.861" data-x="2048/49" data-i="24" data-series="2" r="4" fill="#2CB9FF" roll="cell"><title>2048/49: 10.861 GW</title></circle>
 	<circle class="marker" cx="587.04" cy="53.59" data-y="10.900" data-x="2049/50" data-i="25" data-series="2" r="4" fill="#2CB9FF" roll="cell"><title>2049/50: 10.900 GW</title></circle>
-	<circle class="marker" cx="608.52" cy="53.59" data-y="10.900" data-x="2050/51" data-i="26" data-series="2" r="4" fill="#2CB9FF" roll="cell"><title>2050/51: 10.900 GW</title></circle>
 </g>
-<g data-scenario="holistic-transition" class="series series-3" tabindex="0" role="row" aria-label="Series: Holistic Transition" data-series="3">	<path d="M 50.00,211.73L 71.48,208.75L 92.96,202.90L 114.44,190.51L 135.93,183.29L 157.41,172.32L 178.89,166.18L 200.37,153.54L 221.85,131.22L 243.33,109.77L 264.81,87.80L 286.30,65.41L 307.78,58.63L 329.26,55.52L 350.74,52.12L 372.22,48.84L 393.70,45.11L 415.19,41.45L 436.67,37.54L 458.15,33.84L 479.63,29.95L 501.11,26.20L 522.59,22.12L 544.07,18.83L 565.56,15.42L 587.04,12.13L 608.52,12.13" id="Holistic Transition" class="line" stroke="#70E85E" stroke-width="3" stroke-linecap="round"><title>Holistic Transition</title></path>
+<g data-scenario="holistic-transition" class="series series-3" tabindex="0" role="row" aria-label="Series: Holistic Transition" data-series="3">	<path d="M 50.00,211.73L 71.48,208.75L 92.96,202.90L 114.44,190.51L 135.93,183.29L 157.41,172.32L 178.89,166.18L 200.37,153.54L 221.85,131.22L 243.33,109.77L 264.81,87.80L 286.30,65.41L 307.78,58.63L 329.26,55.52L 350.74,52.12L 372.22,48.84L 393.70,45.11L 415.19,41.45L 436.67,37.54L 458.15,33.84L 479.63,29.95L 501.11,26.20L 522.59,22.12L 544.07,18.83L 565.56,15.42L 587.04,12.13" id="Holistic Transition" class="line" stroke="#70E85E" stroke-width="3" stroke-linecap="round"><title>Holistic Transition</title></path>
 	<circle class="marker" cx="50.00" cy="211.73" data-y="3.609" data-x="2024/25" data-i="0" data-series="3" r="4" fill="#70E85E" roll="cell"><title>2024/25: 3.609 GW</title></circle>
 	<circle class="marker" cx="71.48" cy="208.75" data-y="3.746" data-x="2025/26" data-i="1" data-series="3" r="4" fill="#70E85E" roll="cell"><title>2025/26: 3.746 GW</title></circle>
 	<circle class="marker" cx="92.96" cy="202.90" data-y="4.016" data-x="2026/27" data-i="2" data-series="3" r="4" fill="#70E85E" roll="cell"><title>2026/27: 4.016 GW</title></circle>
@@ -115,7 +111,6 @@
 	<circle class="marker" cx="544.07" cy="18.83" data-y="12.503" data-x="2047/48" data-i="23" data-series="3" r="4" fill="#70E85E" roll="cell"><title>2047/48: 12.503 GW</title></circle>
 	<circle class="marker" cx="565.56" cy="15.42" data-y="12.660" data-x="2048/49" data-i="24" data-series="3" r="4" fill="#70E85E" roll="cell"><title>2048/49: 12.660 GW</title></circle>
 	<circle class="marker" cx="587.04" cy="12.13" data-y="12.812" data-x="2049/50" data-i="25" data-series="3" r="4" fill="#70E85E" roll="cell"><title>2049/50: 12.812 GW</title></circle>
-	<circle class="marker" cx="608.52" cy="12.13" data-y="12.812" data-x="2050/51" data-i="26" data-series="3" r="4" fill="#70E85E" roll="cell"><title>2050/51: 12.812 GW</title></circle>
 </g>
 </g>
 </svg>
