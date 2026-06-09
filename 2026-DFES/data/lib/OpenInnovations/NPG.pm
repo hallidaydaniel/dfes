@@ -225,6 +225,15 @@ sub table {
 			$i++;
 		}
 	}
+	# Always include the final year so the end of the range is shown,
+	# even when it doesn't fall on a decade boundary (e.g. 2049/50)
+	if(@{$self->{'years'}}){
+		my $last = $self->{'years'}[$#{$self->{'years'}}]{'full'};
+		if($i == 0 || $ticks{'data-'.($i-1)} ne $last){
+			$ticks{'data-'.$i} = $last;
+			$i++;
+		}
+	}
 	$ticks{'length'} = $i;
 
 	# Build HTML
