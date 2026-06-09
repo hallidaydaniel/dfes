@@ -13,5 +13,5 @@
 	{ "key": "domestic-consumption", "title": "Domestic underlying energy consumption (MWh)", "combine": "sum", "units":"MWh", "dp": 0, "description": "Annual energy consumption by residential households excluding electric vehicle and heat pump consumption" },
 	{ "key": "industrial-consumption", "title": "Industrial and commercial underlying energy consumption (MWh)", "combine": "sum", "units":"MWh", "dp": 0, "description": "Annual energy consumption by industrial and commercial properties excluding electric vehicles and heat pump consumption" },
 	{ "key": "totalconsumptioncf", "title": "Total energy consumption including electric vehicles and heat pumps (MWh)", "combine": "sum", "units":"MWh", "dp": 0, "description": "Total energy consumption by domestic households and industrial and commercial properties including electric vehicle and heat pump consumption" },
-	{ "key": "peakdemand", "title": "Peak demand (MW) at Primary Substations", "combine": "max", "units":"MW", "dp": 3, "description": "Peak half hourly demand within the year (includes price driven ToUT)" },
+	{ "key": "peakdemand", "title": "Peak demand (MW) at Primary Substations", "combine": "max", "units":"MW", "dp": 3, "description": "Peak half hourly demand within the year (includes price driven ToUT)" }
 ]
