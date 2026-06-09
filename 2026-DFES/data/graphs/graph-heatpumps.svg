@@ -26,6 +26,8 @@
 	<text x="233.333333333333" y="290" text-anchor="middle">2030/31</text>
 	<line class="tick" x1="422.222222222222" y1="290" x2="422.222222222222" y2="295"></line>
 	<text x="422.222222222222" y="290" text-anchor="middle">2040/41</text>
+	<line class="tick" x1="592.222222222222" y1="290" x2="592.222222222222" y2="295"></line>
+	<text x="592.222222222222" y="290" text-anchor="middle">2049/50</text>
 	<text style="text-anchor:middle;dominant-baseline:hanging;font-weight:bold;transform: translateY(150px) rotate(-90deg);"></text>
 </g>
 <g class="data-layer" role="table">
