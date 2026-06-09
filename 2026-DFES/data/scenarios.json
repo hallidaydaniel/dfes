@@ -25,10 +25,6 @@
 				"primary": { "file": "scenarios/primaries/PeakDemandWithToUT-FB.csv", "key": "Primary" },
 				"LAD": { "use": "primary", "mapping": "primaries2lad.json" }
 			},
-			"peakutilisation":{
-				"primary": { "file": "scenarios/primaries/PeakUtilisationWithToUT-FB.csv", "key": "Primary" },
-				"LAD": { "use": "primary", "mapping": "primaries2lad.json" }
-			},
 			"totalconsumptioncf":{
 				"primary": { "file": "scenarios/primaries/TotalConsumptionWithLCTs_mWh-FB.csv", "key": "Primary" },
 				"LAD": { "use": "primary", "mapping": "primaries2lad.json" }
@@ -99,11 +95,7 @@
 			"peakdemand":{
 				"primary": { "file": "scenarios/primaries/PeakDemandWithToUT-HE.csv", "key": "Primary" },
 				"LAD": { "use": "primary", "mapping": "primaries2lad.json" }
-			},			
-			"peakutilisation":{
-				"primary": { "file": "scenarios/primaries/PeakUtilisationWithToUT-HE.csv", "key": "Primary" },
-				"LAD": { "use": "primary", "mapping": "primaries2lad.json" }
-			},			
+			},		
 			"totalconsumptioncf":{
 				"primary": { "file": "scenarios/primaries/TotalConsumptionWithLCTs_mWh-HE.csv", "key": "Primary" },
 				"LAD": { "use": "primary", "mapping": "primaries2lad.json" }
@@ -174,11 +166,7 @@
 			"peakdemand":{
 				"primary": { "file": "scenarios/primaries/PeakDemandWithToUT-EE.csv", "key": "Primary" },
 				"LAD": { "use": "primary", "mapping": "primaries2lad.json" }
-			},			
-			"peakutilisation":{
-				"primary": { "file": "scenarios/primaries/PeakUtilisationWithToUT-EE.csv", "key": "Primary" },
-				"LAD": { "use": "primary", "mapping": "primaries2lad.json" }
-			},			
+			},		
 			"totalconsumptioncf":{
 				"primary": { "file": "scenarios/primaries/TotalConsumptionWithLCTs_mWh-EE.csv", "key": "Primary" },
 				"LAD": { "use": "primary", "mapping": "primaries2lad.json" }
@@ -250,10 +238,6 @@
 				"primary": { "file": "scenarios/primaries/PeakDemandWithToUT-HT.csv", "key": "Primary" },
 				"LAD": { "use": "primary", "mapping": "primaries2lad.json" }
 			},			
-			"peakutilisation":{
-				"primary": { "file": "scenarios/primaries/PeakUtilisationWithToUT-HT.csv", "key": "Primary" },
-				"LAD": { "use": "primary", "mapping": "primaries2lad.json" }
-			},			
 			"totalconsumptioncf":{
 				"primary": { "file": "scenarios/primaries/TotalConsumptionWithLCTs_mWh-HT.csv", "key": "Primary" },
 				"LAD": { "use": "primary", "mapping": "primaries2lad.json" }
@@ -323,10 +307,6 @@
 			},
 			"peakdemand":{
 				"primary": { "file": "scenarios/primaries/PeakDemandWithToUT-RS.csv", "key": "Primary" },
-				"LAD": { "use": "primary", "mapping": "primaries2lad.json" }
-			},			
-			"peakutilisation":{
-				"primary": { "file": "scenarios/primaries/PeakUtilisationWithToUT-RS.csv", "key": "Primary" },
 				"LAD": { "use": "primary", "mapping": "primaries2lad.json" }
 			},			
 			"totalconsumptioncf":{
