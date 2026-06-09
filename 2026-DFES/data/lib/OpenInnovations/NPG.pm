@@ -218,10 +218,19 @@ sub table {
 	$minyr = $self->{'xmin'};
 	$maxyr = $self->{'xmax'};
 
-	# Build tick marks for time axis
+	# Build tick marks for time axis (every decade year)
 	for($y = 0,$i = 0; $y < @{$self->{'years'}}; $y++){
 		if($self->{'years'}[$y]{'y'} % 10 == 0){
 			$ticks{'data-'.$i} = $self->{'years'}[$y]{'full'};
+			$i++;
+		}
+	}
+	# Always include the final year so the end of the range is shown,
+	# even when it doesn't fall on a decade boundary (e.g. 2049/50)
+	if(@{$self->{'years'}}){
+		my $last = $self->{'years'}[$#{$self->{'years'}}]{'full'};
+		if($i == 0 || $ticks{'data-'.($i-1)} ne $last){
+			$ticks{'data-'.$i} = $last;
 			$i++;
 		}
 	}
