@@ -194,8 +194,8 @@ if(-e $file_index){
 				$csvhref = "data/graphs/published/".$graphs[$i]{'csv'};
 			}
 			$figs .= "\t\t\t\t<div class=\"download\">\n";
-			$figs .= "\t\t\t\t\t<a href=\"data/graphs/$graphs[$i]{'svg'}\"><img src=\"resources/download.svg\" alt=\"download\" title=\"Download graph from Figure $fig\" /> SVG</a>\n";
-			$figs .= "\t\t\t\t\t<a href=\"$csvhref\"><img src=\"resources/download.svg\" alt=\"download\" title=\"Download data from Figure $fig\" /> CSV</a>\n";
+			$figs .= "\t\t\t\t\t<a href=\"data/graphs/$graphs[$i]{'svg'}\" aria-label=\"Download Figure $fig chart as SVG\"><img src=\"resources/download.svg\" alt=\"\" /> SVG</a>\n";
+			$figs .= "\t\t\t\t\t<a href=\"$csvhref\" aria-label=\"Download Figure $fig data as CSV\"><img src=\"resources/download.svg\" alt=\"\" /> CSV</a>\n";
 			$figs .= "\t\t\t\t</div>\n";
 			$figs .= "        </figure>\n";
 			$figs .= "      </div>\n";

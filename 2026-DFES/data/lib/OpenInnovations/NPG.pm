@@ -239,9 +239,9 @@ sub table {
 	# Build HTML
 	$html = "<table>\n";
 
-	$html .= "<tr><th>Scenario</th>";
+	$html .= "<tr><th scope=\"col\">Scenario</th>";
 	for($y = 0; $y < $ticks{'length'}; $y++){
-		$html .= "<th>".($ticks{'data-'.$y}||"")."</th>";
+		$html .= "<th scope=\"col\">".($ticks{'data-'.$y}||"")."</th>";
 	}
 	$html .= "</tr>\n";
 	for($s = 0; $s < @{$self->{'scenariolookup'}}; $s++){
