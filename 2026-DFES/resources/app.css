@@ -1812,9 +1812,10 @@ a { color: inherit; }
 .timeline-controls {
 	display: flex;
 	gap: 8px;
+	margin-top: 8px; /* breathing room below the scrubber tick labels */
 }
 .icon-btn {
-	width: 30px;
+	width: auto; /* the design-reference block earlier fixes width at 36px; these are pills now */
 	height: 30px;
 	border-radius: 999px;
 	background: var(--black-100);
@@ -1822,11 +1823,14 @@ a { color: inherit; }
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
+	gap: 6px;
 	transition: background var(--dur-fast);
 	border: 0;
 	cursor: pointer;
-	padding: 0;
-	font-size: 0; /* hide any text content (existing buttons have ▶/⏸ glyphs) */
+	padding: 0 14px;
+	font-size: 12px;
+	font-weight: 600;
+	letter-spacing: 0.02em;
 }
 @media (hover: hover) { .icon-btn:hover:not(:disabled) { background: var(--red-100); } }
 .icon-btn:disabled { opacity: 0.4; cursor: not-allowed; }
@@ -1836,18 +1840,21 @@ a { color: inherit; }
 	border: 1.5px solid var(--navy-20);
 }
 @media (hover: hover) { .icon-btn.ghost:hover:not(:disabled) { background: var(--black-5); } }
-.icon-btn svg { width: 14px; height: 14px; display: block; }
+.icon-btn svg { width: 14px; height: 14px; display: block; flex: none; }
 
 /* Scrubber, custom track/fill/thumb on top of the existing <input range> */
 .scrubber {
 	position: relative;
-	height: 36px;
+	height: 42px;
 	user-select: none;
 }
 .scrubber-track {
 	position: absolute;
-	left: 0;
-	right: 0;
+	/* Inset by half the 26px thumb so the thumb's travel (set with a
+	   matching calc() in controls.js) stays inside the control; at the
+	   ends the thumb edge lines up with the first and last tick labels. */
+	left: 13px;
+	right: 13px;
 	top: 14px;
 	height: 6px;
 	background: var(--navy-10);
@@ -1863,13 +1870,13 @@ a { color: inherit; }
 }
 .scrubber-thumb {
 	position: absolute;
-	top: 8px;
-	left: 0;
-	width: 18px;
-	height: 18px;
+	top: 4px;
+	left: 13px; /* start-of-track centre; controls.js takes over from here */
+	width: 26px;
+	height: 26px;
 	border-radius: 999px;
 	background: var(--white);
-	border: 3px solid var(--red-100);
+	border: 4px solid var(--red-100);
 	transform: translateX(-50%);
 	cursor: grab;
 	box-shadow: 0 1px 4px rgba(0,0,0,0.15);
@@ -1904,7 +1911,7 @@ a { color: inherit; }
 	position: absolute;
 	left: 0;
 	right: 0;
-	top: 24px;
+	top: 30px;
 	display: flex;
 	justify-content: space-between;
 	pointer-events: none;
