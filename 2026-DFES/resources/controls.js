@@ -183,7 +183,10 @@
 			var pct = (max === min) ? 0 : ((v - min) / (max - min)) * 100;
 			pct = Math.max(0, Math.min(100, pct));
 			if (fill) fill.style.width = pct + '%';
-			if (thumb) thumb.style.left = pct + '%';
+			// Keep the thumb's travel inside the control: the track is
+			// inset 13px (half the 26px thumb) each side in app.css, so
+			// the thumb centre runs from 13px to (100% - 13px).
+			if (thumb) thumb.style.left = 'calc(13px + ' + (pct / 100) + ' * (100% - 26px))';
 			// Accessibility, dfes.js doesn't set these.
 			slider.setAttribute('aria-valuemin', String(min));
 			slider.setAttribute('aria-valuemax', String(max));
