@@ -272,14 +272,23 @@ sub buildAxis {
 	$tick = ($props{'tick'}||5);
 
 	if($axis eq "xaxis"){
-		# Build tick marks for time axis
+		# Build tick marks for time axis (every spacing-th year)
 		for($y = 0,$i = 0; $y < @{$props{'tick-labels'}}; $y++){
 			if($props{'tick-labels'}[$y]{'y'} % $props{'spacing'} == 0){
 				$ticks{'data-'.$i} = $props{'tick-labels'}[$y];
 				$i++;
 			}
 		}
-		$ticks{'length'} = $i;		
+		# Always label the final year so the axis end matches the data,
+		# even when it doesn't fall on a spacing boundary (e.g. 2049/50)
+		if(@{$props{'tick-labels'}}){
+			my $last = $props{'tick-labels'}[$#{$props{'tick-labels'}}];
+			if($i == 0 || $ticks{'data-'.($i-1)}{'full'} ne $last->{'full'}){
+				$ticks{'data-'.$i} = $last;
+				$i++;
+			}
+		}
+		$ticks{'length'} = $i;
 	}else{
 		%ticks = makeTicks($props{($axis eq "yaxis" ? "ymin":"xmin")},$props{($axis eq "yaxis" ? "ymax":"xmax")},%props);
 	}
