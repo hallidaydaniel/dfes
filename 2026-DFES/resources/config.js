@@ -279,28 +279,41 @@ OI.ready(function(){
 				if(this.map && !this._mapViewportReady){
 					this._mapViewportReady = true;
 
-					this.map.invalidateSize({animate:false});
-
-					var unionBounds = null;
-					for(var lid in this.layers){
-						var lyr = this.layers[lid] && this.layers[lid].layer;
-						if(lyr && typeof lyr.getBounds==="function"){
-							var b = lyr.getBounds();
-							if(b && b.isValid()){
-								if(!unionBounds) unionBounds = L.latLngBounds(b.getSouthWest(), b.getNorthEast());
-								else unionBounds.extend(b);
+					var fitRegion = function(){
+						_obj.map.invalidateSize({animate:false});
+						var unionBounds = null;
+						for(var lid in _obj.layers){
+							var lyr = _obj.layers[lid] && _obj.layers[lid].layer;
+							if(lyr && typeof lyr.getBounds==="function"){
+								var b = lyr.getBounds();
+								if(b && b.isValid()){
+									if(!unionBounds) unionBounds = L.latLngBounds(b.getSouthWest(), b.getNorthEast());
+									else unionBounds.extend(b);
+								}
 							}
 						}
-					}
-					if(unionBounds && unionBounds.isValid()){
-						this.map.fitBounds(unionBounds,{padding:[20,20]});
-					}
+						if(unionBounds && unionBounds.isValid()){
+							_obj.map.fitBounds(unionBounds,{padding:[20,20],animate:false});
+						}
+					};
+					fitRegion();
 
+					// The container is often still growing when the first
+					// fit runs (left column populates, fonts load), which
+					// locks in a zoom computed for a smaller map. Keep the
+					// region framed on each resize until the user pans or
+					// zooms themselves, then only re-measure.
+					var container = this.map.getContainer();
+					var userMoved = function(){ _obj._mapUserMoved = true; };
+					container.addEventListener('pointerdown', userMoved);
+					container.addEventListener('wheel', userMoved);
 					if(typeof ResizeObserver!=="undefined"){
 						var ro = new ResizeObserver(function(){
-							if(_obj.map) _obj.map.invalidateSize({animate:false});
+							if(!_obj.map) return;
+							if(_obj._mapUserMoved) _obj.map.invalidateSize({animate:false});
+							else fitRegion();
 						});
-						ro.observe(this.map.getContainer());
+						ro.observe(container);
 						this._mapResizeObserver = ro;
 					}
 				}

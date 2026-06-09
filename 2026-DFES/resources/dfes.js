@@ -823,7 +823,10 @@
 		if(!this.map){
 			mapel = document.getElementById('map');
 			mapid = mapel.getAttribute('id');
-			this.map = L.map(mapid,{'scrollWheelZoom':true}).fitBounds(bounds);
+			// Fractional zoom: zoomSnap lets fitBounds frame the region
+			// tightly instead of rounding down to a whole zoom level,
+			// zoomDelta and wheelPxPerZoomLevel give finer zoom steps.
+			this.map = L.map(mapid,{'scrollWheelZoom':true,'zoomSnap':0.25,'zoomDelta':0.5,'wheelPxPerZoomLevel':150}).fitBounds(bounds);
 			this.map.on('popupopen',function(e){
 				// Call any attached functions
 				if(_obj.views[_obj.options.view].popup && _obj.views[_obj.options.view].popup.open){
