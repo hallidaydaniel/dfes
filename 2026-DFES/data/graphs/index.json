@@ -63,28 +63,28 @@
 		"left": 60
 	},{
 		"title":"Network peak demand breakdown - Holistic Transition (MW)",
-		"csv":"NetworkAnnualGrossPeakDemandBreakdown_ReferenceScenario_MW.csv",
+		"csv":"NetworkAnnualGrossPeakDemandBreakdown_HT_MW.csv",
 		"svg":"graph-annual-peak-demand-breakdown.svg",
 		"tooltip":"{{x}}: {{y}} MW",
 		"yaxis-label": "Annual gross peak demand (MW)",
 		"left": 50
 	},{
 		"title":"Network energy consumption breakdown - Holistic Transition (TWh)",
-		"csv":"NetworkEnergyConsumptionBreakdown_ReferenceScenario_TWh.csv",
+		"csv":"NetworkEnergyConsumptionBreakdown_HT_TWh.csv",
 		"svg":"graph-energy-consumption-breakdown.svg",
 		"tooltip":"{{x}}: {{y}} TWh",
 		"yaxis-label": "Network energy consumption (TWh)",
 		"left": 60
 	},{
 		"title":"Additional industrial peak demand breakdown - Holistic Transition (MW)",
-		"csv":"IndustryAdditionalPeakDemandBreakdown_NPgReferenceScenario_MW.csv",
+		"csv":"IndustryAdditionalPeakDemandBreakdown_HT_MW.csv",
 		"svg":"graph-industry-additional-peak-demand-planning-scenario.svg",
 		"tooltip":"{{x}}: {{y}} MW",
 		"yaxis-label": "Peak demand (MW)",
 		"left": 70
 	},{
 		"title":"Additional industrial energy consumption breakdown - Holistic Transition (TWh)",
-		"csv":"IndustryAdditionalEnergyConsumptionBreakdown_NPgReferenceScenario_TWh.csv",
+		"csv":"IndustryAdditionalEnergyConsumptionBreakdown_HT_TWh.csv",
 		"tooltip":"{{x}}: {{y}} TWh",
 		"svg":"graph-industry-additional-energy-consumption-planning-scenario.svg",
 		"yaxis-label": "Energy consumption (TWh)",
